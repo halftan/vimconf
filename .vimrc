@@ -36,6 +36,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'SirVer/ultisnips'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'nono/vim-handlebars'
+Bundle 'heartsentwined/vim-ember-script'
 " vim-scripts repos
 " Bundle 'L9'
 " Bundle 'FuzzyFinder'
@@ -83,7 +85,8 @@ if has("gui_running")
     set guioptions-=r
     set guioptions-=m    "隐藏菜单栏
 else
-    colorscheme  elflord
+    set background=dark
+    colorscheme solarized
 endif
 
 syntax enable
@@ -94,7 +97,7 @@ syntax on
 
 au BufNewFile,BufRead *.cpp set syntax=cpp11
 
-au FileType * setl sw=4 ts=4 sts=4
+au FileType * setl sw=4 ts=4 sts=4 et
 au FileType html setl sw=2 sts=2 ts=2 et
 au FileType ruby setl sw=2 ts=2 sts=2 et
 au FileType python setl sw=2 ts=2 sts=2 et
