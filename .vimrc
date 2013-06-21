@@ -72,7 +72,7 @@ if has("gui_running")
     colorscheme solarized
 
     " map control-tab to swap between tabs
-    noremap <C-TAB> gT
+    nmap <C-TAB> gT
     if has("win32")
         set guifont=DejaVu\ Sans\ Mono:h11,Consolas:h11
     elseif has("mac")
@@ -83,7 +83,7 @@ if has("gui_running")
     set lines=50 columns=120
     set guioptions-=T
     set guioptions-=r
-    set guioptions-=m    "隐藏菜单栏
+"    set guioptions-=m    "隐藏菜单栏
 else
     set background=dark
     colorscheme solarized
