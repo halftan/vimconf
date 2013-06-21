@@ -100,7 +100,7 @@ au BufNewFile,BufRead *.cpp set syntax=cpp11
 au FileType * setl sw=4 ts=4 sts=4 et
 au FileType html setl sw=2 sts=2 ts=2 et
 au FileType ruby setl sw=2 ts=2 sts=2 et
-au FileType python setl sw=2 ts=2 sts=2 et
+au FileType python setl sw=4 ts=4 sts=4 et
 au FileType yaml setl sw=2 ts=2 sts=2 et
 au FileType eruby setl sw=2 ts=2 sts=2 et
 
@@ -110,10 +110,10 @@ let g:rubycomplete_classes_in_global = 1
 " FileType specs End ----------
 
 set cindent
-set ai!
+set ai
 set smartindent
 " set expandtab
-set nu!
+set nu
 set ruler
 set hlsearch
 set autochdir
@@ -159,7 +159,7 @@ let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 let OmniCpp_SelectFirstItem = 2
 let OmniCpp_LocalSearchDecl = 1
-set completeopt=menu,menuone
+set completeopt=menu,menuone,preview
 
 
 "===== tags ====="
@@ -179,56 +179,56 @@ let g:EasyMotion_leader_key = '\'
 " ======= 编译 && 运行 ======= "
 
 " 编译源文件
-" func! CompileCode()
-"     exec "w"
-"     if &filetype == "c"
-"         exec "!gcc -Wall -g %<.c -o %< -D DEBUG"
-"     elseif &filetype == "cpp"
-"         exec "!g++ -Wall -g %<.cpp -o %< -std=c++0x -D DEBUG -D CPP0X"
-"     elseif &filetype == "java"
-"         exec "!javac %<.java"
-"     elseif &filetype == "haskell"
-"         exec "!ghc --make %<.hs -o %<"
-"     elseif &filetype == "lua"
-"         exec "!lua %<.lua"
-"     elseif &filetype == "perl"
-"         exec "!perl %<.pl"
-"     elseif &filetype == "python"
-"         exec "!python %<.py"
-"     elseif &filetype == "ruby"
-"         exec "!ruby %<.rb"
-"     endif
-" endfunc
+func! CompileCode()
+    exec "w"
+    if &filetype == "c"
+        exec "!gcc -Wall -g %<.c -o %< -D DEBUG"
+    elseif &filetype == "cpp"
+        exec "!g++ -Wall -g %<.cpp -o %< -std=c++0x -D DEBUG -D CPP0X"
+    elseif &filetype == "java"
+        exec "!javac %<.java"
+    elseif &filetype == "haskell"
+        exec "!ghc --make %<.hs -o %<"
+    elseif &filetype == "lua"
+        exec "!lua %<.lua"
+    elseif &filetype == "perl"
+        exec "!perl %<.pl"
+    elseif &filetype == "python"
+        exec "!python2 %<.py"
+    elseif &filetype == "ruby"
+        exec "!ruby %<.rb"
+    endif
+endfunc
 
 " 运行可执行文件
-" func! RunCode()
-"     exec "w"
-"     if &filetype == "c" || &filetype == "cpp" || &filetype == "haskell"
-"     if has("win32")
-"         exec "! %<.exe"
-"     else
-"         exec "! ./%<"
-"     endif
-"     elseif &filetype == "java"
-"         exec "!java %<"
-"     elseif &filetype == "lua"
-"         exec "!lua %<.lua"
-"     elseif &filetype == "perl"
-"         exec "!perl %<.pl"
-"     elseif &filetype == "python"
-"         exec "!python %<.py"
-"     elseif &filetype == "ruby"
-"         exec "!ruby %<.rb"
-"     endif
-" endfunc
+func! RunCode()
+    exec "w"
+    if &filetype == "c" || &filetype == "cpp" || &filetype == "haskell"
+        if has("win32")
+            exec "! %<.exe"
+        else
+            exec "! ./%<"
+        endif
+    elseif &filetype == "java"
+        exec "!java %<"
+    elseif &filetype == "lua"
+        exec "!lua %<.lua"
+    elseif &filetype == "perl"
+        exec "!perl %<.pl"
+    elseif &filetype == "python"
+        exec "!python2 %<.py"
+    elseif &filetype == "ruby"
+        exec "!ruby %<.rb"
+    endif
+endfunc
 
 " Alt + C 一键保存、编译
-" map <m-c> :call CompileCode()<CR>
+nmap <m-c> :call CompileCode()<CR>
 " imap <m-c> <ESC>:call CompileCode()<CR>
 " vmap <m-c> <ESC>:call CompileCode()<CR>
 
 " Alt + R 一键保存、运行
-" map <m-x> :call RunCode()<CR>
+nmap <m-x> :call RunCode()<CR>
 " imap <m-x> <ESC>:call RunCode()<CR>
 " vmap <m-x> <ESC>:call RunCode()<CR>
 
