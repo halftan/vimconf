@@ -38,7 +38,9 @@ Bundle 'SirVer/ultisnips'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'nono/vim-handlebars'
 Bundle 'heartsentwined/vim-ember-script'
+Bundle 'hallison/vim-ruby-sinatra'
 " vim-scripts repos
+Bundle 'fcitx.vim'
 " Bundle 'L9'
 " Bundle 'FuzzyFinder'
 " non github repos
@@ -59,7 +61,6 @@ filetype plugin indent on     " required!
 " NOTE: comments after Bundle command are not allowed..
 
 
-
 set history=50
 set scrolloff=3
 set mouse=a
@@ -76,11 +77,11 @@ if has("gui_running")
     if has("win32")
         set guifont=DejaVu\ Sans\ Mono:h11,Consolas:h11
     elseif has("mac")
-        set guifont=Monaco:h12
+        set guifont=Monaco:h10
     else
-        set guifont=Monospace\ 10,Monaco\ 10,DejaVu\ Sans\ Mono\ 10
+        set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 10,Monaco\ 10,DejaVu\ Sans\ Mono\ 10
     endif
-    set lines=50 columns=120
+    set lines=60 columns=120
     set guioptions-=T
     set guioptions-=r
 "    set guioptions-=m    "隐藏菜单栏
@@ -98,16 +99,19 @@ syntax on
 au BufNewFile,BufRead *.cpp set syntax=cpp11
 
 au FileType * setl sw=4 ts=4 sts=4 et
-au FileType html setl sw=2 sts=2 ts=2 et
+au FileType html setl sw=2 sts=2 ts=2 et | let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<':'>'}
 au FileType ruby setl sw=2 ts=2 sts=2 et
 au FileType python setl sw=4 ts=4 sts=4 et
 au FileType yaml setl sw=2 ts=2 sts=2 et
-au FileType eruby setl sw=2 ts=2 sts=2 et
+au FileType eruby setl sw=2 ts=2 sts=2 et | let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<':'>'}
 
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 
 " FileType specs End ----------
+
+" UltiSnips config Here ------------
+let g:UltiSnipsEditSplit = "horizontal"
 
 set cindent
 set ai
@@ -143,10 +147,6 @@ endif
 if has('win32')
     language messages zh_CN.UTF-8
     set ambiwidth=double
-endif
-
-if &filetype == "html" || &filetype == "htm" || &filetype == "eruby"
-    let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<':'>'}
 endif
 
 "======= OmniCompeleteCPP ========"
