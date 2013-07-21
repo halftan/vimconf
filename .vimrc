@@ -38,9 +38,14 @@ Bundle 'SirVer/ultisnips'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'nono/vim-handlebars'
 Bundle 'heartsentwined/vim-ember-script'
-Bundle 'hallison/vim-ruby-sinatra'
+Bundle 'ervandew/supertab'
+Bundle 'slim-template/vim-slim'
+
 " vim-scripts repos
-Bundle 'fcitx.vim'
+if has('unix')
+    Bundle 'fcitx.vim'
+endif
+Bundle 'Rackup'
 " Bundle 'L9'
 " Bundle 'FuzzyFinder'
 " non github repos
@@ -81,7 +86,7 @@ if has("gui_running")
     else
         set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 10,Monaco\ 10,DejaVu\ Sans\ Mono\ 10
     endif
-    set lines=60 columns=120
+    set lines=80 columns=999
     set guioptions-=T
     set guioptions-=r
 "    set guioptions-=m    "隐藏菜单栏
@@ -99,11 +104,13 @@ syntax on
 au BufNewFile,BufRead *.cpp set syntax=cpp11
 
 au FileType * setl sw=4 ts=4 sts=4 et
-au FileType html setl sw=2 sts=2 ts=2 et | let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<':'>'}
+au FileType html setl sw=2 sts=2 ts=2 et
+au FileType slim setl sw=2 sts=2 ts=2 et
+au FileType coffee setl sw=2 sts=2 ts=2 et
 au FileType ruby setl sw=2 ts=2 sts=2 et
 au FileType python setl sw=4 ts=4 sts=4 et
 au FileType yaml setl sw=2 ts=2 sts=2 et
-au FileType eruby setl sw=2 ts=2 sts=2 et | let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<':'>'}
+au FileType eruby setl sw=2 ts=2 sts=2 et
 
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
@@ -113,7 +120,9 @@ let g:rubycomplete_classes_in_global = 1
 " UltiSnips config Here ------------
 let g:UltiSnipsEditSplit = "horizontal"
 
-set cindent
+" Supertab config Here --------------
+let g:SuperTabDefaultCompletionType = "context"
+
 set ai
 set smartindent
 " set expandtab
@@ -128,6 +137,9 @@ set list
 set listchars=tab:\|\ ,
 set textwidth=80
 set nowrap
+
+set ignorecase
+set smartcase
 
 set nowritebackup
 set nobackup
@@ -148,6 +160,8 @@ if has('win32')
     language messages zh_CN.UTF-8
     set ambiwidth=double
 endif
+
+" omni completion ----
 
 "======= OmniCompeleteCPP ========"
 " map <C-F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -197,6 +211,8 @@ func! CompileCode()
         exec "!python2 %<.py"
     elseif &filetype == "ruby"
         exec "!ruby %<.rb"
+    elseif &filetype == "coffee"
+        exec "!coffee -p %"
     endif
 endfunc
 
@@ -232,3 +248,5 @@ nmap <m-x> :call RunCode()<CR>
 " imap <m-x> <ESC>:call RunCode()<CR>
 " vmap <m-x> <ESC>:call RunCode()<CR>
 
+" NERDTree shortcuts
+nmap NT :NERDTree<CR>
