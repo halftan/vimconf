@@ -1,0 +1,35 @@
+snippet desc "rspec describe statement" !b
+describe ${1:name} do
+
+  ${2:# TODO}
+
+end
+endsnippet
+
+snippet before "rspec before statement" !b
+before ${1:what} do
+  ${2:# TODO}
+end
+endsnippet
+
+snippet it "rspec it statement" !b
+it "${1:is?}" do
+  ${2:# TODO}
+end
+endsnippet
+
+
+snippet dob "do |<key>| ... end" i
+do${1: |${2:key}|}
+	$3
+end
+$4
+endsnippet
+
+snippet do "do block ... end" !i
+do
+	$1
+end
+$2
+endsnippet
+

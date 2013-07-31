@@ -103,14 +103,8 @@ syntax on
 
 au BufNewFile,BufRead *.cpp set syntax=cpp11
 
-au FileType * setl sw=4 ts=4 sts=4 et
-au FileType html setl sw=2 sts=2 ts=2 et
-au FileType slim setl sw=2 sts=2 ts=2 et
-au FileType coffee setl sw=2 sts=2 ts=2 et
-au FileType ruby setl sw=2 ts=2 sts=2 et
+au FileType * setl sw=2 ts=2 sts=2 et
 au FileType python setl sw=4 ts=4 sts=4 et
-au FileType yaml setl sw=2 ts=2 sts=2 et
-au FileType eruby setl sw=2 ts=2 sts=2 et
 
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
@@ -119,6 +113,7 @@ let g:rubycomplete_classes_in_global = 1
 
 " UltiSnips config Here ------------
 let g:UltiSnipsEditSplit = "horizontal"
+let g:UltiSnipsDontReverseSearchPath="1"
 
 " Supertab config Here --------------
 let g:SuperTabDefaultCompletionType = "context"
@@ -133,10 +128,12 @@ set autochdir
 set laststatus=2
 set showmatch
 set cursorline
-set list
+set linebreak
+set nolist
 set listchars=tab:\|\ ,
-set textwidth=80
-set nowrap
+set textwidth=0
+set wrapmargin=0
+set wrap
 
 set ignorecase
 set smartcase

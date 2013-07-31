@@ -1,11 +1,23 @@
-snippet esp "escape block with output"
+snippet esp "escape block with output" w
 <%= $1 %>
 endsnippet
 
-snippet ess "escape block suppress output"
+snippet ess "escape block suppress output" w
 <%- $1 %>
 endsnippet
 
-snippet esn "escape block no output"
+snippet esn "escape block no output" w
 <% $1 %>
+endsnippet
+
+snippet espq "escape block with output" w
+"<%= $1 %>"
+endsnippet
+
+snippet essq "escape block suppress output" w
+"<%- $1 %>"
+endsnippet
+
+snippet esnq "escape block no output" w
+"<% $1 %>"
 endsnippet
