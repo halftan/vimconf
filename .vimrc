@@ -86,13 +86,12 @@ if has("gui_running")
     else
         set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 10,Monaco\ 10,DejaVu\ Sans\ Mono\ 10
     endif
-    set lines=80 columns=999
+    set lines=50 columns=160
     set guioptions-=T
     set guioptions-=r
 "    set guioptions-=m    "隐藏菜单栏
 else
-    set background=dark
-    colorscheme solarized
+    colorscheme desert
 endif
 
 syntax enable
