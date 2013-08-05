@@ -43,7 +43,6 @@ Bundle 'slim-template/vim-slim'
 
 " vim-scripts repos
 if has('unix')
-    Bundle 'fcitx.vim'
 endif
 Bundle 'Rackup'
 " Bundle 'L9'
