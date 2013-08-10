@@ -28,6 +28,7 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails.git'
 Bundle 'jiangmiao/auto-pairs'
@@ -40,6 +41,7 @@ Bundle 'nono/vim-handlebars'
 Bundle 'heartsentwined/vim-ember-script'
 Bundle 'ervandew/supertab'
 Bundle 'slim-template/vim-slim'
+Bundle 'nathanaelkane/vim-indent-guides'
 
 " vim-scripts repos
 if has('unix')
@@ -77,7 +79,8 @@ if has("gui_running")
     colorscheme solarized
 
     " map control-tab to swap between tabs
-    nmap <C-TAB> gT
+    nmap <C-TAB> gt
+    nmap <S-TAB> gT
     if has("win32")
         set guifont=DejaVu\ Sans\ Mono:h11,Consolas:h11
     elseif has("mac")
@@ -115,6 +118,10 @@ let g:UltiSnipsDontReverseSearchPath="1"
 
 " Supertab config Here --------------
 let g:SuperTabDefaultCompletionType = "context"
+
+" Indent Guildes Here --------------
+let g:indent_guides_guide_size = 1
+au VimEnter * IndentGuidesEnable
 
 set ai
 set smartindent
@@ -179,8 +186,9 @@ set tags+=$VIMFILES/tags/cpp
 " let Tlist_Exit_OnlyWindow=1                  " 如果Taglist窗口是最后一个窗口则退出Vim
 " let Tlist_File_Fold_Auto_Close=1             " 自动折叠
 
-" kk                  保存文件并返回Normal模式 [插入模式]
+" kk & jj                  保存文件并返回Normal模式 [插入模式]
 imap kk <ESC>l
+imap jj <ESC>l
 
 " easy motion leader key
 let g:EasyMotion_leader_key = '\'
