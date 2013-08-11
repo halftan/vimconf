@@ -186,8 +186,7 @@ set tags+=$VIMFILES/tags/cpp
 " let Tlist_Exit_OnlyWindow=1                  " 如果Taglist窗口是最后一个窗口则退出Vim
 " let Tlist_File_Fold_Auto_Close=1             " 自动折叠
 
-" kk & jj                  保存文件并返回Normal模式 [插入模式]
-imap kk <ESC>l
+" jj                  保存文件并返回Normal模式 [插入模式]
 imap jj <ESC>l
 
 " easy motion leader key
