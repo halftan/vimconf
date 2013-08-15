@@ -42,6 +42,8 @@ Bundle 'heartsentwined/vim-ember-script'
 Bundle 'ervandew/supertab'
 Bundle 'slim-template/vim-slim'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'tpope/vim-haml'
+Bundle 'hail2u/vim-css3-syntax'
 
 " vim-scripts repos
 if has('unix')
