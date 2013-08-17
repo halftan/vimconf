@@ -60,6 +60,7 @@ Bundle 'Rackup'
 Bundle 'matchit.zip'
 Bundle 'argtextobj.vim'
 Bundle 'textobj-user'
+Bundle 'vim-indent-object'
 " Bundle 'L9'
 " Bundle 'FuzzyFinder'
 " non github repos
