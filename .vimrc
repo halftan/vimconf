@@ -20,7 +20,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
@@ -37,18 +37,29 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'SirVer/ultisnips'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'nono/vim-handlebars'
-Bundle 'heartsentwined/vim-ember-script'
+" Bundle 'nono/vim-handlebars'
+" Bundle 'heartsentwined/vim-ember-script'
 Bundle 'ervandew/supertab'
 Bundle 'slim-template/vim-slim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'tpope/vim-haml'
 Bundle 'hail2u/vim-css3-syntax'
+Bundle 'bkad/CamelCaseMotion'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'junegunn/vim-easy-align'
+Bundle 'sjl/gundo.vim'
+Bundle 'bling/vim-airline'
+Bundle 'bling/vim-bufferline'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'myusuf3/numbers.vim'
 
 " vim-scripts repos
 if has('unix')
 endif
 Bundle 'Rackup'
+Bundle 'matchit.zip'
+Bundle 'argtextobj.vim'
+Bundle 'textobj-user'
 " Bundle 'L9'
 " Bundle 'FuzzyFinder'
 " non github repos
@@ -88,7 +99,7 @@ if has("gui_running")
     elseif has("mac")
         set guifont=Monaco:h10
     else
-        set guifont=WenQuanYi\ Micro\ Hei\ Mono\ 10,Monaco\ 10,DejaVu\ Sans\ Mono\ 10
+        set guifont=DejaVu\ Sans\ Mono\ For\ Powerline\ 10
     endif
     set lines=50 columns=160
     set guioptions-=T
@@ -124,6 +135,17 @@ let g:SuperTabDefaultCompletionType = "context"
 " Indent Guildes Here --------------
 let g:indent_guides_guide_size = 1
 au VimEnter * IndentGuidesEnable
+
+" Vim easy align Here ---------------
+vnoremap <silent> <Enter> :EasyAlign<cr>
+
+" Airline Here -------------
+let g:airline_powerline_fonts = 1
+let g:airline_theme='solarized'
+
+" Gundo Here --------------
+nnoremap <F5> :GundoToggle<CR>
+
 
 set ai
 set smartindent
