@@ -5,11 +5,11 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="blinks"
+ZSH_THEME="gallois"
 
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="gvim ~/.zshrc"
+alias ohmyzsh="gvim ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -40,9 +40,16 @@ ZSH_THEME="blinks"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rails3 sublime rvm bundler autojump)
+plugins=(git bundler autojump rvm)
 
 source $ZSH/oh-my-zsh.sh
 
+alias open="xdg-open"
+alias lh="l -h"
+
+export EDITOR="gvim"
+
 # Customize to your needs...
-# export PATH=$PATH:/home/halftan/.rvm/gems/ruby-1.9.3-p392-railsexpress/bin:/home/halftan/.rvm/gems/ruby-1.9.3-p392-railsexpress@global/bin:/home/halftan/.rvm/rubies/ruby-1.9.3-p392-railsexpress/bin:/home/halftan/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/halftan/.rvm/gems/ruby-1.9.3-p392-railsexpress/bin:/home/halftan/.rvm/gems/ruby-1.9.3-p392-railsexpress@global/bin:/home/halftan/.rvm/rubies/ruby-1.9.3-p392-railsexpress/bin:/home/halftan/.rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+export PATH=$HOME/.rvm/bin:$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl
+
+# export LANG="zh_CN.UTF-8"
