@@ -52,6 +52,8 @@ Bundle 'bling/vim-airline'
 Bundle 'bling/vim-bufferline'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'myusuf3/numbers.vim'
+Bundle 'Keithbsmiley/rspec.vim'
+Bundle 'tomasr/molokai'
 
 " vim-scripts repos
 if has('unix')
@@ -61,6 +63,7 @@ Bundle 'matchit.zip'
 Bundle 'argtextobj.vim'
 Bundle 'textobj-user'
 Bundle 'vim-indent-object'
+Bundle 'surround.vim'
 " Bundle 'L9'
 " Bundle 'FuzzyFinder'
 " non github repos
@@ -107,7 +110,9 @@ if has("gui_running")
     set guioptions-=r
 "    set guioptions-=m    "隐藏菜单栏
 else
-    colorscheme desert
+    " Molokai colorscheme
+    colorscheme molokai
+    set background=dark
 endif
 
 syntax enable
@@ -120,6 +125,7 @@ au BufNewFile,BufRead *.cpp set syntax=cpp11
 
 au FileType * setl sw=2 ts=2 sts=2 et
 au FileType python setl sw=4 ts=4 sts=4 et
+au FileType vim setl sw=4 ts=4 sts=4 et
 
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
@@ -142,7 +148,11 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 
 " Airline Here -------------
 let g:airline_powerline_fonts = 1
-let g:airline_theme='solarized'
+if has("gui_running")
+    let g:airline_theme='solarized'
+else
+    let g:airline_theme='luna'
+end
 
 " Gundo Here --------------
 nnoremap <F5> :GundoToggle<CR>

@@ -1,13 +1,29 @@
 snippet desc "rspec describe statement" !b
 describe ${1:name} do
-
   ${2:# TODO}
+end
+endsnippet
 
+snippet cont "rspec context statement" !b
+context ${1:name} do
+  ${2:# TODO}
 end
 endsnippet
 
 snippet before "rspec before statement" !b
 before ${1:what} do
+  ${2:# TODO}
+end
+endsnippet
+
+snippet after "rspec after statement" !b
+after ${1:what} do
+  ${2:# TODO}
+end
+endsnippet
+
+snippet around "rspec around statement" !b
+around ${1:what} do
   ${2:# TODO}
 end
 endsnippet
@@ -18,6 +34,13 @@ it "${1:is?}" do
 end
 endsnippet
 
+snippet alr "rspec stub with allow" !b
+allow(${1:subject}).to receive(${2:method}).and_return(${3:"${4:value}"})
+endsnippet
+
+snippet exp "rspec expectation" !b
+expect${1:(${2:expression})}.${3:to} ${4:be}
+endsnippet
 
 snippet dob "do |<key>| ... end" i
 do |${1:key}|
