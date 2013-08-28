@@ -169,8 +169,8 @@ set laststatus=2
 set showmatch
 set cursorline
 set linebreak
-set nolist
-set listchars=tab:\|\ ,
+set list
+set listchars=tab:\|_,trail:·
 set textwidth=0
 set wrapmargin=0
 set wrap
