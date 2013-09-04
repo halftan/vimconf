@@ -42,12 +42,13 @@ alias ohmyzsh="gvim ~/.oh-my-zsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git bundler autojump rbenv)
 
+export PYTHONSTARTUP=~/.pythonrc
+export EDITOR=vim
+
 source $ZSH/oh-my-zsh.sh
 
 alias open="xdg-open"
 alias lh="l -h"
-
-export EDITOR="vim"
 
 # Customize to your needs...
 # export PATH=$HOME/.rvm/bin:$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl
