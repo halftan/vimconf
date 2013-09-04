@@ -40,16 +40,17 @@ alias ohmyzsh="gvim ~/.oh-my-zsh"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git bundler autojump rvm)
+plugins=(git bundler autojump rbenv)
+
+export PYTHONSTARTUP=~/.pythonrc
+export EDITOR=vim
 
 source $ZSH/oh-my-zsh.sh
 
 alias open="xdg-open"
 alias lh="l -h"
 
-export EDITOR="gvim"
-
 # Customize to your needs...
-export PATH=$HOME/.rvm/bin:$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl
+export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl
 
 # export LANG="zh_CN.UTF-8"
