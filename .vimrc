@@ -103,7 +103,7 @@ if has("gui_running")
     elseif has("mac")
         set guifont=Monaco:h10
     else
-        set guifont=DejaVu\ Sans\ Mono\ For\ Powerline\ 10
+        set guifont=Inconsolata\ For\ Powerline\ 12
     endif
     set lines=50 columns=160
     set guioptions-=T
@@ -170,7 +170,7 @@ set showmatch
 set cursorline
 set linebreak
 set list
-set listchars=tab:\|_,trail:·
+set listchars=tab:\|_,trail:*
 set textwidth=0
 set wrapmargin=0
 set wrap

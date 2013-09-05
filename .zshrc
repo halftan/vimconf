@@ -53,4 +53,4 @@ alias lh="l -h"
 # Customize to your needs...
 export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl
 
-# export LANG="zh_CN.UTF-8"
+export LANG="zh_CN.UTF-8"
