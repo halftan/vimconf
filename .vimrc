@@ -54,6 +54,7 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'myusuf3/numbers.vim'
 Bundle 'Keithbsmiley/rspec.vim'
 Bundle 'tomasr/molokai'
+Bundle 'tpope/vim-rbenv'
 
 " vim-scripts repos
 if has('unix')
