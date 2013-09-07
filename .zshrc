@@ -50,6 +50,11 @@ source $ZSH/oh-my-zsh.sh
 alias open="xdg-open"
 alias lh="l -h"
 
+ngvim() { gvim > /dev/null 2>&1 $@ }
+
+# Load rbenv automatically
+eval "$(rbenv init -)"
+
 # Customize to your needs...
 export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl
 
