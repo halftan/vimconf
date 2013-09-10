@@ -1,4 +1,4 @@
-let mapleader = '\'
+let mapleader = "\<space>"
 
 " Template
 " nmap <Leader>
@@ -13,13 +13,13 @@ nmap <Leader>/ :nohlsearch<cr>
 
 
 " NERDTree shortcuts
-nmap <Leader>t :NERDTreeToggle<CR>
+nmap <Leader>nt :NERDTreeToggle<CR>
 
 " Vundle
-nmap <Leader>bi :BundleInstall<cr>
-nmap <Leader>bu :BundleInstall!<cr>
+nmap <Leader>bi :NeoBundleInstall<cr>
+nmap <Leader>bu :NeoBundleInstall!<cr>
 
-nmap <Leader>gst :Gstatus<cr>
+nmap <Leader>gs :Gstatus<cr>
 
 " Toggle relative numbers
 nmap <Leader>nr :NumbersToggle<cr>
@@ -30,7 +30,22 @@ nmap <Leader>rn :call RunNearestSpec()<cr>
 nmap <Leader>rl :call RunLastSpec()<cr>
 nmap <Leader>ra :call RunAllSpecs()<cr>
 
+"  Unite
+nmap <Leader>uf :Unite file<cr>
+nmap <Leader>ub :Unite buffer<cr>
+nmap <Leader>ur :Unite file_rec<cr>
+let g:unite_source_history_yank_enable = 1
+nmap <Leader>uy :Unite history/yank<cr>
+nmap <Leader>u/ :Unite grep:.<cr>
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  c-a and c-e key binding in insert mode like emacs  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+imap <c-a> <Home>
+cmap <c-a> <Home>
+imap <c-e> <End>
+cmap <c-e> <End>
 
 """"""""""""""""""""""""
 "  Disable arrow keys  "
