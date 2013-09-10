@@ -13,7 +13,8 @@ set undodir=$VIMFILES/\_undodir
 set undolevels=1000
 
 set nocompatible
-filetype off
+
+" filetype off
 
 " Vundle Here
 set rtp+=~/.vim/bundle/vundle/
@@ -44,8 +45,6 @@ Bundle 'slim-template/vim-slim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'tpope/vim-haml'
 Bundle 'hail2u/vim-css3-syntax'
-Bundle 'bkad/CamelCaseMotion'
-Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'sjl/gundo.vim'
 Bundle 'bling/vim-airline'
@@ -54,16 +53,25 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'myusuf3/numbers.vim'
 Bundle 'Keithbsmiley/rspec.vim'
 Bundle 'tomasr/molokai'
-
-" vim-scripts repos
-if has('unix')
-endif
+Bundle 'tpope/vim-rbenv'
+Bundle 'thoughtbot/vim-rspec'
 Bundle 'Rackup'
+
+Bundle 'tpope/surround.vim'
+Bundle 'tpope/vim-repeat'
+
+" Text Objects
 Bundle 'matchit.zip'
-Bundle 'argtextobj.vim'
 Bundle 'textobj-user'
+Bundle 'bkad/CamelCaseMotion'
+",w ,b
+Bundle 'argtextobj.vim'
+"via vaa da ca
 Bundle 'vim-indent-object'
-Bundle 'surround.vim'
+"vii vai
+Bundle 'nelstrom/vim-textobj-rubyblock'
+"vir var
+
 " Bundle 'L9'
 " Bundle 'FuzzyFinder'
 " non github repos
@@ -88,7 +96,6 @@ set history=50
 set scrolloff=3
 set mouse=a
 
-
 if has("gui_running")
     " Solarized theme
 
@@ -103,16 +110,17 @@ if has("gui_running")
     elseif has("mac")
         set guifont=Monaco:h10
     else
-        set guifont=DejaVu\ Sans\ Mono\ For\ Powerline\ 10
+        set guifont=Inconsolata\ For\ Powerline\ 12
     endif
     set lines=50 columns=160
     set guioptions-=T
-    set guioptions-=r
-"    set guioptions-=m    "隐藏菜单栏
+    " set guioptions-=r
+    set guioptions-=m    "隐藏菜单栏
 else
     " Molokai colorscheme
     colorscheme molokai
     set background=dark
+    set t_Co=256
 endif
 
 syntax enable
@@ -154,23 +162,33 @@ else
     let g:airline_theme='luna'
 end
 
+" easy motion leader key -----------------
+" let g:EasyMotion_leader_key = '\'
+
 " Gundo Here --------------
 nnoremap <F5> :GundoToggle<CR>
 
+" Vim-rspec Here ------------
+let g:rspec_command = "!bundle exec rspec {spec}"
+
+" NERDTree Here -------------
+let g:NERDTreeWinPos = "right"
 
 set ai
 set smartindent
 " set expandtab
 set nu
-set ruler
 set hlsearch
 set autochdir
 set laststatus=2
 set showmatch
 set cursorline
-set linebreak
 set list
-set listchars=tab:\|_,trail:·
+if has("gui")
+    set listchars=tab:\|_,trail:·
+else
+    set listchars=tab:\|_,trail:*
+endif
 set textwidth=0
 set wrapmargin=0
 set wrap
@@ -216,74 +234,12 @@ set completeopt=menu,menuone,preview
 "===== tags ====="
 set tags+=$VIMFILES/tags/cpp
 
+for f in split(glob('~/.vim/vimrc.d/*.vim'), '\n')
+    exe 'source' f
+endfor
+
 " :Tlist              调用TagList
 " let Tlist_Show_One_File=0                    " 只显示当前文件的tags
 " let Tlist_Exit_OnlyWindow=1                  " 如果Taglist窗口是最后一个窗口则退出Vim
 " let Tlist_File_Fold_Auto_Close=1             " 自动折叠
 
-" jj                  保存文件并返回Normal模式 [插入模式]
-imap jj <ESC>l
-
-" easy motion leader key
-let g:EasyMotion_leader_key = '\'
-
-" ======= 编译 && 运行 ======= "
-
-" 编译源文件
-func! CompileCode()
-    exec "w"
-    if &filetype == "c"
-        exec "!gcc -Wall -g %<.c -o %< -D DEBUG"
-    elseif &filetype == "cpp"
-        exec "!g++ -Wall -g %<.cpp -o %< -std=c++0x -D DEBUG -D CPP0X"
-    elseif &filetype == "java"
-        exec "!javac %<.java"
-    elseif &filetype == "haskell"
-        exec "!ghc --make %<.hs -o %<"
-    elseif &filetype == "lua"
-        exec "!lua %<.lua"
-    elseif &filetype == "perl"
-        exec "!perl %<.pl"
-    elseif &filetype == "python"
-        exec "!python2 %<.py"
-    elseif &filetype == "ruby"
-        exec "!ruby %<.rb"
-    elseif &filetype == "coffee"
-        exec "!coffee -p %"
-    endif
-endfunc
-
-" 运行可执行文件
-func! RunCode()
-    exec "w"
-    if &filetype == "c" || &filetype == "cpp" || &filetype == "haskell"
-        if has("win32")
-            exec "! %<.exe"
-        else
-            exec "! ./%<"
-        endif
-    elseif &filetype == "java"
-        exec "!java %<"
-    elseif &filetype == "lua"
-        exec "!lua %<.lua"
-    elseif &filetype == "perl"
-        exec "!perl %<.pl"
-    elseif &filetype == "python"
-        exec "!python2 %<.py"
-    elseif &filetype == "ruby"
-        exec "!ruby %<.rb"
-    endif
-endfunc
-
-" Alt + C 一键保存、编译
-nmap <m-c> :call CompileCode()<CR>
-" imap <m-c> <ESC>:call CompileCode()<CR>
-" vmap <m-c> <ESC>:call CompileCode()<CR>
-
-" Alt + R 一键保存、运行
-nmap <m-x> :call RunCode()<CR>
-" imap <m-x> <ESC>:call RunCode()<CR>
-" vmap <m-x> <ESC>:call RunCode()<CR>
-
-" NERDTree shortcuts
-nmap NT :NERDTree<CR>
