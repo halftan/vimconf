@@ -171,7 +171,11 @@ set showmatch
 set cursorline
 set linebreak
 set list
-set listchars=tab:\|_,trail:*
+if has("gui")
+    set listchars=tab:\|_,trail:·
+else
+    set listchars=tab:\|_,trail:*
+endif
 set textwidth=0
 set wrapmargin=0
 set wrap
