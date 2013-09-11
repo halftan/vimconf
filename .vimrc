@@ -151,7 +151,7 @@ if has("gui_running")
     elseif has("mac")
         set guifont=Monaco:h10
     else
-        set guifont=Inconsolata-dz\ For\ Powerline\ 10:DejaVu\ Sans\ Mono\ For\ Powerline\ 10
+        set guifont=Inconsolata-dz\ For\ Powerline\ 10
     endif
     set lines=50 columns=160
     set guioptions-=T

@@ -47,11 +47,11 @@ func! RunCode()
 endfunc
 
 " Alt + C 一键保存、编译
-nmap <m-c> :call CompileCode()<CR>
+nmap <Leader>cc :call CompileCode()<CR>
 " imap <m-c> <ESC>:call CompileCode()<CR>
 " vmap <m-c> <ESC>:call CompileCode()<CR>
 
 " Alt + R 一键保存、运行
-nmap <m-x> :call RunCode()<CR>
+nmap <Leader>cr :call RunCode()<CR>
 " imap <m-x> <ESC>:call RunCode()<CR>
 " vmap <m-x> <ESC>:call RunCode()<CR>
