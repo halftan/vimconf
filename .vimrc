@@ -52,7 +52,7 @@ NeoBundle 'sjl/gundo.vim'
 NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'myusuf3/numbers.vim'
-NeoBundle 'tpope/surround.vim'
+NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-rails.git'
 NeoBundle 'tpope/vim-rbenv'
@@ -150,7 +150,7 @@ if has("gui_running")
     elseif has("mac")
         set guifont=Monaco:h10
     else
-        set guifont=Inconsolata\ For\ Powerline\ 12
+        set guifont=Inconsolata-dz\ For\ Powerline\ 10:DejaVu\ Sans\ Mono\ For\ Powerline\ 10
     endif
     set lines=50 columns=160
     set guioptions-=T
@@ -182,7 +182,7 @@ let g:rubycomplete_classes_in_global = 1
 
 " UltiSnips config Here ------------
 let g:UltiSnipsEditSplit = "horizontal"
-let g:UltiSnipsDontReverseSearchPath="1"
+" let g:UltiSnipsDontReverseSearchPath="1"
 
 " Supertab config Here --------------
 let g:SuperTabDefaultCompletionType = "context"

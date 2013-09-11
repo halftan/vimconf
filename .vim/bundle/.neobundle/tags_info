@@ -13,7 +13,6 @@ numbers.vim
 rspec.vim
 sparkup
 supertab
-surround.vim
 syntastic
 tcomment_vim
 ultisnips
@@ -36,6 +35,7 @@ vim-repeat
 vim-rspec
 vim-ruby
 vim-slim
+vim-surround
 vim-textobj-entire
 vim-textobj-indent
 vim-textobj-line
