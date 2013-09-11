@@ -1,6 +1,7 @@
 if has("win32")
     let $VIMFILES=$HOME.'/vimfiles'
     let $V=$HOME.'/_vimrc'
+    let $PATH='C:/Program Files (x86)/Git/bin;'.$PATH
     set path=.,,$GCC_LIB,$GCC_LIB/c++
 else
     let $VIMFILES=$HOME.'/.vim'
