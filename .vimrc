@@ -225,7 +225,7 @@ set laststatus=2
 set showmatch
 set cursorline
 set list
-if has("gui")
+if has("gui") && !has("win32")
     set listchars=tab:\|_,trail:·
 else
     set listchars=tab:\|_,trail:*
