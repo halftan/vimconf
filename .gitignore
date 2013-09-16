@@ -13,4 +13,4 @@ Icon
 
 .directory
 
-.vim/bundle
+.vim/bundle/*

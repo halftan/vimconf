@@ -19,11 +19,11 @@ set undolevels=1000
 
 " NeoBundle Here
 if has('vim_starting')
-    set rtp+=~/.vim/bundle/neobundle.vim/
+    set rtp+=$HOME/.vim/bundle/neobundle.vim/
 endif
 
 if $USER != "root"
-    call neobundle#rc(expand('~/.vim/bundle/'))
+    call neobundle#rc(expand($HOME.'/.vim/bundle/'))
 else
     call neobundle#rc(expand('/home/halftan/.vim/bundle/'))
 endif
@@ -128,7 +128,7 @@ filetype plugin indent on     " required!
 " :NeoBundleSearch(!) foo - search(or refresh cache first) for foo
 " :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
-for f in split(glob('~/.vim/vimrc.d/*.vim'), '\n')
+for f in split(glob($HOME.'/.vim/vimrc.d/*.vim'), '\n')
     exe 'source' f
 endfor
 
@@ -159,8 +159,8 @@ if has("gui_running")
     set guioptions-=m    "隐藏菜单栏
 else
     " Molokai colorscheme
-    colorscheme molokai
-    set background=dark
+    colorscheme desert
+    " set background=dark
     set t_Co=256
 endif
 

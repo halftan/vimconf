@@ -6,8 +6,8 @@ let mapleader = "\<space>"
 "  editor's command
 imap jj <ESC>l
 nmap <Leader>s :w<cr>
-nmap <Leader>ev :sp $MYVIMRC<cr>
-nmap <Leader>sv :so ~/.vimrc<cr>
+nmap <Leader>ev :tabe $MYVIMRC<cr>
+nmap <Leader>sv :so $MYVIMRC<cr>
 
 nmap <Leader>/ :nohlsearch<cr>
 
@@ -55,3 +55,12 @@ map <Right> <Nop>
 map <Up> <Nop>
 map <Down> <Nop>
 
+" Alt + C 一键保存、编译
+nmap <Leader>cc :call CompileCode()<CR>
+" imap <m-c> <ESC>:call CompileCode()<CR>
+" vmap <m-c> <ESC>:call CompileCode()<CR>
+
+" Alt + R 一键保存、运行
+nmap <Leader>cr :call RunCode()<CR>
+" imap <m-x> <ESC>:call RunCode()<CR>
+" vmap <m-x> <ESC>:call RunCode()<CR>
