@@ -42,16 +42,25 @@ NeoBundle 'Shougo/vimproc', {
             \   },
             \ }
 
-" Tools & wrappers
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Libraries
+NeoBundle 'L9'
+NeoBundle 'xolox/vim-misc'
+
+" Editing
+NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'SirVer/ultisnips'
-NeoBundle 'ervandew/supertab'
+NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+NeoBundle 'xolox/vim-easytags'
+
+" Navigating
+NeoBundle 'Lokaltog/vim-easymotion'
+
+" Tools & wrappers
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'sjl/gundo.vim'
-NeoBundle 'junegunn/vim-easy-align'
-NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
@@ -91,9 +100,6 @@ NeoBundle 'Rackup'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'tomasr/molokai'
 
-" Libraries
-NeoBundle 'L9'
-
 " Text Objects
 NeoBundle 'matchit.zip'
 NeoBundle 'kana/vim-textobj-user'
@@ -110,6 +116,7 @@ NeoBundle 'lucapette/vim-textobj-underscore' " a_, i_
 "  Never used  "
 """"""""""""""""
 
+" NeoBundle 'ervandew/supertab'
 " NeoBundle 'nono/vim-handlebars'
 " NeoBundle 'heartsentwined/vim-ember-script'
 " NeoBundle 'FuzzyFinder'
@@ -167,6 +174,7 @@ endif
 syntax enable
 syntax on
 
+set dir=$HOME/.vimswap//,/var/tmp//,/tmp//,.
 
 " FileType specifies Here -------
 
@@ -183,6 +191,9 @@ let g:rubycomplete_classes_in_global = 1
 
 " UltiSnips config Here ------------
 let g:UltiSnipsEditSplit = "horizontal"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " let g:UltiSnipsDontReverseSearchPath="1"
 
 " Supertab config Here --------------
