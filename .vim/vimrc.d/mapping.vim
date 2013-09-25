@@ -3,6 +3,9 @@ let mapleader = "\<space>"
 " Template
 " nmap <Leader>
 
+" Write with sudo
+cmap w!! w !sudo tee > /dev/null %
+
 "  editor's command
 imap jj <ESC>l
 nmap <Leader>s :w<cr>

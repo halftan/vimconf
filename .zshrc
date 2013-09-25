@@ -48,6 +48,8 @@ export EDITOR=vim
 source $ZSH/oh-my-zsh.sh
 
 alias open="xdg-open"
+alias ll="ls -lh"
+alias la="ls -lAh"
 alias lh="l -h"
 
 ngvim() { gvim > /dev/null 2>&1 $@ }

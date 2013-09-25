@@ -57,6 +57,7 @@ NeoBundle 'xolox/vim-easytags'
 
 " Navigating
 NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'mileszs/ack.vim'
 
 " Tools & wrappers
 NeoBundle 'tpope/vim-fugitive'
@@ -190,8 +191,9 @@ let g:rubycomplete_classes_in_global = 1
 " FileType specs End ----------
 
 " UltiSnips config Here ------------
+
 let g:UltiSnipsEditSplit = "horizontal"
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " let g:UltiSnipsDontReverseSearchPath="1"
