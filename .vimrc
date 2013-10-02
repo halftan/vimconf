@@ -166,10 +166,9 @@ if has("gui_running")
     " set guioptions-=r
     set guioptions-=m    "隐藏菜单栏
 else
-    " Molokai colorscheme
-    colorscheme desert
-    " set background=dark
     set t_Co=256
+    colorscheme elflord
+    " set background=dark
 endif
 
 syntax enable
