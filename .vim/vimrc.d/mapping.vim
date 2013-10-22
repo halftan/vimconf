@@ -61,4 +61,4 @@ map <Down>  <Nop>
 nmap <Leader>gc :call CompileCode()<CR>
 nmap <Leader>gr :call RunCode()<CR>
 nmap <Leader>cc :call CompileCodeClang()<CR>
-nmap <Leader>gr :call RunCode()<CR>
+nmap <Leader>cr :call RunCode()<CR>
