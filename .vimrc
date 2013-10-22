@@ -199,7 +199,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " let g:UltiSnipsDontReverseSearchPath="1"
 
 " Supertab config Here --------------
-let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabDefaultCompletionType = "context"
+
+" Easytag config Here --------------
+let g:easytags_updatetime_min = 4000
 
 " Indent Guildes Here --------------
 let g:indent_guides_guide_size = 1
@@ -227,6 +230,9 @@ let g:rspec_command = "!bundle exec rspec {spec}"
 
 " NERDTree Here -------------
 let g:NERDTreeWinPos = "right"
+
+" YouCompleteMe ---------------
+" let g:ycm_confirm_extra_conf = 1
 
 set ai
 set smartindent
@@ -274,19 +280,19 @@ endif
 
 "======= OmniCompeleteCPP ========"
 " map <C-F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-let OmniCpp_NamespaceSearch = 2
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD" ]
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+" let OmniCpp_NamespaceSearch = 2
+" let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD" ]
+" let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
 
 " automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-let OmniCpp_SelectFirstItem = 2
-let OmniCpp_LocalSearchDecl = 1
-set completeopt=menu,menuone,preview
+" au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+" let OmniCpp_SelectFirstItem = 2
+" let OmniCpp_LocalSearchDecl = 1
+" set completeopt=menu,menuone,preview
 
 
 "===== tags ====="
-set tags+=$VIMFILES/tags/cpp
+" set tags+=$VIMFILES/tags/cpp
 
 " :Tlist              调用TagList
 " let Tlist_Show_One_File=0                    " 只显示当前文件的tags

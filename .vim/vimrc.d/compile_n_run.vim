@@ -24,6 +24,15 @@ func! CompileCode()
     endif
 endfunc
 
+func! CompileCodeClang()
+    exec "w"
+    if &filetype == "c"
+        exec "!clang -Wall -g %<.c -o %< -D DEBUG"
+    elseif &filetype == "cpp"
+        exec "!clang -Wall -g %<.cpp -o %< -std=c++0x -D DEBUG -D CPP0X"
+    endif
+endfunc
+
 " 运行可执行文件
 func! RunCode()
     exec "w"
