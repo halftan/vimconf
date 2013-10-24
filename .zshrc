@@ -58,6 +58,6 @@ ngvim() { gvim > /dev/null 2>&1 $@ }
 eval "$(rbenv init -)"
 
 # Customize to your needs...
-export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl
+export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/usr/bin/vendor_perl
 
 # export LANG="zh_CN.UTF-8"

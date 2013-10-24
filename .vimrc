@@ -58,6 +58,7 @@ NeoBundle 'xolox/vim-easytags'
 " Navigating
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'mileszs/ack.vim'
+NeoBundle 'ag.vim'
 
 " Tools & wrappers
 NeoBundle 'tpope/vim-fugitive'
