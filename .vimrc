@@ -59,6 +59,7 @@ NeoBundle 'xolox/vim-easytags'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'ag.vim'
+NeoBundle 'taglist.vim'
 
 " Tools & wrappers
 NeoBundle 'tpope/vim-fugitive'
@@ -152,9 +153,6 @@ if has("gui_running")
     set background=light
     colorscheme solarized
 
-    " map control-tab to swap between tabs
-    nmap <C-TAB> gt
-    nmap <S-TAB> gT
     if has("win32")
         set guifont=DejaVu\ Sans\ Mono:h11,Consolas:h11
     elseif has("mac")
@@ -169,6 +167,7 @@ if has("gui_running")
 else
     set t_Co=256
     colorscheme elflord
+    let Tlist_Inc_Winwidth = 0
     " set background=dark
 endif
 

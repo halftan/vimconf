@@ -6,6 +6,10 @@ let mapleader = "\<space>"
 " Write with sudo
 cmap w!! w !sudo tee > /dev/null %
 
+" map control-tab to swap between tabs
+nmap <C-TAB> gt
+nmap <S-TAB> gT
+
 "  editor's command
 imap jj <ESC>l
 nmap <Leader>w :w<cr>
@@ -40,6 +44,9 @@ nmap <Leader>ur :Unite file_rec<cr>
 let g:unite_source_history_yank_enable = 1
 nmap <Leader>uy :Unite history/yank<cr>
 nmap <Leader>u/ :Unite grep:.<cr>
+
+" Taglist
+nmap <Leader>tt :TlistToggle<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
