@@ -45,8 +45,8 @@ let g:unite_source_history_yank_enable = 1
 nmap <Leader>uy :Unite history/yank<cr>
 nmap <Leader>u/ :Unite grep:.<cr>
 
-" Taglist
-nmap <Leader>tt :TlistToggle<cr>
+" Tagbar
+nmap <Leader>tt :TagbarToggle<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -59,7 +59,7 @@ NeoBundle 'xolox/vim-easytags'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'ag.vim'
-NeoBundle 'taglist.vim'
+NeoBundle 'majutsushi/tagbar'
 
 " Tools & wrappers
 NeoBundle 'tpope/vim-fugitive'
@@ -147,6 +147,8 @@ set history=50
 set scrolloff=3
 set mouse=a
 
+set updatetime=4000
+
 if has("gui_running")
     " Solarized theme
 
@@ -167,7 +169,6 @@ if has("gui_running")
 else
     set t_Co=256
     colorscheme elflord
-    let Tlist_Inc_Winwidth = 0
     " set background=dark
 endif
 
@@ -233,6 +234,9 @@ let g:NERDTreeWinPos = "right"
 
 " YouCompleteMe ---------------
 " let g:ycm_confirm_extra_conf = 1
+
+" Tagbar ----------------
+let g:tagbar_left = 1
 
 set ai
 set smartindent
