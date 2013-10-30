@@ -185,6 +185,8 @@ au FileType * setl sw=2 ts=2 sts=2 et
 au FileType python setl sw=4 ts=4 sts=4 et
 au FileType vim setl sw=4 ts=4 sts=4 et
 au FileType c setl sw=4 ts=4 sts=4 et
+au FileType cpp setl sw=4 ts=4 sts=4 et
+au FileType make setl sw=4 ts=4 sts=4 noet
 
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
