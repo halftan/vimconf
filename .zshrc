@@ -38,7 +38,7 @@ alias ohmyzsh="gvim ~/.oh-my-zsh"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Customize to your needs...
-export PATH=$HOME/bin:$HOME/.rbenv/shims/:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/usr/bin/vendor_perl
+export PATH=$HOME/bin:$HOME/.rbenv/shims:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/usr/bin/vendor_perl
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
