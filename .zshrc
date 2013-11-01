@@ -58,4 +58,4 @@ ngvim() { gvim > /dev/null 2>&1 $@ }
 source $ZSH/oh-my-zsh.sh
 
 # Load rbenv automatically
-eval "$(rbenv init -)"
+eval "$(rbenv init - zsh)"

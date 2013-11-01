@@ -1,4 +1,4 @@
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export LC_ALL="zh_CN.UTF-8"
+export LANG="zh_CN.UTF-8"
+export LC_COLLATE="C"
