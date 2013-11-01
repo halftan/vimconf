@@ -43,7 +43,7 @@ export PATH=$HOME/bin:$HOME/.rbenv/shims:$PATH:/usr/local/sbin:/usr/local/bin:/u
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git autojump rbenv bundler)
+plugins=(git gitignore autojump rbenv bundler)
 
 export PYTHONSTARTUP=~/.pythonrc
 export EDITOR=vim
