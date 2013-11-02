@@ -162,7 +162,7 @@ if has("gui_running")
     else
         set guifont=Inconsolata-dz\ For\ Powerline\ 10
     endif
-    set lines=50 columns=160
+    set lines=50 columns=180
     set guioptions-=T
     " set guioptions-=r
     set guioptions-=m    "隐藏菜单栏
@@ -196,7 +196,7 @@ let g:rubycomplete_classes_in_global = 1
 " UltiSnips config Here ------------
 
 let g:UltiSnipsEditSplit = "horizontal"
-let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsExpandTrigger="<c-z>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " let g:UltiSnipsDontReverseSearchPath="1"
