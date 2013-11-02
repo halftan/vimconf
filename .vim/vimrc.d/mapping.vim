@@ -48,6 +48,9 @@ nmap <Leader>u/ :Unite grep:.<cr>
 " Tagbar
 nmap <Leader>tt :TagbarToggle<cr>
 
+" YouCompleteMe
+nnoremap <Leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  c-a and c-e key binding in insert mode like emacs  "
@@ -60,10 +63,10 @@ cmap <c-e> <End>
 """"""""""""""""""""""""
 "  Disable arrow keys  "
 """"""""""""""""""""""""
-map <Left>  <Nop>
-map <Right> <Nop>
-map <Up>    <Nop>
-map <Down>  <Nop>
+nmap <Left>  <c-w><c-h>
+nmap <Right> <c-w><c-l>
+nmap <Up>    <c-w><c-k>
+nmap <Down>  <c-w><c-j>
 
 nmap <Leader>gc :call CompileCode()<CR>
 nmap <Leader>gr :call RunCode()<CR>
