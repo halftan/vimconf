@@ -211,7 +211,7 @@ let g:easytags_updatetime_min = 4000
 
 " Indent Guildes Here --------------
 let g:indent_guides_guide_size = 1
-au VimEnter * IndentGuidesEnable
+" au VimEnter * IndentGuidesEnable
 
 " Vim easy align Here ---------------
 vnoremap <silent> <Enter> :EasyAlign<cr>
