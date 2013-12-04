@@ -99,6 +99,7 @@ NeoBundle 'Keithbsmiley/rspec.vim'
 NeoBundle 'thoughtbot/vim-rspec'
 NeoBundle 'Rackup'
 NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'tikhomirov/vim-glsl'
 
 " Color schemes
 NeoBundle 'altercation/vim-colors-solarized'
