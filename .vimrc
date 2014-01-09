@@ -183,16 +183,13 @@ set dir=$HOME/.vimswap//,/var/tmp//,/tmp//,.
 
 au BufNewFile,BufRead *.cpp set syntax=cpp11
 
-au FileType * setl sw=2 ts=2 sts=2 et
-au FileType python setl sw=4 ts=4 sts=4 et
-au FileType vim setl sw=4 ts=4 sts=4 et
-au FileType c setl sw=4 ts=4 sts=4 et
-au FileType cpp setl sw=4 ts=4 sts=4 et
-au FileType make setl sw=4 ts=4 sts=4 noet
-au FileType mkd setl sw=4 ts=4 sts=4 noet
+set sw=4 ts=4 sts=4 et
+au FileType python,vim,c,cpp setl sw=4 ts=4 sts=4 et
+au FileType make,mkd setl sw=4 ts=4 sts=4 noet
+au FileType ruby,eruby setl sw=2 ts=2 sts=2 et
 
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
+au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
 " FileType specs End ----------
 
