@@ -190,6 +190,7 @@ au FileType c setl sw=4 ts=4 sts=4 et
 au FileType cpp setl sw=4 ts=4 sts=4 et
 au FileType make setl sw=4 ts=4 sts=4 noet
 au FileType mkd setl sw=4 ts=4 sts=4 noet
+au FileType asm setl sw=4 ts=4 sts=4 noet
 
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
