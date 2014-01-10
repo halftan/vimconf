@@ -249,10 +249,10 @@ set hlsearch
 set autochdir
 set laststatus=2
 set showmatch
-set cursorline
 set list
 if has("gui") && !has("win32")
     set listchars=tab:\|_,trail:·
+    set cursorline
 else
     set listchars=tab:\|_,trail:*
 endif
