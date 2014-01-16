@@ -183,10 +183,11 @@ set dir=$HOME/.vimswap//,/var/tmp//,/tmp//,.
 
 au BufNewFile,BufRead *.cpp set syntax=cpp11
 
-set sw=4 ts=4 sts=4 noet
+set sw=4 ts=4 sts=4 et
 au FileType python,vim,c,cpp setl sw=4 ts=4 sts=4 et
 au FileType make,mkd setl sw=4 ts=4 sts=4 noet
-au FileType ruby,eruby setl sw=2 ts=2 sts=2 et
+au FileType ruby,eruby,yaml setl sw=2 ts=2 sts=2 et
+au FileType coffee,javascript setl sw=2 ts=2 sts=2 et
 au FileType asm setl sw=4 ts=4 sts=4 noet
 
 au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1

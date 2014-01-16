@@ -72,3 +72,9 @@ nmap <Leader>gc :call CompileCode()<CR>
 nmap <Leader>gr :call RunCode()<CR>
 nmap <Leader>cc :call CompileCodeClang()<CR>
 nmap <Leader>cr :call RunCode()<CR>
+
+""""""""""""""
+"  Hex mode  "
+""""""""""""""
+nmap <Leader>hon :%!xxd<cr>
+nmap <Leader>hof :%!xxd -r<cr>
