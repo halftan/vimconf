@@ -57,5 +57,16 @@ ngvim() { gvim > /dev/null 2>&1 $@ }
 
 source $ZSH/oh-my-zsh.sh
 
-# Load rbenv automatically
-eval "$(rbenv init - zsh)"
+rbenv=$(which rbenv)
+if [[ $? -eq 0 ]]
+then
+    # Load rbenv automatically
+    eval "$(rbenv init - zsh)"
+fi
+
+grunt=$(which grunt)
+if [[ $? -eq 0 ]]
+then
+    # Load grunt completion
+    eval "$(grunt --completion=zsh)"
+fi
