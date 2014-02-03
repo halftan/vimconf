@@ -46,8 +46,11 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'L9'
 NeoBundle 'xolox/vim-misc'
 
-" Editing
+" Completion
 NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'marijnh/tern_for_vim'
+
+" Editing
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'jiangmiao/auto-pairs'
@@ -100,6 +103,8 @@ NeoBundle 'thoughtbot/vim-rspec'
 NeoBundle 'Rackup'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'tikhomirov/vim-glsl'
+
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
 " Color schemes
 NeoBundle 'altercation/vim-colors-solarized'

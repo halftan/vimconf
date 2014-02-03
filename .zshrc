@@ -43,10 +43,15 @@ export PATH=$HOME/bin:$HOME/.rbenv/shims:$PATH:/usr/local/sbin:/usr/local/bin:/u
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git gitignore autojump rbenv bundler)
+plugins=(git gitignore autojump rbenv bundler sudo)
 
-export PYTHONSTARTUP=~/.pythonrc
-export EDITOR=vim
+if [[ -e ~/.pythonrc ]] then
+    export PYTHONSTARTUP=~/.pythonrc
+fi
+
+if type vim &> /dev/null; then
+    export EDITOR=vim
+fi
 
 alias open="xdg-open"
 alias ll="ls -lh"
@@ -55,18 +60,13 @@ alias lh="l -h"
 
 ngvim() { gvim > /dev/null 2>&1 $@ }
 
-source $ZSH/oh-my-zsh.sh
-
-rbenv=$(which rbenv)
-if [[ $? -eq 0 ]]
-then
-    # Load rbenv automatically
-    eval "$(rbenv init - zsh)"
+if type npm &> /dev/null; then
+    plugins=($plugins npm)
 fi
 
-grunt=$(which grunt)
-if [[ $? -eq 0 ]]
-then
+source $ZSH/oh-my-zsh.sh
+
+if type grunt &> /dev/null; then
     # Load grunt completion
     eval "$(grunt --completion=zsh)"
 fi
