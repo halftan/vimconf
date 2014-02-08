@@ -273,6 +273,7 @@ set nowritebackup
 set nobackup
 set foldmethod=syntax
 set foldlevel=999
+set nocursorline
 
 "Encode
 set fenc=UTF-8
@@ -281,10 +282,8 @@ set fileencodings=UTF-8,GBK,SHIFT-JIS,CP936,LATIN-1
 if has("win32")
     source $VIMRUNTIME/delmenu.vim
     source $VIMRUNTIME/menu.vim
-endif
 
 " 解决consle输出乱码
-if has('win32')
     language messages zh_CN.UTF-8
     set ambiwidth=double
 endif
