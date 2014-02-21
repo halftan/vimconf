@@ -153,8 +153,9 @@ endfor
 set history=50
 set scrolloff=3
 set mouse=a
-
 set updatetime=4000
+
+set path=.,/usr/include,./include,../include,../../include,,
 
 if has("gui_running")
     " Solarized theme
