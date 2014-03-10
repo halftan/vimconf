@@ -71,6 +71,7 @@ nmap <Down>  <c-w><c-j>
 nmap <Leader>gc :call CompileCode()<CR>
 nmap <Leader>gr :call RunCode()<CR>
 nmap <Leader>cc :call CompileCodeClang()<CR>
+nmap <Leader>ct :call CompileCodeClangTest()<CR>
 nmap <Leader>cr :call RunCode()<CR>
 
 """"""""""""""

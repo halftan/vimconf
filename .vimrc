@@ -47,7 +47,7 @@ NeoBundle 'L9'
 NeoBundle 'xolox/vim-misc'
 
 " Completion
-NeoBundle 'Valloric/YouCompleteMe'
+NeoBundleLazy 'Valloric/YouCompleteMe'
 NeoBundle 'marijnh/tern_for_vim'
 
 " Editing
@@ -188,7 +188,7 @@ set dir=$HOME/.vimswap//,/var/tmp//,/tmp//,.
 
 " FileType specifies Here -------
 
-au BufNewFile,BufRead *.cpp set syntax=cpp11
+" au BufNewFile,BufRead *.cpp set syntax=cpp11
 
 set sw=4 ts=4 sts=4 et
 au FileType python,vim,c,cpp setl sw=4 ts=4 sts=4 et
@@ -206,8 +206,7 @@ au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
 let g:UltiSnipsEditSplit = "horizontal"
 let g:UltiSnipsExpandTrigger="<c-z>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsListSnippets="<c-l>"
 " let g:UltiSnipsDontReverseSearchPath="1"
 
 " Supertab config Here --------------
@@ -244,7 +243,14 @@ let g:rspec_command = "!bundle exec rspec {spec}"
 let g:NERDTreeWinPos = "right"
 
 " YouCompleteMe ---------------
-" let g:ycm_confirm_extra_conf = 1
+au FileType c,cpp NeoBundleSource YouCompleteMe
+let g:ycm_confirm_extra_conf = 0
+
+" Syntastic ---------------
+let g:syntastic_cpp_include_dirs = ['/usr/include/c++/4.8.2', '/usr/include']
+let g:syntastic_check_header = 1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
 
 " Tagbar ----------------
 let g:tagbar_left = 1

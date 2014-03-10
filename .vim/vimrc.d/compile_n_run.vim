@@ -30,6 +30,17 @@ func! CompileCodeClang()
         exec "!clang -Wall -g %<.c -o %< -D DEBUG -std=gnu99"
     elseif &filetype == "cpp"
         exec "!clang++ -Wall -g %<.cpp -o %< -std=c++0x -D DEBUG -D CPP0X"
+    else
+        call CompileCode()
+    endif
+endfunc
+
+func! CompileCodeClangTest()
+    exec "w"
+    if &filetype == "c"
+        exec "!clang -Wall -g %<.c -o %< -D DEBUG -D TEST -std=gnu99 -lcheck -lm"
+    elseif &filetype == "cpp"
+        exec "!clang++ -Wall -g %<.cpp -o %< -std=c++0x -D DEBUG -D TEST -D CPP0X -lcheck -lm"
     endif
 endfunc
 
