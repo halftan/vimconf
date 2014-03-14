@@ -157,7 +157,7 @@ set scrolloff=3
 set mouse=a
 set updatetime=4000
 
-set path=.,/usr/include,./include,../include,../../include,,
+set path=.,/usr/include,/usr/include/c++/4.8.2,./include,../include,../../include,,
 
 if has("gui_running")
     " Solarized theme
@@ -256,7 +256,8 @@ let g:ycm_confirm_extra_conf = 0
 " Syntastic ---------------
 let g:syntastic_cpp_include_dirs = ['/usr/include/c++/4.8.2', '/usr/include']
 let g:syntastic_check_header = 1
-let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_checkers = ["g++", "clang++"]
+let g:syntastic_cpp_compiler = "clang++"
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
 
 " Tagbar ----------------
