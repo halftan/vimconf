@@ -3,7 +3,7 @@ xterm*locale: true
 xterm*altSendsEscape: true
 xterm*saveLines: 4096
 
-xterm*faceName: Inconsolata-dz for powerline:size=12:style:dz:antialias=true
+xterm*faceName: dejavu sans mono for powerline:size=12:style:book:antialias=true
 xterm*faceNameDoublesize: WenQuanYi Micro Hei:size=12:style:regular:antialias=true
 xterm*renderFont: true
 xterm*faceSize: 12
