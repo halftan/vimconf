@@ -48,7 +48,8 @@ NeoBundle 'xolox/vim-misc'
 
 " Completion
 NeoBundleLazy 'Valloric/YouCompleteMe'
-NeoBundle 'marijnh/tern_for_vim'
+NeoBundleLazy 'marijnh/tern_for_vim'
+NeoBundleLazy 'xolox/vim-lua-ftplugin'
 
 " Editing
 NeoBundle 'tomtom/tcomment_vim'
@@ -56,7 +57,7 @@ NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
-NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+NeoBundleLazy 'rstacruz/sparkup', {'rtp': 'vim/'}
 NeoBundle 'xolox/vim-easytags'
 
 " Navigating
@@ -200,6 +201,11 @@ au FileType asm setl sw=4 ts=4 sts=4 noet
 au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
+au FileType javascript NeoBundleSource "tern_for_vim"
+au FileType c,cpp NeoBundleSource "YouCompleteMe"
+au FileType lua NeoBundleSource "vim-lua-ftplugin"
+au FileType html NeoBundleSource "sparkup"
+
 " FileType specs End ----------
 
 " UltiSnips config Here ------------
@@ -245,7 +251,6 @@ let g:rspec_command = "!bundle exec rspec {spec}"
 let g:NERDTreeWinPos = "right"
 
 " YouCompleteMe ---------------
-au FileType c,cpp NeoBundleSource YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
 
 " Syntastic ---------------
