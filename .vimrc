@@ -171,14 +171,14 @@ if has("gui_running")
     else
         set guifont=Inconsolata-dz\ For\ Powerline\ 10
     endif
-    set lines=50 columns=180
+    set lines=50 columns=120
     set guioptions-=T
     " set guioptions-=r
     set guioptions-=m    "隐藏菜单栏
 else
     set t_Co=256
-    colorscheme elflord
-    " set background=dark
+    colorscheme solarized
+    set background=dark
 endif
 
 syntax enable
