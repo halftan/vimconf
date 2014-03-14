@@ -207,6 +207,8 @@ au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 let g:UltiSnipsEditSplit = "horizontal"
 let g:UltiSnipsExpandTrigger="<c-z>"
 let g:UltiSnipsListSnippets="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " let g:UltiSnipsDontReverseSearchPath="1"
 
 " Supertab config Here --------------

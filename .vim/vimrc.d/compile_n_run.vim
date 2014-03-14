@@ -6,7 +6,7 @@ func! CompileCode()
     if &filetype == "c"
         exec "!gcc -Wall -g %<.c -o %< -D DEBUG"
     elseif &filetype == "cpp"
-        exec "!g++ -Wall -g %<.cpp -o %< -std=c++0x -D DEBUG -D CPP0X"
+        exec "!g++ -Wall -g %<.cpp -o %< -std=c++11 -D DEBUG -D CPP11"
     elseif &filetype == "java"
         exec "!javac %<.java"
     elseif &filetype == "haskell"

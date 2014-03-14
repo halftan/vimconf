@@ -14,4 +14,4 @@
 [core]
 	editor = vim
 [merge]
-	tool = gvim
+	tool = vim
