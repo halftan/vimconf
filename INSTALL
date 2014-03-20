@@ -1,2 +1,4 @@
 git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="08:00:27:b8:c4:40", NAME="eth0"
