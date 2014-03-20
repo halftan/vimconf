@@ -34,8 +34,14 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 export LANG="zh_CN.UTF-8"
+export LC_CTYPE="zh_CN.UTF-8"
 export LC_ALL="zh_CN.UTF-8"
 export LC_COLLATE="C"
+
+export XMODIFIERS="@im=fcitx"
+export GTK_IM_MODULE=xim
+export QT_IM_MODULE=xim
+
 
 VBoxClient-all &
 numlockx &
