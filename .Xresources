@@ -1,5 +1,6 @@
 xterm*termName: xterm-256color
 xterm*locale: true
+xterm*altIsNotMeta: true
 xterm*altSendsEscape: true
 xterm*saveLines: 4096
 
