@@ -5,7 +5,12 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="gallois"
+if [[ -n $DISPLAY ]] then
+    ZSH_THEME="agnoster"
+else
+    ZSH_THEME="gallois"
+fi
+DEFAULT_USER="halftan"
 
 # Example aliases
 alias zshconfig="gvim ~/.zshrc"
@@ -62,6 +67,11 @@ ngvim() { gvim > /dev/null 2>&1 $@ }
 
 if type npm &> /dev/null; then
     plugins=($plugins npm)
+fi
+
+if type pip &> /dev/null; then
+    plugins=($plugins pip virtualenv)
+    eval "$(pip completion --zsh)"
 fi
 
 source $ZSH/oh-my-zsh.sh
