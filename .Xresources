@@ -9,7 +9,8 @@ xterm*faceNameDoublesize: WenQuanYi Micro Hei:size=11:style:regular:antialias=fa
 xterm*renderFont: true
 xterm*faceSize: 11
 
-URxvt.font: xft:dejavu sans mono for powerline:book:size=11:antialias=true
+URxvt.font: xft:dejavu sans mono for powerline:book:size=11:antialias=true, \
+            xft:WenQuanYi Micro Hei:size=11:style:regular:antialias=true
 URxvt*loginShell: true
 
 ! Compile xft: Turn on/off double-buffering for xft
@@ -18,12 +19,16 @@ URxvt*buffered: true
 ! Set scrollbar style to rxvt, plain, next or xterm.
 URxvt*scrollstyle: rsvt
 
-URxvt.perl-ext-common:      default,tabbed,clipboard,url-select,keyboard-select
-URxvt.url-select.launcher:  chromium
-URxvt.url-select.underline: true
-URxvt.keysym.M-u:           perl:url-select:select_next
-URxvt.keysym.M-Escape:      perl:keyboard-select:activate
-URxvt.keysym.M-s:           perl:keyboard-select:search
+URxvt.perl-ext-common:          default,tabbedex,clipboard,url-select,keyboard-select
+URxvt.url-select.launcher:      chromium
+URxvt.url-select.underline:     true
+URxvt.keysym.M-u:               perl:url-select:select_next
+URxvt.keysym.M-Escape:          perl:keyboard-select:activate
+URxvt.keysym.M-s:               perl:keyboard-select:search
+URxvt.tabbed.autohide:          true
+URxvt.keysym.Control-t:         perl:tabbedex:new_tab
+URxvt.keysym.Control-Tab:       perl:tabbedex:next_tab
+URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
 
 ! Compile xft: Attempt to find a visual with the
 ! URxvt*depth: bitdepth
