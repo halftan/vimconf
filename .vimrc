@@ -105,8 +105,10 @@ NeoBundle 'thoughtbot/vim-rspec'
 NeoBundle 'Rackup'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'tikhomirov/vim-glsl'
+NeoBundle 'nono/vim-handlebars'
 
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+" NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundleLazy 'pangloss/vim-javascript', { 'autoload': { 'filetypes': ['javascript'] } }
 
 " Color schemes
 NeoBundle 'altercation/vim-colors-solarized'
@@ -129,7 +131,6 @@ NeoBundle 'lucapette/vim-textobj-underscore' " a_, i_
 """"""""""""""""
 
 " NeoBundle 'ervandew/supertab'
-" NeoBundle 'nono/vim-handlebars'
 " NeoBundle 'heartsentwined/vim-ember-script'
 " NeoBundle 'FuzzyFinder'
 " non github repos
@@ -195,14 +196,14 @@ set sw=4 ts=4 sts=4 et
 au FileType python,vim,c,cpp setl sw=4 ts=4 sts=4 et
 au FileType make,mkd setl sw=4 ts=4 sts=4 noet
 au FileType ruby,eruby,yaml setl sw=2 ts=2 sts=2 et
-au FileType coffee,javascript setl sw=2 ts=2 sts=2 et
+au FileType coffee setl sw=2 ts=2 sts=2 et
 au FileType asm setl sw=4 ts=4 sts=4 noet
 
 au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
 au FileType javascript NeoBundleSource "tern_for_vim"
-au FileType c,cpp NeoBundleSource "YouCompleteMe"
+au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
 au FileType lua NeoBundleSource "vim-lua-ftplugin"
 au FileType html NeoBundleSource "sparkup"
 
