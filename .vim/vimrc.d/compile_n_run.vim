@@ -4,9 +4,9 @@
 func! CompileCode()
     exec "w"
     if &filetype == "c"
-        exec "!gcc -Wall -g %<.c -o %< -D DEBUG"
+        exec "!gcc -Wall -g %<.c -o %< -D DEBUG -lm"
     elseif &filetype == "cpp"
-        exec "!g++ -Wall -g %<.cpp -o %< -std=c++11 -D DEBUG -D CPP11"
+        exec "!g++ -Wall -g %<.cpp -o %< -std=c++11 -D DEBUG -D CPP11 -lm"
     elseif &filetype == "java"
         exec "!javac %<.java"
     elseif &filetype == "haskell"
@@ -27,9 +27,9 @@ endfunc
 func! CompileCodeClang()
     exec "w"
     if &filetype == "c"
-        exec "!clang -Wall -g %<.c -o %< -D DEBUG -std=gnu99"
+        exec "!clang -Wall -g %<.c -o %< -D DEBUG -std=gnu99 -lm"
     elseif &filetype == "cpp"
-        exec "!clang++ -Wall -g %<.cpp -o %< -std=c++0x -D DEBUG -D CPP0X"
+        exec "!clang++ -Wall -g %<.cpp -o %< -std=c++0x -D DEBUG -D CPP0X -lm"
     else
         call CompileCode()
     endif
