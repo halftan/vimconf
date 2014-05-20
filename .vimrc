@@ -47,7 +47,7 @@ NeoBundle 'L9'
 NeoBundle 'xolox/vim-misc'
 
 " Completion
-NeoBundleLazy 'Valloric/YouCompleteMe'
+NeoBundle 'Valloric/YouCompleteMe'
 NeoBundleLazy 'marijnh/tern_for_vim'
 NeoBundleLazy 'xolox/vim-lua-ftplugin'
 
@@ -203,7 +203,7 @@ au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
 au FileType javascript NeoBundleSource "tern_for_vim"
-au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
+" au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
 au FileType lua NeoBundleSource "vim-lua-ftplugin"
 au FileType html NeoBundleSource "sparkup"
 
