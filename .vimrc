@@ -106,10 +106,6 @@ endif
 set viewoptions+=slash,unix
 set viewoptions-=options
 
-syntax enable
-syntax on
-
-
 
 " NeoBundle Here
 if has('vim_starting')
@@ -150,10 +146,10 @@ NeoBundle 'Valloric/YouCompleteMe'
 " Editing
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'junegunn/vim-easy-align'
-NeoBundle 'Raimondi/delimitMate'
-" NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'SirVer/ultisnips'
+" NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'honza/vim-snippets'
+NeoBundle 'SirVer/ultisnips'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'xolox/vim-easytags'
@@ -163,7 +159,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 " NeoBundle 'mileszs/ack.vim'
 NeoBundle 'ag.vim'
 NeoBundle 'majutsushi/tagbar'
-NeoBundle 'spolu/dwm.vim'
+" NeoBundle 'spolu/dwm.vim'
 
 " Tools & wrappers
 NeoBundle 'tpope/vim-fugitive'
@@ -231,7 +227,6 @@ NeoBundle 'bkad/CamelCaseMotion'             ",w ,b
 " ...
 
 
-filetype plugin indent on     " required!
 "
 " Brief help
 " :NeoBundleList          - list configured bundles
@@ -242,6 +237,7 @@ filetype plugin indent on     " required!
 call neobundle#end()
 
 filetype plugin indent on     " required!
+syntax enable
 
 NeoBundleCheck
 
@@ -310,11 +306,6 @@ au FileType asm setl sw=4 ts=4 sts=4 noet
 au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
-au FileType javascript NeoBundleSource "tern_for_vim"
-au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
-au FileType lua NeoBundleSource "vim-lua-ftplugin"
-au FileType html NeoBundleSource "sparkup"
-
 " FileType specs End ----------
 
 
@@ -329,13 +320,19 @@ let g:UltiSnipsExpandTrigger="<c-z>"
 let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/UltiSnips"
 " let g:UltiSnipsDontReverseSearchPath="1"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   emmet                                    "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:user_emmet_leader_key = '<c-e>'
+
+
 
 " Supertab config Here --------------
 " let g:SuperTabDefaultCompletionType = "context"
 
-" Easytag config Here --------------
-let g:easytags_updatetime_min = 4000
 
 " Indent Guildes Here --------------
 let g:indent_guides_guide_size = 1
@@ -377,46 +374,8 @@ let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
 " Tagbar ----------------
 let g:tagbar_left = 1
 
-set ai
-set smartindent
-" set expandtab
-set nu
-set hlsearch
-set autochdir
-set laststatus=2
-set showmatch
-set list
-if has("gui") && !has("win32")
-    set listchars=tab:\|_,trail:·
-    set cursorline
-else
-    set listchars=tab:\|_,trail:*
-endif
-set textwidth=0
-set wrapmargin=0
-set wrap
-
-set ignorecase
-set smartcase
-
-set nowritebackup
-set nobackup
 set foldmethod=syntax
 set foldlevel=999
-set nocursorline
-
-"Encode
-set fenc=UTF-8
-set encoding=UTF-8
-set fileencodings=UTF-8,GBK,SHIFT-JIS,CP936,LATIN-1
-if has("win32")
-    source $VIMRUNTIME/delmenu.vim
-    source $VIMRUNTIME/menu.vim
-
-" 解决consle输出乱码
-    language messages zh_CN.UTF-8
-    set ambiwidth=double
-endif
 
 " omni completion ----
 
