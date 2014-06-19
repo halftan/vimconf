@@ -48,7 +48,7 @@ export GTK_IM_MODULE=xim
 export QT_IM_MODULE=xim
 
 
-VBoxClient-all &
-numlockx &
+VBoxClient-all
+numlockx
 
 exec awesome

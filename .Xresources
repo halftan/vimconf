@@ -4,10 +4,10 @@ xterm*altIsNotMeta: true
 xterm*altSendsEscape: true
 xterm*saveLines: 4096
 
-xterm*faceName: dejavu sans mono for powerline:size=11:style:book:antialias=true
-xterm*faceNameDoublesize: WenQuanYi Micro Hei:size=11:style:regular:antialias=false
+xterm*faceName: dejavu sans mono for powerline:size=10:style:book:antialias=true
+xterm*faceNameDoublesize: WenQuanYi Micro Hei:size=10:style:regular:antialias=false
 xterm*renderFont: true
-xterm*faceSize: 11
+xterm*faceSize: 10
 
 URxvt.font: xft:dejavu sans mono for powerline:book:size=11:antialias=true, \
             xft:WenQuanYi Micro Hei:size=11:style:regular:antialias=true

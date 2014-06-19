@@ -7,8 +7,8 @@ let mapleader = "\<space>"
 cmap w!! w !sudo tee > /dev/null %
 
 " map control-tab to swap between tabs
-nmap <C-TAB> gt
-nmap <S-TAB> gT
+" nmap <C-TAB> gt
+" nmap <S-TAB> gT
 
 "  editor's command
 imap jj <ESC>l
@@ -20,7 +20,8 @@ nmap <Leader>/ :nohlsearch<cr>
 
 
 " NERDTree shortcuts
-nmap <Leader>nt :NERDTreeToggle<CR>
+" nmap <Leader>nt :NERDTreeToggle<CR>
+nmap <Leader>nt <plug>NERDTreeTabsToggle<CR>
 
 " Vundle
 nmap <Leader>bi :NeoBundleInstall<cr>
@@ -68,11 +69,13 @@ nmap <Right> <c-w><c-l>
 nmap <Up>    <c-w><c-k>
 nmap <Down>  <c-w><c-j>
 
-nmap <Leader>gc :call CompileCode()<CR>
-nmap <Leader>gr :call RunCode()<CR>
-nmap <Leader>cc :call CompileCodeClang()<CR>
-nmap <Leader>ct :call CompileCodeClangTest()<CR>
-nmap <Leader>cr :call RunCode()<CR>
+nmap <F9> :SCCompile<cr>
+nmap <F10> :SCCompileRun<cr>
+" nmap <Leader>gc :call CompileCode()<CR>
+" nmap <Leader>gr :call RunCode()<CR>
+" nmap <Leader>cc :call CompileCodeClang()<CR>
+" nmap <Leader>ct :call CompileCodeClangTest()<CR>
+" nmap <Leader>cr :call RunCode()<CR>
 
 """"""""""""""
 "  Hex mode  "
