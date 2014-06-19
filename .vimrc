@@ -160,6 +160,7 @@ NeoBundle 'xolox/vim-easytags'
 
 " Navigating
 NeoBundle 'Lokaltog/vim-easymotion'
+" NeoBundle 'mileszs/ack.vim'
 NeoBundle 'ag.vim'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'spolu/dwm.vim'
@@ -228,6 +229,9 @@ NeoBundle 'bkad/CamelCaseMotion'             ",w ,b
 " git repos on your local machine (ie. when working on your own plugin)
 " NeoBundle 'file:///Users/gmarik/path/to/plugin'
 " ...
+
+
+filetype plugin indent on     " required!
 "
 " Brief help
 " :NeoBundleList          - list configured bundles
@@ -244,8 +248,8 @@ NeoBundleCheck
 if has("gui_running")
     " Solarized theme
 
-    set background=light
-    colorscheme solarized
+    set background=dark
+    colorscheme hybrid
 
     if has("win32")
         set guifont=DejaVu\ Sans\ Mono:h11,Consolas:h11
@@ -293,6 +297,8 @@ set showbreak=↪  " Change wrap line break
 
 " FileType specifies Here -------
 
+" au BufNewFile,BufRead *.cpp set syntax=cpp11
+
 set sw=4 ts=4 sts=4 et
 set shiftround
 au FileType python,vim,c,cpp setl sw=4 ts=4 sts=4 et
@@ -303,6 +309,11 @@ au FileType asm setl sw=4 ts=4 sts=4 noet
 
 au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+
+au FileType javascript NeoBundleSource "tern_for_vim"
+au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
+au FileType lua NeoBundleSource "vim-lua-ftplugin"
+au FileType html NeoBundleSource "sparkup"
 
 " FileType specs End ----------
 
@@ -322,6 +333,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " Supertab config Here --------------
 " let g:SuperTabDefaultCompletionType = "context"
+
+" Easytag config Here --------------
+let g:easytags_updatetime_min = 4000
 
 " Indent Guildes Here --------------
 let g:indent_guides_guide_size = 1
@@ -363,6 +377,46 @@ let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
 " Tagbar ----------------
 let g:tagbar_left = 1
 
+set ai
+set smartindent
+" set expandtab
+set nu
+set hlsearch
+set autochdir
+set laststatus=2
+set showmatch
+set list
+if has("gui") && !has("win32")
+    set listchars=tab:\|_,trail:·
+    set cursorline
+else
+    set listchars=tab:\|_,trail:*
+endif
+set textwidth=0
+set wrapmargin=0
+set wrap
+
+set ignorecase
+set smartcase
+
+set nowritebackup
+set nobackup
+set foldmethod=syntax
+set foldlevel=999
+set nocursorline
+
+"Encode
+set fenc=UTF-8
+set encoding=UTF-8
+set fileencodings=UTF-8,GBK,SHIFT-JIS,CP936,LATIN-1
+if has("win32")
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
+
+" 解决consle输出乱码
+    language messages zh_CN.UTF-8
+    set ambiwidth=double
+endif
 
 " omni completion ----
 
