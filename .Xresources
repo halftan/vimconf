@@ -9,7 +9,7 @@ xterm*faceNameDoublesize: WenQuanYi Micro Hei:size=10:style:regular:antialias=fa
 xterm*renderFont: true
 xterm*faceSize: 10
 
-URxvt.font: xft:dejavu sans mono for powerline:book:size=11:antialias=true, \
+URxvt.font: xft:dejavu sans mono for powerline:book:size=10:antialias=true, \
             xft:WenQuanYi Micro Hei:size=11:style:regular:antialias=true
 URxvt*loginShell: true
 
@@ -18,6 +18,9 @@ URxvt*buffered: true
 
 ! Set scrollbar style to rxvt, plain, next or xterm.
 URxvt*scrollstyle: rsvt
+
+! Specifies the terminal type name to be set in the
+URxvt*termName: xterm-256color
 
 URxvt.perl-ext-common:          default,tabbedex,clipboard,url-select,keyboard-select
 URxvt.url-select.launcher:      chromium
@@ -175,9 +178,6 @@ URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
 
 ! Compile frills: Disable the usage of the built-in
 ! URxvt*skipBuiltinGlyphs: boolean
-
-! Specifies the terminal type name to be set in the
-! URxvt*termName: termname
 
 ! Specifies number of lines (pixel height) to insert
 ! URxvt*lineSpace: number
