@@ -260,7 +260,7 @@ if has("gui_running")
     set guioptions-=m    "隐藏菜单栏
 else
     set t_Co=256
-    colorscheme solarized
+    colorscheme hybrid
     set background=dark
 endif
 
@@ -344,9 +344,9 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 " Airline Here -------------
 let g:airline_powerline_fonts = 1
 if has("gui_running")
-    let g:airline_theme='solarized'
+    let g:airline_theme='hybrid'
 else
-    let g:airline_theme='luna'
+    let g:airline_theme='hybrid'
 end
 
 " easy motion leader key -----------------
