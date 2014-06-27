@@ -52,6 +52,11 @@ nmap <Leader>tt :TagbarToggle<cr>
 " YouCompleteMe
 nnoremap <Leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+" PHP XDEBUG
+nmap <leader>pd :python debugger_run()<cr>
+nmap <leader>ps :python debugger_quit()<cr>
+nmap <leader>pe :python debugger_watch_input("eval")<cr>A
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  c-a and c-e key binding in insert mode like emacs  "
@@ -69,8 +74,13 @@ nmap <Right> <c-w><c-l>
 nmap <Up>    <c-w><c-k>
 nmap <Down>  <c-w><c-j>
 
-nmap <F9> :SCCompile<cr>
-nmap <F10> :SCCompileRun<cr>
+
+" Undotree Here --------------
+nmap <leader>ut :UndotreeToggle<CR>
+
+" SingleCompile Here ----------
+nmap <leader>cc :SCCompile<cr>
+nmap <leader>cr :SCCompileRun<cr>
 " nmap <Leader>gc :call CompileCode()<CR>
 " nmap <Leader>gr :call RunCode()<CR>
 " nmap <Leader>cc :call CompileCodeClang()<CR>

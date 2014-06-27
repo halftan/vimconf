@@ -164,13 +164,13 @@ NeoBundle 'majutsushi/tagbar'
 " Tools & wrappers
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mbbill/undotree'
-" NeoBundle 'sjl/gundo.vim'
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-rails.git'
 NeoBundle 'tpope/vim-rbenv'
 NeoBundle 'xuhdev/SingleCompile'
+NeoBundle 'DBGp-X-client'
 
 " Fuzzy search
 NeoBundle 'kien/ctrlp.vim'
@@ -351,9 +351,6 @@ end
 
 " easy motion leader key -----------------
 " let g:EasyMotion_leader_key = '\'
-
-" Undotree Here --------------
-nnoremap <F5> :UndotreeToggle<CR>
 
 " Vim-rspec Here ------------
 let g:rspec_command = "!bundle exec rspec {spec}"
