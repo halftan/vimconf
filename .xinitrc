@@ -43,9 +43,9 @@ export LC_CTYPE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LC_COLLATE="C"
 
-# export XMODIFIERS="@im=fcitx"
-# export GTK_IM_MODULE=xim
-# export QT_IM_MODULE=xim
+export XMODIFIERS="@im=fcitx"
+export GTK_IM_MODULE=xim
+export QT_IM_MODULE=xim
 
 
 VBoxClient-all

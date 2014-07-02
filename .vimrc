@@ -97,11 +97,11 @@ if has('win32') || has('win64')
     set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 endif
 
-if has("gui") && !has("win32")
-    set listchars=tab:\|_,trail:·
-else
-    set listchars=tab:\|_,trail:*
-endif
+" if has("gui") && !has("win32")
+"     set listchars=tab:\|_,trail:·
+" else
+"     set listchars=tab:\|_,trail:*
+" endif
 
 set viewoptions+=slash,unix
 set viewoptions-=options
@@ -244,15 +244,13 @@ NeoBundleCheck
 if has("gui_running")
     " Solarized theme
 
-    set background=dark
-    colorscheme hybrid
-
     if has("win32")
         set guifont=DejaVu\ Sans\ Mono:h11,Consolas:h11
     elseif has("mac")
         set guifont=Monaco:h10
     else
         set guifont=Inconsolata-dz\ For\ Powerline\ 10
+        set guifont=DejaVu\ Sans\ Mono\ 10,Consolas\ 10
     endif
     set lines=50 columns=120
     set guioptions-=T
@@ -260,9 +258,9 @@ if has("gui_running")
     set guioptions-=m    "隐藏菜单栏
 else
     set t_Co=256
-    colorscheme hybrid
-    set background=dark
 endif
+
+colorscheme hybrid
 
 autocmd WinLeave * set nocursorline
 autocmd WinEnter * set cursorline
@@ -286,7 +284,7 @@ set sidescrolloff=10 " Minimal number of screen columns to keep away from cursor
 "  Fancy fonts
 "-----------------------------------
 set list " Show these tabs and spaces and so on
-set listchars=tab:▸\ ,extends:❯,precedes:❮ " Change listchars
+set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:· " Change listchars
 set linebreak " Wrap long lines at a blank
 set showbreak=↪  " Change wrap line break
 
