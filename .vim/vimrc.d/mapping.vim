@@ -18,6 +18,9 @@ nmap <Leader>sv :so $MYVIMRC<cr>
 
 nmap <Leader>/ :nohlsearch<cr>
 
+" Change PWD to current where file locates.
+nmap <leader>cd :cd %:p:h<cr>
+
 
 " NERDTree shortcuts
 " nmap <Leader>nt :NERDTreeToggle<CR>

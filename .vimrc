@@ -26,7 +26,7 @@ set smartindent
 " set expandtab
 set nu
 set hlsearch
-set autochdir
+" set autochdir
 set laststatus=2
 set showmatch
 set list
