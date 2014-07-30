@@ -142,6 +142,7 @@ NeoBundle 'xolox/vim-misc'
 NeoBundle 'Valloric/YouCompleteMe'
 " NeoBundleLazy 'marijnh/tern_for_vim'
 " NeoBundleLazy 'xolox/vim-lua-ftplugin'
+NeoBundle 'othree/html5.vim'
 
 " Editing
 NeoBundle 'tomtom/tcomment_vim'
@@ -152,7 +153,7 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/emmet-vim'
-NeoBundle 'xolox/vim-easytags'
+" NeoBundle 'xolox/vim-easytags'
 
 " Navigating
 NeoBundle 'Lokaltog/vim-easymotion'
@@ -194,6 +195,7 @@ NeoBundle 'halftan/vim-bufferline'
 
 " Filetype plugins & syntaxes
 NeoBundle 'sheerun/vim-polyglot'
+NeoBundle 'PHP-correct-Indenting'
 
 " Color schemes
 NeoBundle 'altercation/vim-colors-solarized'
@@ -241,6 +243,8 @@ syntax enable
 
 NeoBundleCheck
 
+colorscheme solarized
+
 if has("gui_running")
     " Solarized theme
 
@@ -256,11 +260,13 @@ if has("gui_running")
     set guioptions-=T
     " set guioptions-=r
     set guioptions-=m    "隐藏菜单栏
+    colorscheme hybrid
 else
+    set background=dark
     set t_Co=256
+    colorscheme hybrid
 endif
 
-colorscheme hybrid
 
 autocmd WinLeave * set nocursorline
 autocmd WinEnter * set cursorline
@@ -344,7 +350,7 @@ let g:airline_powerline_fonts = 1
 if has("gui_running")
     let g:airline_theme='hybrid'
 else
-    let g:airline_theme='hybrid'
+    let g:airline_theme='luna'
 end
 
 " easy motion leader key -----------------
