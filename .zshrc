@@ -61,7 +61,7 @@ fi
 alias open="xdg-open"
 alias ll="ls -lh"
 alias la="ls -lAh"
-alias lh="l -h"
+alias sl="ls"
 
 ngvim() { gvim > /dev/null 2>&1 $@ }
 

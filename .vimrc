@@ -375,7 +375,7 @@ let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
 " Tagbar ----------------
 let g:tagbar_left = 1
 
-set foldmethod=syntax
+set foldmethod=manual
 set foldlevel=999
 
 " omni completion ----
