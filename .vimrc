@@ -15,7 +15,6 @@ set modeline
 set clipboard+=unnamed
 set mouse=a
 set timeoutlen=500
-let g:easytags_updatetime_min = 1000
 set updatetime=2000
 
 set completeopt+=longest
@@ -143,6 +142,7 @@ NeoBundle 'Valloric/YouCompleteMe'
 " NeoBundleLazy 'marijnh/tern_for_vim'
 " NeoBundleLazy 'xolox/vim-lua-ftplugin'
 NeoBundle 'othree/html5.vim'
+" NeoBundle 'm2mdas/phpcomplete-extended'
 
 " Editing
 NeoBundle 'tomtom/tcomment_vim'
@@ -151,7 +151,7 @@ NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'SirVer/ultisnips'
-NeoBundle 'terryma/vim-multiple-cursors'
+" NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/emmet-vim'
 " NeoBundle 'xolox/vim-easytags'
 
@@ -315,6 +315,7 @@ au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
 " au FileType javascript NeoBundleSource "tern_for_vim"
 " au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
+" au FileType php NeoBundleSource "m2mdas/phpcomplete-extended"; setlocal omnifunc=phpcomplete_extended#CompletePHP
 " au FileType lua NeoBundleSource "vim-lua-ftplugin"
 
 " UltiSnips config Here ------------
@@ -378,6 +379,14 @@ let g:tagbar_left = 1
 set foldmethod=manual
 set foldlevel=999
 
+" easytags ---------------
+let g:easytags_updatetime_min = 4000
+let g:easytags_auto_highlight = 0
+let g:easytags_auto_highlight = 0
+
+" phpcomplete -------------
+let g:phpcomplete_index_composer_command = "composer"
+
 " omni completion ----
 
 "======= OmniCompeleteCPP ========"
@@ -394,7 +403,7 @@ set foldlevel=999
 
 
 "===== tags ====="
-" set tags+=$VIMFILES/tags/cpp
+set tags=./.tags;,~/.vimtags
 
 " :Tlist              调用TagList
 " let Tlist_Show_One_File=0                    " 只显示当前文件的tags

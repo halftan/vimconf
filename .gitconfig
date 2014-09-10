@@ -13,5 +13,6 @@
 	default = simple
 [core]
 	editor = vim
+	excludesfile = 
 [merge]
 	tool = vim
