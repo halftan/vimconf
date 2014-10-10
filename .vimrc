@@ -38,7 +38,7 @@ set smartcase
 
 
 "Encode
-set fenc=UTF-8
+set fenc=UTF-8 nobomb ff=unix
 set encoding=UTF-8
 if has("win32")
     source $VIMRUNTIME/delmenu.vim
