@@ -43,7 +43,8 @@ beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
-editor = os.getenv("EDITOR") or "vi"
+browser = "chromium"
+editor = os.getenv("EDITOR") or "vim" or "vi"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -97,8 +98,15 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
+system_menu = {
+    { "reboot", "sudo systemctl reboot" },
+    { "shutdown", "poweroff" }
+}
+
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+                                    { "open terminal", terminal },
+                                    { "open browser", browser },
+                                    { "system", system_menu }
                                   }
                         })
 
@@ -115,7 +123,23 @@ mytextclock = awful.widget.textclock()
 
 -- Create a network usage widget
 netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">${enp0s3 down_kb}</span> <span color="#7F9F7F">${enp0s3 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">${wlp3s0 down_kb}</span> <span color="#7F9F7F">${wlp3s0 up_kb}</span>', 3)
+
+-- Battery widget
+batwidget = wibox.widget.textbox()
+vicious.register(batwidget, vicious.widgets.bat, "$2", 61, "BAT0")
+batwidget = awful.widget.progressbar()
+batwidget:set_width(8)
+batwidget:set_height(10)
+batwidget:set_vertical(true)
+batwidget:set_background_color("#494B4F")
+batwidget:set_border_color(nil)
+batwidget:set_color("#2A7")
+vicious.register(batwidget, vicious.widgets.bat, "$2", 61, "BAT0")
+
+-- updated every 61 seconds, requests the current battery charge
+-- level and displays a progressbar, provides "BAT0" battery ID as an
+-- argument
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -197,6 +221,7 @@ for s = 1, screen.count() do
     right_layout:add(netwidget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
+    right_layout:add(batwidget)
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
