@@ -241,6 +241,8 @@ call neobundle#end()
 filetype plugin indent on     " required!
 syntax enable
 
+set path+=$PWD/include,$PWD/../include
+
 NeoBundleCheck
 
 colorscheme solarized
