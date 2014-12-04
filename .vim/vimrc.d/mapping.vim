@@ -26,6 +26,9 @@ nmap <leader>cd :cd %:p:h<cr>
 " nmap <Leader>nt :NERDTreeToggle<CR>
 nmap <Leader>nt <plug>NERDTreeTabsToggle<CR>
 
+" VimFiler
+nmap <Leader>nf :VimFilerSplit<cr>
+
 " Vundle
 nmap <Leader>bi :NeoBundleInstall<cr>
 nmap <Leader>bu :NeoBundleInstall!<cr>

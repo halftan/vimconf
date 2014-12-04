@@ -180,8 +180,8 @@ NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/unite-help'
 
 " Project drawer
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'jistr/vim-nerdtree-tabs'
+" NeoBundle 'scrooloose/nerdtree'
+" NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'Shougo/vimfiler'
 
 " Syntax linter
@@ -388,6 +388,13 @@ let g:easytags_auto_highlight = 0
 
 " phpcomplete -------------
 let g:phpcomplete_index_composer_command = "composer"
+
+" VimFiler ----------------
+let g:vimfiler_as_default_explorer = 1
+
+call vimfiler#custom#profile('default', 'context', {
+\   'safe' : 0,
+\})
 
 " omni completion ----
 
