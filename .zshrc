@@ -75,9 +75,12 @@ if type pip &> /dev/null; then
     eval "$(pip completion --zsh)"
 fi
 
-source $ZSH/oh-my-zsh.sh
-
 if type grunt &> /dev/null; then
     # Load grunt completion
     eval "$(grunt --completion=zsh)"
 fi
+
+source $ZSH/oh-my-zsh.sh
+
+unset GREP_OPTIONS
+
