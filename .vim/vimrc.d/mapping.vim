@@ -48,7 +48,6 @@ nmap <Leader>ra :call RunAllSpecs()<cr>
 nmap <Leader>uf :Unite file<cr>
 nmap <Leader>ub :Unite buffer<cr>
 nmap <Leader>ur :Unite file_rec<cr>
-let g:unite_source_history_yank_enable = 1
 nmap <Leader>uy :Unite history/yank<cr>
 nmap <Leader>u/ :Unite grep:.<cr>
 
@@ -92,6 +91,8 @@ nmap <leader>cr :SCCompileRun<cr>
 " nmap <Leader>cc :call CompileCodeClang()<CR>
 " nmap <Leader>ct :call CompileCodeClangTest()<CR>
 " nmap <Leader>cr :call RunCode()<CR>
+
+nmap <F10> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 """"""""""""""
 "  Hex mode  "

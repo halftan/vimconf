@@ -153,7 +153,7 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'SirVer/ultisnips'
 " NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/emmet-vim'
-" NeoBundle 'xolox/vim-easytags'
+NeoBundle 'xolox/vim-easytags'
 
 " Navigating
 NeoBundle 'Lokaltog/vim-easymotion'
@@ -168,15 +168,15 @@ NeoBundle 'mbbill/undotree'
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-rails.git'
-NeoBundle 'tpope/vim-rbenv'
+" NeoBundle 'tpope/vim-rails.git'
+" NeoBundle 'tpope/vim-rbenv'
 NeoBundle 'xuhdev/SingleCompile'
 NeoBundle 'DBGp-X-client'
 
 " Fuzzy search
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
+" NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/unite-help'
 
 " Project drawer
@@ -369,11 +369,11 @@ let g:NERDTreeWinPos = "right"
 let g:ycm_confirm_extra_conf = 0
 
 " Syntastic ---------------
-let g:syntastic_cpp_include_dirs = ['/usr/include/c++/4.8.2', '/usr/include']
+let g:syntastic_cpp_include_dirs = ['/usr/include/c++/4.9.2', '/usr/include']
 let g:syntastic_check_header = 1
-let g:syntastic_cpp_checkers = ["g++", "clang++"]
+let g:syntastic_cpp_checkers = ["clang++"]
 let g:syntastic_cpp_compiler = "clang++"
-let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+let g:syntastic_cpp_compiler_options = '-std=c++1y'
 
 " Tagbar ----------------
 let g:tagbar_left = 1
@@ -381,13 +381,20 @@ let g:tagbar_left = 1
 set foldmethod=manual
 set foldlevel=999
 
+"===== tags ====="
+set tags=./tags;
+
 " easytags ---------------
 let g:easytags_updatetime_min = 4000
-let g:easytags_auto_highlight = 0
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 1
 let g:easytags_auto_highlight = 0
 
 " phpcomplete -------------
 let g:phpcomplete_index_composer_command = "composer"
+
+" Unite -------------------
+let g:unite_source_history_yank_enable = 1
 
 " VimFiler ----------------
 let g:vimfiler_as_default_explorer = 1
@@ -399,7 +406,7 @@ call vimfiler#custom#profile('default', 'context', {
 " omni completion ----
 
 "======= OmniCompeleteCPP ========"
-" map <C-F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+" nmap <F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 " let OmniCpp_NamespaceSearch = 2
 " let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD" ]
 " let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
@@ -410,9 +417,6 @@ call vimfiler#custom#profile('default', 'context', {
 " let OmniCpp_LocalSearchDecl = 1
 " set completeopt=menu,menuone,preview
 
-
-"===== tags ====="
-set tags=./.tags;,~/.vimtags
 
 " :Tlist              调用TagList
 " let Tlist_Show_One_File=0                    " 只显示当前文件的tags
