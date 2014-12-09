@@ -10,7 +10,9 @@ cmap w!! w !sudo tee > /dev/null %
 " nmap <C-TAB> gt
 " nmap <S-TAB> gT
 
+" -------------
 "  editor's command
+" -------------
 imap jj <ESC>l
 nmap <Leader>w :w<cr>
 nmap <Leader>ev :tabe $MYVIMRC<cr>
@@ -22,45 +24,98 @@ nmap <Leader>/ :nohlsearch<cr>
 nmap <leader>cd :cd %:p:h<cr>
 
 
+" -------------
 " NERDTree shortcuts
+" -------------
 " nmap <Leader>nt :NERDTreeToggle<CR>
 nmap <Leader>nt <plug>NERDTreeTabsToggle<CR>
 
+" -------------
 " VimFiler
+" -------------
 nmap <Leader>nf :VimFilerSplit<cr>
 
-" Vundle
+" -------------
+" NeoBundle
+" -------------
 nmap <Leader>bi :NeoBundleInstall<cr>
 nmap <Leader>bu :NeoBundleInstall!<cr>
 
+" -------------
+" Fugitive
+" -------------
 nmap <Leader>gs :Gstatus<cr>
 
+" -------------
 " Toggle relative numbers
+" -------------
 nmap <Leader>nr :NumbersToggle<cr>
 
-" Run specs
-nmap <Leader>rc :call RunCurrentSpecFile()<cr>
-nmap <Leader>rn :call RunNearestSpec()<cr>
-nmap <Leader>rl :call RunLastSpec()<cr>
-nmap <Leader>ra :call RunAllSpecs()<cr>
-
+" -------------
 "  Unite
+" -------------
 nmap <Leader>uf :Unite file<cr>
 nmap <Leader>ub :Unite buffer<cr>
 nmap <Leader>ur :Unite file_rec<cr>
 nmap <Leader>uy :Unite history/yank<cr>
 nmap <Leader>u/ :Unite grep:.<cr>
 
+" -------------
+" NeoComplete
+" -------------
+inoremap <expr><C-G>    neocomplete#undo_completion()
+inoremap <expr><C-L>    neocomplete#complete_common_string()
+"
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  " return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+inoremap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+
+" -------------
+" NeoSnippet
+" -------------
+imap <C-K>      <Plug>(neosnippet_expand_or_jump)
+smap <C-K>      <Plug>(neosnippet_expand_or_jump)
+xmap <C-K>      <Plug>(neosnippet_expand_target)
+
+
+" -------------
 " Tagbar
+" -------------
 nmap <Leader>tt :TagbarToggle<cr>
 
+" -------------
 " YouCompleteMe
-nnoremap <Leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" -------------
+" nnoremap <Leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+""" FileType specific mappings --------
+
+" -------------
 " PHP XDEBUG
-nmap <leader>pd :python debugger_run()<cr>
-nmap <leader>ps :python debugger_quit()<cr>
-nmap <leader>pe :python debugger_watch_input("eval")<cr>A
+" -------------
+augroup php_mapping
+    au FileType php nmap <leader>pd :python debugger_run()<cr>
+    au FileType php nmap <leader>ps :python debugger_quit()<cr>
+    au FileType php nmap <leader>pe :python debugger_watch_input("eval")<cr>A
+augroup END
+
+" -------------
+" Run specs
+" -------------
+" augroup ruby_mapping
+"     au FileType ruby,eruby nmap <Leader>rc :call RunCurrentSpecFile()<cr>
+"     au FileType ruby,eruby nmap <Leader>rn :call RunNearestSpec()<cr>
+"     au FileType ruby,eruby nmap <Leader>rl :call RunLastSpec()<cr>
+"     au FileType ruby,eruby nmap <Leader>ra :call RunAllSpecs()<cr>
+" augroup END
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -80,10 +135,14 @@ nmap <Up>    <c-w><c-k>
 nmap <Down>  <c-w><c-j>
 
 
+" -------------
 " Undotree Here --------------
+" -------------
 nmap <leader>ut :UndotreeToggle<CR>
 
+" -------------
 " SingleCompile Here ----------
+" -------------
 nmap <leader>cc :SCCompile<cr>
 nmap <leader>cr :SCCompileRun<cr>
 " nmap <Leader>gc :call CompileCode()<CR>
