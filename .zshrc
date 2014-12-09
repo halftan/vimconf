@@ -63,6 +63,7 @@ alias open="xdg-open"
 alias ll="ls -lh"
 alias la="ls -lAh"
 alias sl="ls"
+alias glglr="git log --oneline --graph --left-right"
 
 ngvim() { gvim > /dev/null 2>&1 $@ }
 
