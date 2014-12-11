@@ -150,7 +150,7 @@ NeoBundle 'Shougo/neosnippet-snippets'
 " NeoBundle 'SirVer/ultisnips'
 " NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/emmet-vim'
-NeoBundle 'xolox/vim-easytags'
+" NeoBundle 'xolox/vim-easytags'
 
 " Navigating
 NeoBundle 'Lokaltog/vim-easymotion'
@@ -309,6 +309,7 @@ augroup filetype_indent
     au FileType ruby,eruby,yaml setl sw=2 ts=2 sts=2 et
     au FileType coffee setl sw=2 ts=2 sts=2 et
     au FileType asm setl sw=4 ts=4 sts=4 noet
+    au FileType javascript NeoBundleSource "tern_for_vim"
 augroup END
 
 let g:rubycomplete_buffer_loading = 1
@@ -316,7 +317,6 @@ let g:rubycomplete_classes_in_global = 1
 
 " FileType specs End ----------
 
-" au FileType javascript NeoBundleSource "tern_for_vim"
 " au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
 " au FileType php NeoBundleSource "m2mdas/phpcomplete-extended"
 " au FileType lua NeoBundleSource "vim-lua-ftplugin"
@@ -398,12 +398,17 @@ augroup NeoComplete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
 
+" -------------
 " Syntastic ---------------
-let g:syntastic_cpp_include_dirs = ['/usr/include/c++/4.9.2', '/usr/include']
+" -------------
+" C++ Options
 let g:syntastic_check_header = 1
+let g:syntastic_cpp_include_dirs = ['/usr/include/c++/4.9.2', '/usr/include']
 let g:syntastic_cpp_checkers = ["clang++"]
 let g:syntastic_cpp_compiler = "clang++"
 let g:syntastic_cpp_compiler_options = '-std=c++1y'
+" Python Options
+let g:syntastic_python_checkers = ['pylint']
 
 " Tagbar ----------------
 let g:tagbar_left = 1
@@ -419,6 +424,7 @@ let g:easytags_updatetime_min = 4000
 let g:easytags_async = 1
 let g:easytags_dynamic_files = 1
 let g:easytags_auto_highlight = 0
+let g:easytags_auto_update = 0
 
 " phpcomplete -------------
 let g:phpcomplete_index_composer_command = "composer"

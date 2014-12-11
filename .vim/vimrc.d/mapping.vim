@@ -47,6 +47,12 @@ nmap <Leader>bu :NeoBundleInstall!<cr>
 nmap <Leader>gs :Gstatus<cr>
 
 " -------------
+" EasyTags
+" -------------
+nmap <Leader>tu :UpdateTags<cr>
+nmap <Leader>th :HighlightTags<cr>
+
+" -------------
 " Toggle relative numbers
 " -------------
 nmap <Leader>nr :NumbersToggle<cr>
@@ -68,12 +74,12 @@ inoremap <expr><C-L>    neocomplete#complete_common_string()
 "
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
   " return neocomplete#close_popup() . "\<CR>"
   " For no inserting <CR> key.
-  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
+  " return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+" endfunction
 inoremap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
