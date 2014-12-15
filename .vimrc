@@ -368,6 +368,11 @@ let g:NERDTreeWinPos = "right"
 " YouCompleteMe ---------------
 let g:ycm_confirm_extra_conf = 0
 
+" NeoSnippets ----------------
+let g:neosnippet#snippets_directory = "~/.vim/snips"
+let g:neosnippet#edit_options_split = 1
+let g:neosnippet#edit_options_vertical = 1
+
 " NeoComplete ----------------
 augroup NeoComplete
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -375,6 +380,7 @@ augroup NeoComplete
     " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileReadPost php setlocal omnifunc=phpcomplete_extended#CompletePHP
 augroup END
 
 let g:acp_enableAtStartup = 0

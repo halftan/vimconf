@@ -16,7 +16,9 @@ cmap w!! w !sudo tee > /dev/null %
 imap jj <ESC>l
 nmap <Leader>w :w<cr>
 nmap <Leader>ev :tabe $MYVIMRC<cr>
+nmap <Leader>em :tabe ~/.vim/vimrc.d/mapping.vim<cr>
 nmap <Leader>sv :so $MYVIMRC<cr>
+nmap <Leader>sm :so ~/.vim/vimrc.d/mapping.vim<cr>
 
 nmap <Leader>/ :nohlsearch<cr>
 
@@ -60,11 +62,18 @@ nmap <Leader>nr :NumbersToggle<cr>
 " -------------
 "  Unite
 " -------------
+nmap <Leader>uc :Unite 
 nmap <Leader>uf :Unite file<cr>
 nmap <Leader>ub :Unite buffer<cr>
 nmap <Leader>ur :Unite file_rec<cr>
 nmap <Leader>uy :Unite history/yank<cr>
 nmap <Leader>u/ :Unite grep:.<cr>
+
+" -------------
+"  NeoSnippet
+" -------------
+nmap <Leader>ser :NeoSnippetEdit -split -vertical -runtime<cr>
+nmap <Leader>seu :NeoSnippetEdit -split -vertical<cr>
 
 " -------------
 " NeoComplete
