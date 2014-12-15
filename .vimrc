@@ -134,7 +134,7 @@ NeoBundle 'xolox/vim-misc'
 " Completion
 " NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle "Shougo/neocomplete.vim"
-NeoBundleLazy 'marijnh/tern_for_vim'
+NeoBundle 'marijnh/tern_for_vim'
 " NeoBundleLazy 'xolox/vim-lua-ftplugin'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'm2mdas/phpcomplete-extended'
@@ -307,9 +307,8 @@ augroup filetype_indent
     au FileType python,vim,c,cpp setl sw=4 ts=4 sts=4 et
     au FileType make,mkd setl sw=4 ts=4 sts=4 noet
     au FileType ruby,eruby,yaml setl sw=2 ts=2 sts=2 et
-    au FileType coffee setl sw=2 ts=2 sts=2 et
+    au FileType coffee,javascript,jade setl sw=2 ts=2 sts=2 et
     au FileType asm setl sw=4 ts=4 sts=4 noet
-    au FileType javascript NeoBundleSource "tern_for_vim"
 augroup END
 
 let g:rubycomplete_buffer_loading = 1
@@ -370,6 +369,14 @@ let g:NERDTreeWinPos = "right"
 let g:ycm_confirm_extra_conf = 0
 
 " NeoComplete ----------------
+augroup NeoComplete
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup END
+
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
@@ -390,13 +397,10 @@ let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-augroup NeoComplete
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-augroup END
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 
 " -------------
 " Syntastic ---------------
