@@ -30,12 +30,15 @@ nmap <leader>cd :cd %:p:h<cr>
 " NERDTree shortcuts
 " -------------
 " nmap <Leader>nt :NERDTreeToggle<CR>
-nmap <Leader>nt <plug>NERDTreeTabsToggle<CR>
+" nmap <Leader>nt <plug>NERDTreeTabsToggle<CR>
 
 " -------------
 " VimFiler
 " -------------
-nmap <Leader>nf :VimFilerSplit<cr>
+nmap <Leader>nft :VimFilerTab<cr>
+nmap <Leader>nfo :VimFiler<cr>
+nmap <Leader>nfb :VimFilerExplorer<cr>
+nmap <Leader>nfs :VimFilerSplit<cr>
 
 " -------------
 " NeoBundle

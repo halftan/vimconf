@@ -309,6 +309,7 @@ augroup filetype_indent
     au FileType ruby,eruby,yaml setl sw=2 ts=2 sts=2 et
     au FileType coffee,javascript,jade setl sw=2 ts=2 sts=2 et
     au FileType asm setl sw=4 ts=4 sts=4 noet
+    au FileType neosnippet setl  noet
 augroup END
 
 let g:rubycomplete_buffer_loading = 1
@@ -419,6 +420,8 @@ let g:syntastic_cpp_compiler = "clang++"
 let g:syntastic_cpp_compiler_options = '-std=c++1y'
 " Python Options
 let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_aggregate_errors = 1
 
 " Tagbar ----------------
 let g:tagbar_left = 1
