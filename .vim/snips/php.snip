@@ -10,3 +10,29 @@ options     head
 	 ${4:#:other block}
 	 */
 	${0:TARGET}
+
+snippet php
+	<?php
+	/**
+	 * ${1:#:description}
+	 *
+	 * PHP version ${2:5.4}
+	 *
+	 * @author ${3:Andy Zhang <zhangfengming@baidu.com>}
+	 */
+	${0:TARGET}
+
+snippet class
+options head
+	class ${1:filename}
+	{
+		${0:TARGET}
+	}
+
+snippet doc_class_constant
+	/**
+	 * ${3:no description}
+	 *
+	 * @var ${2:#:undocumented constant}
+	 **/
+	const ${1};${0}
