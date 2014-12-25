@@ -186,7 +186,8 @@ NeoBundle 'scrooloose/syntastic'
 
 " Visual helpers
 NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'bling/vim-airline'
+" NeoBundle 'bling/vim-airline'
+" NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 NeoBundle 'halftan/vim-bufferline'
 
 
@@ -420,7 +421,7 @@ let g:syntastic_cpp_compiler = "clang++"
 let g:syntastic_cpp_compiler_options = '-std=c++1y'
 " Python Options
 let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_php_checkers = ['php']
 let g:syntastic_aggregate_errors = 1
 
 " Tagbar ----------------

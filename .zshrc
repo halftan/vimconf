@@ -81,6 +81,10 @@ if type grunt &> /dev/null; then
     eval "$(grunt --completion=zsh)"
 fi
 
+if [[ -e /usr/share/zsh/site-contrib/powerline.zsh ]]; then
+    . /usr/share/zsh/site-contrib/powerline.zsh
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 unset GREP_OPTIONS

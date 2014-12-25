@@ -1,3 +1,4 @@
+
 xterm*termName: xterm-256color
 xterm*locale: true
 xterm*altIsNotMeta: true
@@ -9,8 +10,12 @@ xterm*faceNameDoublesize: WenQuanYi Micro Hei:size=10:style:regular:antialias=fa
 xterm*renderFont: true
 xterm*faceSize: 10
 
-URxvt.font: xft:dejavu sans mono for powerline:book:size=10:antialias=true, \
-            xft:WenQuanYi Micro Hei:size=10:style:regular:antialias=true
+URxvt.font: \
+        xft:Source Code Pro for Powerline:Regular:size=10, \
+        xft:Inconsolata for Powerline:Medium:size=10, \
+        xft:dejavu sans mono for powerline:book:size=10, \
+        xft:WenQuanYi Micro Hei:regular:size=10
+
 URxvt*loginShell: true
 
 ! Compile xft: Turn on/off double-buffering for xft
