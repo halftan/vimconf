@@ -186,9 +186,9 @@ NeoBundle 'scrooloose/syntastic'
 
 " Visual helpers
 NeoBundle 'nathanaelkane/vim-indent-guides'
-" NeoBundle 'bling/vim-airline'
+NeoBundle 'bling/vim-airline'
 " NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-NeoBundle 'halftan/vim-bufferline'
+NeoBundle 'bling/vim-bufferline'
 
 
 " Filetype plugins & syntaxes
