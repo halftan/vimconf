@@ -11,8 +11,8 @@ xterm*renderFont: true
 xterm*faceSize: 10
 
 URxvt.font: \
+        xft:Inconsolata for Powerline:Medium:size=12, \
         xft:Source Code Pro for Powerline:Regular:size=10, \
-        xft:Inconsolata for Powerline:Medium:size=10, \
         xft:dejavu sans mono for powerline:book:size=10, \
         xft:WenQuanYi Micro Hei:regular:size=10
 
