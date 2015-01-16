@@ -81,17 +81,18 @@ nmap <Leader>seu :NeoSnippetEdit -split -vertical<cr>
 " -------------
 " NeoComplete
 " -------------
-inoremap <expr><C-G>    neocomplete#undo_completion()
-inoremap <expr><C-L>    neocomplete#complete_common_string()
+inoremap <expr><C-g>    neocomplete#undo_completion()
+inoremap <expr><C-l>    neocomplete#complete_common_string()
+inoremap <expr><C-SPACE> neocomplete#start_manual_complete()
 "
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function()
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
   " return neocomplete#close_popup() . "\<CR>"
   " For no inserting <CR> key.
-  " return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-" endfunction
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
 inoremap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
@@ -119,11 +120,11 @@ nmap <Leader>tt :TagbarToggle<cr>
 " -------------
 " PHP XDEBUG
 " -------------
-augroup php_mapping
-    au FileType php nmap <leader>pd :python debugger_run()<cr>
-    au FileType php nmap <leader>ps :python debugger_quit()<cr>
-    au FileType php nmap <leader>pe :python debugger_watch_input("eval")<cr>A
-augroup END
+" augroup php_mapping
+"     au FileType php nmap <leader>pd :python debugger_run()<cr>
+"     au FileType php nmap <leader>ps :python debugger_quit()<cr>
+"     au FileType php nmap <leader>pe :python debugger_watch_input("eval")<cr>A
+" augroup END
 
 " -------------
 " Run specs

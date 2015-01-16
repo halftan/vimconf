@@ -132,8 +132,9 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'xolox/vim-misc'
 
 " Completion
-NeoBundle 'Valloric/YouCompleteMe'
-" NeoBundle 'Shougo/neocomplete.vim'
+" NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'osyo-manga/vim-marching'
 NeoBundle 'marijnh/tern_for_vim'
 " NeoBundleLazy 'xolox/vim-lua-ftplugin'
 NeoBundle 'othree/html5.vim'
@@ -144,10 +145,10 @@ NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'junegunn/vim-easy-align'
 " NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'jiangmiao/auto-pairs'
-" NeoBundle 'Shougo/neosnippet'
-" NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'SirVer/ultisnips'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+" NeoBundle 'honza/vim-snippets'
+" NeoBundle 'SirVer/ultisnips'
 " NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/emmet-vim'
 " NeoBundle 'xolox/vim-easytags'
@@ -168,7 +169,8 @@ NeoBundle 'tpope/vim-repeat'
 " NeoBundle 'tpope/vim-rails.git'
 " NeoBundle 'tpope/vim-rbenv'
 NeoBundle 'xuhdev/SingleCompile'
-NeoBundle 'DBGp-X-client'
+" NeoBundle 'DBGp-X-client'
+NeoBundle 'joonty/vdebug'
 
 " Fuzzy search
 NeoBundle 'kien/ctrlp.vim'
@@ -308,9 +310,9 @@ augroup filetype_indent
     au FileType python,vim,c,cpp setl sw=4 ts=4 sts=4 et
     au FileType make,mkd setl sw=4 ts=4 sts=4 noet
     au FileType ruby,eruby,yaml setl sw=2 ts=2 sts=2 et
-    au FileType coffee,javascript,jade setl sw=2 ts=2 sts=2 et
+    au FileType coffee,jade setl sw=2 ts=2 sts=2 et
     au FileType asm setl sw=4 ts=4 sts=4 noet
-    au FileType neosnippet setl  noet
+    au FileType neosnippet setl noet
 augroup END
 
 let g:rubycomplete_buffer_loading = 1
@@ -382,11 +384,18 @@ augroup NeoComplete
     " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    autocmd FileReadPost php setlocal omnifunc=phpcomplete_extended#CompletePHP
+    autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 augroup END
 
-let g:acp_enableAtStartup = 0
+if (!has('gui'))
+    let g:acp_enableAtStartup = 0
+endif
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_auto_select = 0
+let g:neocomplete#disable_auto_complete = 1
+let g:neocomplete#manual_completion_start_length = 2
+let g:neocomplete#auto_completion_start_length = 4
+
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
@@ -411,8 +420,21 @@ endif
 let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 
 " -------------
-" Syntastic ---------------
+" vim-marching
 " -------------
+let g:marching_clang_command = "/usr/bin/clang"
+let g:marching#clang_command#options = {
+            \ "cpp" : "-std=gnu++1y"
+            \}
+let g:marching_include_paths = [
+            \ "/usr/include/c++/4.9.2"
+            \]
+let g:marching_enable_neocomplete = 1
+
+" -------------
+" Syntastic
+" -------------
+let g:syntastic_aggregate_errors = 1
 " C++ Options
 let g:syntastic_check_header = 1
 let g:syntastic_cpp_include_dirs = ['/usr/include/c++/4.9.2', '/usr/include']
@@ -421,13 +443,15 @@ let g:syntastic_cpp_compiler = "clang++"
 let g:syntastic_cpp_compiler_options = '-std=c++1y'
 " Python Options
 let g:syntastic_python_checkers = ['pylint']
+" PHP Options
 let g:syntastic_php_checkers = ['php']
-let g:syntastic_aggregate_errors = 1
+" JS Options
+let g:syntastic_javascript_checkers = ['jslint']
 
 " Tagbar ----------------
 let g:tagbar_left = 1
 
-set foldmethod=manual
+set foldmethod=marker
 set foldlevel=999
 
 "===== tags ====="
