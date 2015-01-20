@@ -36,3 +36,13 @@ snippet doc_class_constant
 	 * @var ${2:#:undocumented constant}
 	 **/
 	const ${1};${0}
+
+snippet for
+options head
+	for ($${1:i} = ${2:0}; $$1 < ${3}; $$1++) {
+		${0:TARGET}
+	}
+
+snippet doc_class_var
+	/** @var ${4:#:string} **/
+	${1:#:var} $${2};${0}
