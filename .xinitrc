@@ -48,7 +48,7 @@ export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 
 numlockx
-#ibus-daemon -drx
+ibus-daemon -drx
 VBoxClient-all
 
 exec awesome

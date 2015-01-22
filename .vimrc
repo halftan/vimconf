@@ -12,8 +12,7 @@ set mouse=a
 set timeoutlen=500
 set updatetime=2000
 
-set completeopt+=longest
-set completeopt-=preview
+set completeopt=menuone,preview
 
 set autoindent
 set smartindent
