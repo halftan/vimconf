@@ -170,6 +170,7 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'xuhdev/SingleCompile'
 " NeoBundle 'DBGp-X-client'
 NeoBundle 'joonty/vdebug'
+NeoBundle 'hlissner/vim-forrestgump'
 
 " Fuzzy search
 NeoBundle 'kien/ctrlp.vim'

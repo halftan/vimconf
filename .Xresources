@@ -25,7 +25,7 @@ URxvt*buffered: true
 URxvt*scrollstyle: rxvt
 
 ! Specifies the terminal type name to be set in the
-URxvt*termName: xterm-256color
+URxvt*termName: rxvt-unicode
 
 URxvt.perl-ext-common:          default,tabbedex,clipboard,url-select,keyboard-select
 URxvt.url-select.launcher:      chromium
