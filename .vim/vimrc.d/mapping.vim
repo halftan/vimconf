@@ -84,6 +84,8 @@ nmap <Leader>seu :NeoSnippetEdit -split -vertical<cr>
 inoremap <expr><C-g>    neocomplete#undo_completion()
 inoremap <expr><C-l>    neocomplete#complete_common_string()
 inoremap <expr><C-SPACE> neocomplete#start_manual_complete()
+inoremap <expr><C-@> neocomplete#start_manual_complete()
+
 "
 " Recommended key-mappings.
 " <CR>: close popup and save indent.

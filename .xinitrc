@@ -49,6 +49,7 @@ export QT_IM_MODULE=fcitx
 
 numlockx
 fcitx -dr
+
 VBoxClient-all
 
 exec awesome

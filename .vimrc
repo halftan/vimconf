@@ -133,11 +133,11 @@ NeoBundle 'xolox/vim-misc'
 " Completion
 " NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'osyo-manga/vim-marching'
-NeoBundle 'marijnh/tern_for_vim'
-" NeoBundleLazy 'xolox/vim-lua-ftplugin'
+" NeoBundle 'osyo-manga/vim-marching'
+NeoBundleLazy 'marijnh/tern_for_vim'
+NeoBundleLazy 'xolox/vim-lua-ftplugin'
 NeoBundle 'othree/html5.vim'
-NeoBundle 'm2mdas/phpcomplete-extended'
+NeoBundleLazy 'm2mdas/phpcomplete-extended'
 
 " Editing
 NeoBundle 'tomtom/tcomment_vim'
@@ -190,7 +190,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'bling/vim-airline'
 " NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-NeoBundle 'bling/vim-bufferline'
+" NeoBundle 'bling/vim-bufferline'
 
 
 " Filetype plugins & syntaxes
@@ -204,15 +204,15 @@ NeoBundle 'w0ng/vim-hybrid'
 
 " Text Objects
 NeoBundle 'wellle/targets.vim'
-" NeoBundle 'matchit.zip'
-" NeoBundle 'kana/vim-textobj-user'
-" NeoBundle 'kana/vim-textobj-indent'          "ii ai
+NeoBundle 'matchit.zip'
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-textobj-indent'          "ii ai
 " NeoBundle 'kana/vim-textobj-line'            "al il
 " NeoBundle 'kana/vim-textobj-entire'          "ae ie
 NeoBundle 'bkad/CamelCaseMotion'             ",w ,b
-" NeoBundle 'argtextobj.vim'                   "via vaa da ca
-" NeoBundle 'nelstrom/vim-textobj-rubyblock'   "vir var
-" NeoBundle 'lucapette/vim-textobj-underscore' " a_, i_
+NeoBundle 'argtextobj.vim'                   "via vaa da ca
+NeoBundle 'nelstrom/vim-textobj-rubyblock'   "vir var
+NeoBundle 'lucapette/vim-textobj-underscore' " a_, i_
 
 
 """"""""""""""""
@@ -310,19 +310,21 @@ augroup filetype_indent
     au FileType python,vim,c,cpp setl sw=4 ts=4 sts=4 et
     au FileType make,mkd setl sw=4 ts=4 sts=4 noet
     au FileType ruby,eruby,yaml setl sw=2 ts=2 sts=2 et
+    au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+    au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
     au FileType coffee,jade setl sw=2 ts=2 sts=2 et
     au FileType asm setl sw=4 ts=4 sts=4 noet
     au FileType neosnippet setl noet
 augroup END
 
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-
 " FileType specs End ----------
 
-" au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
-" au FileType php NeoBundleSource "m2mdas/phpcomplete-extended"
-" au FileType lua NeoBundleSource "vim-lua-ftplugin"
+augroup filetype_specs
+    " au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
+    au FileType php NeoBundleSource "m2mdas/phpcomplete-extended"
+    au FileType lua NeoBundleSource "vim-lua-ftplugin"
+    au FileType javascript,html NeoBundleSource "marijnh/tern_for_vim"
+augroup END
 
 " UltiSnips config Here ------------
 
@@ -393,8 +395,8 @@ endif
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_auto_select = 0
 let g:neocomplete#disable_auto_complete = 1
-let g:neocomplete#manual_completion_start_length = 2
-let g:neocomplete#auto_completion_start_length = 4
+let g:neocomplete#manual_completion_start_length = 0
+let g:neocomplete#auto_completion_start_length = 3
 
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3

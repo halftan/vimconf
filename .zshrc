@@ -65,6 +65,13 @@ alias la="ls -lAh"
 alias sl="ls"
 alias glglr="git log --oneline --graph --left-right"
 
+if type ag &> /dev/null
+then
+    alias psg="ps aux|ag"
+else
+    alias psg="ps aux|grep -i"
+fi
+
 ngvim() { gvim > /dev/null 2>&1 $@ }
 
 if type npm &> /dev/null; then
