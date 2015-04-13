@@ -62,10 +62,10 @@ fi
 
 if type sw_vers &> /dev/null; then
     # Mac OS X
-    alias open="xdg-open"
     plugins=($plugins brew)
 else
     # Linux
+    alias open="xdg-open"
     ngvim() { gvim > /dev/null 2>&1 $@ }
 fi
 alias ll="ls -lh"
