@@ -257,7 +257,7 @@ if has("gui_running")
     if has("win32")
         set guifont=DejaVu\ Sans\ Mono:h11,Consolas:h11
     elseif has("mac")
-        set guifont=Monaco:h10
+        set guifont=Inconsolata-dz\ For\ Powerline:h12
     else
         set guifont=Inconsolata\ For\ Powerline\ 12
         " set guifont=DejaVu\ Sans\ Mono\ 10,Consolas\ 10
