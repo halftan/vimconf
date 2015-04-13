@@ -9,7 +9,7 @@ fi
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-if [[ -n $DISPLAY ]] then
+if [[ -n $DISPLAY ]] || [[ $VENDOR = "apple" ]] then
     ZSH_THEME="muse"
 else
     ZSH_THEME="gallois"
