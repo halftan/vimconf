@@ -1,6 +1,10 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
+if type vim &> /dev/null; then
+    export EDITOR=vim
+fi
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -13,8 +17,8 @@ fi
 DEFAULT_USER="halftan"
 
 # Example aliases
-alias zshconfig="gvim ~/.zshrc"
-alias ohmyzsh="gvim ~/.oh-my-zsh"
+alias zshconfig="${EDITOR} ~/.zshrc"
+alias ohmyzsh="${EDITOR} ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -44,22 +48,26 @@ alias ohmyzsh="gvim ~/.oh-my-zsh"
 
 # Customize to your needs...
 # export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/usr/bin/vendor_perl
-export PATH=$HOME/bin:$HOME/.composer/vendor/bin:$PATH
+export PATH=$HOME/bin:$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git extract systemd gitignore autojump rbenv bundler sudo composer)
+plugins=(git extract gitignore sudo history history-substring-search\
+    autojump composer rbenv bundler )
 
 if [[ -e ~/.pythonrc ]] then
     export PYTHONSTARTUP=~/.pythonrc
 fi
 
-if type vim &> /dev/null; then
-    export EDITOR=vim
+if type sw_vers &> /dev/null; then
+    # Mac OS X
+    alias open="xdg-open"
+    plugins=($plugins brew)
+else
+    # Linux
+    ngvim() { gvim > /dev/null 2>&1 $@ }
 fi
-
-alias open="xdg-open"
 alias ll="ls -lh"
 alias la="ls -lAh"
 alias sl="ls"
@@ -71,8 +79,6 @@ then
 else
     alias psg="ps aux|grep -i"
 fi
-
-ngvim() { gvim > /dev/null 2>&1 $@ }
 
 if type npm &> /dev/null; then
     plugins=($plugins npm)
@@ -88,11 +94,9 @@ if type grunt &> /dev/null; then
     eval "$(grunt --completion=zsh)"
 fi
 
-if [[ -e /usr/share/zsh/site-contrib/powerline.zsh ]]; then
-    . /usr/share/zsh/site-contrib/powerline.zsh
+if [[ -e ~/.zsh_alias ]]; then
+    . ~/.zsh_alias
 fi
 
 source $ZSH/oh-my-zsh.sh
-
-unset GREP_OPTIONS
 

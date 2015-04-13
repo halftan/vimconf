@@ -108,7 +108,11 @@ endif
 if $USER != "root"
     call neobundle#begin(expand('~/.vim/bundle/'))
 else
-    call neobundle#begin(expand('/home/halftan/.vim/bundle/'))
+    if has("mac")
+        call neobundle#begin(expand('/Users/halftan/.vim/bundle/'))
+    else
+        call neobundle#begin(expand('/home/halftan/.vim/bundle/'))
+    endif
 endif
 
 " Let NeoBundle manage NeoBundle
