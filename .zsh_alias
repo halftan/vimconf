@@ -1,0 +1,4 @@
+if type sw_vers &> /dev/null; then
+    alias flushdns="sudo discoveryutil mdnsflushcache"
+fi
+alias zrestart="exec $SHELL"
