@@ -67,6 +67,7 @@ else
     # Linux
     alias open="xdg-open"
     ngvim() { gvim > /dev/null 2>&1 $@ }
+    plugins=($plugins systemd)
 fi
 alias ll="ls -lh"
 alias la="ls -lAh"
