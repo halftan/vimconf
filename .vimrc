@@ -146,8 +146,8 @@ NeoBundleLazy 'm2mdas/phpcomplete-extended'
 " Editing
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'junegunn/vim-easy-align'
-" NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'Raimondi/delimitMate'
+" NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 " NeoBundle 'honza/vim-snippets'
@@ -482,6 +482,12 @@ let g:vimfiler_as_default_explorer = 1
 call vimfiler#custom#profile('default', 'context', {
 \   'safe' : 0,
 \})
+
+" delimitMate =================
+let g:delimitMate_expand_cr = 2
+let g:delimitMate_expand_space = 1
+let g:delimitMate_jump_expansion = 1
+let g:delimitMate_balance_matchpairs = 1
 
 " omni completion ----
 

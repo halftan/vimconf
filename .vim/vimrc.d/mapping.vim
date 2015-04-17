@@ -89,14 +89,30 @@ inoremap <expr><C-@> neocomplete#start_manual_complete()
 "
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
+" imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" imap <expr> <CR> pumvisible()
+"             \ ? :neocomplete#close_popup()
+"             \ : "<Plug>delimitMateCR"
+" function! s:my_cr_function()
   " return neocomplete#close_popup() . "\<CR>"
   " For no inserting <CR> key.
-  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-inoremap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  " if g:delimitMate_expand_cr != 0
+  "     return pumvisible() ? neocomplete#close_popup() : <Plug>delimitMateCR
+  " else
+  " return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+  " endif
+" endfunction
+imap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
+if g:delimitMate_expand_cr != 0
+    imap <expr> <CR> pumvisible()
+                \ ? "\<C-Y>"
+                \ : "<Plug>delimitMateCR"
+else
+    imap <expr> <CR> pumvisible()
+                \ ? ""
+                \ : "\<CR>"
+endif
 
 
 " -------------
@@ -154,6 +170,10 @@ nmap <Left>  <c-w><c-h>
 nmap <Right> <c-w><c-l>
 nmap <Up>    <c-w><c-k>
 nmap <Down>  <c-w><c-j>
+nmap <M-Left> :tabprevious<cr>
+nmap <M-Right> :tabnext<cr>
+nmap <M-Up> :tabfirst<cr>
+nmap <M-Down> :tablast<cr>
 
 
 " -------------
