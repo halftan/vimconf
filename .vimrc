@@ -249,11 +249,15 @@ set path+=$PWD/include,$PWD/../include
 
 NeoBundleCheck
 
-colorscheme solarized
+if has("mac")
+    let g:hybrid_use_Xresources = 1
+    colorscheme hybrid
+else
+    colorscheme solarized
+endif
 
 if has("gui_running")
     " Solarized theme
-
     if has("win32")
         set guifont=DejaVu\ Sans\ Mono:h11,Consolas:h11
     elseif has("mac")
