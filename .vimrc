@@ -332,6 +332,7 @@ augroup filetype_specs
     au FileType php NeoBundleSource "m2mdas/phpcomplete-extended"
     au FileType lua NeoBundleSource "vim-lua-ftplugin"
     au FileType javascript,html NeoBundleSource "marijnh/tern_for_vim"
+    au FileType html let g:delimitMate_matchpairs = "(:),[:],{:},<:>"
 augroup END
 
 " UltiSnips config Here ------------
@@ -492,12 +493,14 @@ let g:delimitMate_expand_cr = 2
 let g:delimitMate_expand_space = 1
 let g:delimitMate_jump_expansion = 1
 let g:delimitMate_balance_matchpairs = 1
+let g:delimitMate_matchpairs = "(:),[:],{:}"
 
 " VDebug =====================
 let g:vdebug_options= {
 \    "port" : 10000,
 \    "server" : 'localhost',
 \    "timeout" : 20,
+\    "watch_window_style" : 'compact',
 \}
 
 " omni completion ----
