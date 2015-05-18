@@ -62,6 +62,7 @@ fi
 
 if type sw_vers &> /dev/null; then
     # Mac OS X
+    export JAVA_HOME=$(/usr/libexec/java_home)
     plugins=($plugins brew)
 else
     # Linux
@@ -101,3 +102,4 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
+export HOMEBREW_GITHUB_API_TOKEN="18d93c652fa3a163cf932a1caa7dbe90c345e5b7"
