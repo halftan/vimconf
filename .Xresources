@@ -161,16 +161,16 @@ URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
 ! URxvt*scrollBar_align: mode
 
 ! True: scroll to bottom when tty receives output;
-! URxvt*scrollTtyOutput: boolean
+URxvt*scrollTtyOutput: false
 
 ! True: scroll with scrollback buffer when tty
-! URxvt*scrollWithBuffer: boolean
+URxvt*scrollWithBuffer: true
 
 ! True: scroll to bottom when a non-special key is
-! URxvt*scrollTtyKeypress: boolean
+URxvt*scrollTtyKeypress: true
 
 ! Save number lines in the scrollback buffer [default
-! URxvt*saveLines: number
+URxvt*saveLines: 65535
 
 ! Internal border of number pixels. This resource is
 ! URxvt*internalBorder: number

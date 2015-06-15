@@ -1,0 +1,29 @@
+# Bindings {{{
+
+# Generic {{{
+
+bind generic F !git fetch
+bind generic Y !@zsh -c "echo -n %(commit) | xsel -ib"
+
+#}}}
+
+# Main {{{
+
+bind main ! !git revert %(commit)
+bind main R !?git reset %(commit)
+bind main H !?git reset --hard %(commit)
+bind main C !git cherry-pick %(commit)
+
+#}}}
+
+# Branch {{{
+
+bind branch N !@git branch %(prompt)
+bind branch C !@git checkout %(branch)
+bind branch D !@git branch -d %(branch)
+bind branch P !@git branch -D %(branch)
+
+# }}}
+
+#}}}
+

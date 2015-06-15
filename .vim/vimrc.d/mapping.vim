@@ -40,6 +40,26 @@ nmap <Leader>nfo :VimFiler<cr>
 nmap <Leader>nfb :VimFilerExplorer<cr>
 nmap <Leader>nfs :VimFilerSplit<cr>
 
+" Double click edit file
+autocmd FileType vimfiler nmap <buffer><silent> <2-LeftMouse> :call <SID>vimfiler_on_double_click()<CR>
+function! s:vimfiler_on_double_click() "{{{
+    let context = vimfiler#get_context()
+
+    if context.explorer
+        let mapping = vimfiler#mappings#smart_cursor_map(
+                    \ "\<Plug>(vimfiler_expand_tree)",
+                    \ "\<Plug>(vimfiler_edit_file)"
+                    \ )
+    else
+        let mapping = vimfiler#mappings#smart_cursor_map(
+                    \ "\<Plug>(vimfiler_cd_file)",
+                    \ "\<Plug>(vimfiler_edit_file)"
+                    \ )
+    endif
+
+    execute "normal " . mapping
+endfunction"}}}
+
 " -------------
 " NeoBundle
 " -------------

@@ -455,7 +455,7 @@ let g:syntastic_cpp_compiler_options = '-std=c++1y'
 " Python Options
 let g:syntastic_python_checkers = ['pylint']
 " PHP Options
-let g:syntastic_php_checkers = ['php']
+let g:syntastic_php_checkers = ['phpmd', 'php']
 " JS Options
 let g:syntastic_javascript_checkers = ['jslint']
 
