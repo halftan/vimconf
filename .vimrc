@@ -181,6 +181,7 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'Shougo/unite.vim'
 " NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/unite-help'
+NeoBundle 'Shougo/neomru.vim'
 
 " Project drawer
 " NeoBundle 'scrooloose/nerdtree'
@@ -480,6 +481,13 @@ let g:phpcomplete_index_composer_command = "composer"
 
 " Unite -------------------
 let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+au FileType unite call s:unite_settings()
+function! s:unite_settings()
+    imap <buffer> <C-j> <Plug>(unite_select_next_line)
+    imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+endfunction
 
 " VimFiler ----------------
 let g:vimfiler_as_default_explorer = 1

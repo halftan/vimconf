@@ -86,9 +86,11 @@ nmap <Leader>nr :NumbersToggle<cr>
 "  Unite
 " -------------
 nmap <Leader>uc :Unite 
-nmap <Leader>uf :Unite file<cr>
-nmap <Leader>ub :Unite buffer<cr>
-nmap <Leader>ur :Unite file_rec<cr>
+nmap <Leader>uf :Unite -toggle -start-insert file_rec/async<cr>
+nmap <Leader>ub :Unite -toggle -quick-match buffer<cr>
+nmap <Leader>ut :Unite -toggle -quick-match tab<cr>
+nmap <Leader>up :Unite -toggle process<cr>
+nmap <Leader>ur :Unite -toggle file_mru<cr>
 nmap <Leader>uy :Unite history/yank<cr>
 nmap <Leader>u/ :Unite grep:.<cr>
 
@@ -194,6 +196,9 @@ nmap <M-Left> :tabprevious<cr>
 nmap <M-Right> :tabnext<cr>
 nmap <M-Up> :tabfirst<cr>
 nmap <M-Down> :tablast<cr>
+
+nmap <S-H> :tabprevious<cr>
+nmap <S-L> :tabnext<cr>
 
 
 " -------------
