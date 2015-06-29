@@ -87,8 +87,10 @@ nmap <Leader>nr :NumbersToggle<cr>
 " -------------
 nmap <Leader>uc :Unite 
 nmap <Leader>uf :Unite -toggle -start-insert file_rec/async<cr>
-nmap <Leader>ub :Unite -toggle -quick-match buffer<cr>
-nmap <Leader>ut :Unite -toggle -quick-match tab<cr>
+nmap <Leader>uqb :Unite -toggle -quick-match buffer<cr>
+nmap <Leader>uqt :Unite -toggle -quick-match tab<cr>
+nmap <Leader>ub :Unite -toggle buffer<cr>
+nmap <Leader>ut :Unite -toggle tab<cr>
 nmap <Leader>up :Unite -toggle process<cr>
 nmap <Leader>ur :Unite -toggle file_mru<cr>
 nmap <Leader>uy :Unite history/yank<cr>
