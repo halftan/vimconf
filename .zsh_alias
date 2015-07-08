@@ -1,5 +1,5 @@
 if type sw_vers &> /dev/null; then
-    alias flushdns="sudo discoveryutil mdnsflushcache"
+    alias flushdns="sudo dscacheutil -flushcache"
     alias routes="netstat -nrfinet"
 fi
 alias zrestart="exec $SHELL"
