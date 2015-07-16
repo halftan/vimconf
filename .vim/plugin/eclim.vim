@@ -58,8 +58,10 @@ function! s:Validate()
 endfunction " }}}
 
 " exit early if unsupported vim version
-if v:version < s:required_version
-  finish
+if !has('nvim')
+    if v:version < s:required_version
+        finish
+    endif
 endif
 
 function! s:Validate7() " {{{

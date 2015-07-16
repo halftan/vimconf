@@ -204,6 +204,7 @@ NeoBundle 'scrooloose/syntastic'
 " Visual helpers
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'junegunn/vim-peekaboo'
 " NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 " NeoBundle 'bling/vim-bufferline'
 
@@ -475,7 +476,7 @@ set foldmethod=marker
 set foldlevel=999
 
 "===== tags ====="
-set tags+=vendortags;
+set tags+=.tags,vendortags;
 
 " easytags ---------------
 let g:easytags_updatetime_min = 4000
