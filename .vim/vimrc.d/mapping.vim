@@ -96,56 +96,65 @@ nmap <Leader>ur :Unite -toggle file_mru<cr>
 nmap <Leader>uy :Unite history/yank<cr>
 nmap <Leader>u/ :Unite grep:.<cr>
 
-" -------------
-"  NeoSnippet
-" -------------
-nmap <Leader>ser :NeoSnippetEdit -split -vertical -runtime<cr>
-nmap <Leader>seu :NeoSnippetEdit -split -vertical<cr>
-
-" -------------
-" NeoComplete
-" -------------
-inoremap <expr><C-g>    neocomplete#undo_completion()
-inoremap <expr><C-l>    neocomplete#complete_common_string()
-inoremap <expr><C-SPACE> neocomplete#start_manual_complete()
-inoremap <expr><C-@> neocomplete#start_manual_complete()
-
+" " -------------
+" "  NeoSnippet
+" " -------------
+" nmap <Leader>ser :NeoSnippetEdit -split -vertical -runtime<cr>
+" nmap <Leader>seu :NeoSnippetEdit -split -vertical<cr>
 "
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-" imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" imap <expr> <CR> pumvisible()
-"             \ ? :neocomplete#close_popup()
-"             \ : "<Plug>delimitMateCR"
-" function! s:my_cr_function()
-  " return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  " if g:delimitMate_expand_cr != 0
-  "     return pumvisible() ? neocomplete#close_popup() : <Plug>delimitMateCR
-  " else
-  " return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-  " endif
-" endfunction
-imap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
-if g:delimitMate_expand_cr != 0
-    imap <expr> <CR> pumvisible()
-                \ ? "\<C-Y>"
-                \ : "<Plug>delimitMateCR"
-else
-    imap <expr> <CR> pumvisible()
-                \ ? ""
-                \ : "\<CR>"
-endif
-
+" " -------------
+" " NeoComplete
+" " -------------
+" if !has('nvim')
+"     inoremap <expr><C-g>    neocomplete#undo_completion()
+"     inoremap <expr><C-l>    neocomplete#complete_common_string()
+"     inoremap <expr><C-SPACE> neocomplete#start_manual_complete()
+"     inoremap <expr><C-@> neocomplete#start_manual_complete()
+"
+"     " Recommended key-mappings.
+"     " <CR>: close popup and save indent.
+"     " imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"     " imap <expr> <CR> pumvisible()
+"     "             \ ? :neocomplete#close_popup()
+"     "             \ : "<Plug>delimitMateCR"
+"     " function! s:my_cr_function()
+"     " return neocomplete#close_popup() . "\<CR>"
+"     " For no inserting <CR> key.
+"     " if g:delimitMate_expand_cr != 0
+"     "     return pumvisible() ? neocomplete#close_popup() : <Plug>delimitMateCR
+"     " else
+"     " return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+"     " endif
+"     " endfunction
+"     imap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
+"     " inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"     if g:delimitMate_expand_cr != 0
+"         imap <expr> <CR> pumvisible()
+"                     \ ? "\<C-Y>"
+"                     \ : "<Plug>delimitMateCR"
+"     else
+"         imap <expr> <CR> pumvisible()
+"                     \ ? ""
+"                     \ : "\<CR>"
+"     endif
+" endif
 
 " -------------
 " NeoSnippet
 " -------------
-imap <C-K>      <Plug>(neosnippet_expand_or_jump)
-smap <C-K>      <Plug>(neosnippet_expand_or_jump)
-xmap <C-K>      <Plug>(neosnippet_expand_target)
+" if !has('nvim')
+"     imap <C-K>      <Plug>(neosnippet_expand_or_jump)
+"     smap <C-K>      <Plug>(neosnippet_expand_or_jump)
+"     xmap <C-K>      <Plug>(neosnippet_expand_target)
+" endif
 
+" -------------
+" UltiSnips
+" -------------
+let g:UltiSnipsExpandTrigger='<c-k>'
+let g:UltiSnipsListSnippets='<c-l>'
+let g:UltiSnipsJumpForwardTrigger='<c-k>'
+let g:UltiSnipsJumpBackwardTrigger='<c-j>'
 
 " -------------
 " Tagbar

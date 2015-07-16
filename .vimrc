@@ -135,23 +135,33 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'xolox/vim-misc'
 
 " Completion
-" NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'Shougo/neocomplete.vim'
+if has('nvim')
+    NeoBundle 'Valloric/YouCompleteMe'
+else
+    NeoBundle 'Valloric/YouCompleteMe'
+    " NeoBundle 'Shougo/neocomplete.vim'
+endif
 " NeoBundle 'osyo-manga/vim-marching'
 NeoBundleLazy 'marijnh/tern_for_vim'
 NeoBundleLazy 'xolox/vim-lua-ftplugin'
 NeoBundle 'othree/html5.vim'
-NeoBundleLazy 'm2mdas/phpcomplete-extended'
+" NeoBundleLazy 'm2mdas/phpcomplete-extended'
+NeoBundle 'shawncplus/phpcomplete.vim'
 
 " Editing
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'Raimondi/delimitMate'
 " NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-" NeoBundle 'honza/vim-snippets'
-" NeoBundle 'SirVer/ultisnips'
+if has('nvim')
+    NeoBundle 'SirVer/ultisnips'
+    NeoBundle 'honza/vim-snippets'
+else
+    NeoBundle 'SirVer/ultisnips'
+    NeoBundle 'honza/vim-snippets'
+    " NeoBundle 'Shougo/neosnippet'
+    " NeoBundle 'Shougo/neosnippet-snippets'
+endif
 " NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'mattn/emmet-vim'
 " NeoBundle 'xolox/vim-easytags'
@@ -160,7 +170,7 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'Lokaltog/vim-easymotion'
 " NeoBundle 'mileszs/ack.vim'
 NeoBundle 'ag.vim'
-NeoBundle 'majutsushi/tagbar'
+" NeoBundle 'majutsushi/tagbar'
 " NeoBundle 'spolu/dwm.vim'
 
 " Tools & wrappers
@@ -330,19 +340,15 @@ augroup END
 
 augroup filetype_specs
     " au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
-    au FileType php NeoBundleSource "m2mdas/phpcomplete-extended"
+    " au FileType php NeoBundleSource "m2mdas/phpcomplete-extended"
     au FileType lua NeoBundleSource "vim-lua-ftplugin"
-    au FileType javascript,html NeoBundleSource "marijnh/tern_for_vim"
+    " au FileType javascript,html NeoBundleSource "marijnh/tern_for_vim"
     au FileType html let g:delimitMate_matchpairs = "(:),[:],{:},<:>"
 augroup END
 
 " UltiSnips config Here ------------
 
-let g:UltiSnipsEditSplit = "horizontal"
-let g:UltiSnipsExpandTrigger="<c-z>"
-let g:UltiSnipsListSnippets="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsEditSplit = "vertical"
 " let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/UltiSnips"
 " let g:UltiSnipsDontReverseSearchPath="1"
 
@@ -382,7 +388,7 @@ let g:rspec_command = "!bundle exec rspec {spec}"
 let g:NERDTreeWinPos = "right"
 
 " YouCompleteMe ---------------
-let g:ycm_confirm_extra_conf = 0
+let g:ycm_confirm_extra_conf = 1
 
 " NeoSnippets ----------------
 let g:neosnippet#snippets_directory = "~/.vim/snips"
@@ -396,7 +402,7 @@ augroup NeoComplete
     " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
+    " autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 augroup END
 
 if (!has('gui'))
@@ -430,6 +436,8 @@ if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+let g:neocomplete#force_omni_input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 " -------------
 " vim-marching
@@ -467,7 +475,7 @@ set foldmethod=marker
 set foldlevel=999
 
 "===== tags ====="
-set tags=./tags;
+set tags+=vendortags;
 
 " easytags ---------------
 let g:easytags_updatetime_min = 4000
@@ -509,8 +517,10 @@ let g:vdebug_options= {
 \    "port" : 10000,
 \    "server" : 'localhost',
 \    "timeout" : 20,
-\    "watch_window_style" : 'compact',
 \}
+
+" Eclim ================
+let g:EclimCompletionMethod = 'omnifunc'
 
 " omni completion ----
 
