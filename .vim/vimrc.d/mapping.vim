@@ -168,24 +168,28 @@ nmap <Leader>tt :TagbarToggle<cr>
 
 """ FileType specific mappings --------
 
-" -------------
-" PHP XDEBUG
+" PHP XDEBUG{{{
 " -------------
 " augroup php_mapping
 "     au FileType php nmap <leader>pd :python debugger_run()<cr>
 "     au FileType php nmap <leader>ps :python debugger_quit()<cr>
 "     au FileType php nmap <leader>pe :python debugger_watch_input("eval")<cr>A
-" augroup END
+" augroup END}}}
 
-" -------------
-" Run specs
+" Run specs{{{
 " -------------
 " augroup ruby_mapping
 "     au FileType ruby,eruby nmap <Leader>rc :call RunCurrentSpecFile()<cr>
 "     au FileType ruby,eruby nmap <Leader>rn :call RunNearestSpec()<cr>
 "     au FileType ruby,eruby nmap <Leader>rl :call RunLastSpec()<cr>
 "     au FileType ruby,eruby nmap <Leader>ra :call RunAllSpecs()<cr>
-" augroup END
+" augroup END"}}}
+
+" FileType specific map {{{"
+" au FileType php nmap <leader>jd :PhpSearchContext -a tabedit <c-r>=expand("<cword>")<cr><cr>
+au FileType php nmap <leader>jd :PhpSearchContext <c-r>=expand("<cword>") . " -a tabedit"<cr><cr>
+au FileType php nmap <leader>js :PhpSearch -p <c-r>=expand("<cword>") . " -a tabedit -t "<cr>
+" }}} "
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""

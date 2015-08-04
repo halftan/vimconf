@@ -211,7 +211,7 @@ NeoBundle 'junegunn/vim-peekaboo'
 
 " Filetype plugins & syntaxes
 NeoBundle 'sheerun/vim-polyglot'
-NeoBundle 'PHP-correct-Indenting'
+NeoBundle '2072/PHP-Indenting-for-VIm'
 
 " Color schemes
 NeoBundle 'altercation/vim-colors-solarized'
@@ -343,7 +343,7 @@ augroup filetype_specs
     " au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
     " au FileType php NeoBundleSource "m2mdas/phpcomplete-extended"
     au FileType lua NeoBundleSource "vim-lua-ftplugin"
-    " au FileType javascript,html NeoBundleSource "marijnh/tern_for_vim"
+    au FileType javascript,html NeoBundleSource "marijnh/tern_for_vim"
     au FileType html let g:delimitMate_matchpairs = "(:),[:],{:},<:>"
 augroup END
 
@@ -518,10 +518,12 @@ let g:vdebug_options= {
 \    "port" : 10000,
 \    "server" : 'localhost',
 \    "timeout" : 20,
+\    "watch_window_style": "compact",
 \}
 
 " Eclim ================
 let g:EclimCompletionMethod = 'omnifunc'
+let g:EclimFileTypeValidate = 0
 
 " omni completion ----
 

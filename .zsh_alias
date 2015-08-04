@@ -1,6 +1,7 @@
 if type sw_vers &> /dev/null; then
     alias flushdns="sudo dscacheutil -flushcache"
     alias routes="netstat -nrfinet"
+    alias eclimd="/opt/homebrew-cask/Caskroom/eclipse-php/4.4.1/eclipse/eclimd"
 fi
 alias zrestart="exec $SHELL"
 
