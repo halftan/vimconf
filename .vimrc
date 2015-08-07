@@ -19,6 +19,7 @@ set smartindent
 " set expandtab
 set nu
 set hlsearch
+set incsearch
 " set autochdir
 set laststatus=2
 set showmatch
@@ -309,6 +310,9 @@ set scrolloff=3 " Minimum lines to keep above and below cursor
 set sidescroll=1 " Minimal number of columns to scroll horizontally
 set sidescrolloff=10 " Minimal number of screen columns to keep away from cursor
 
+set spellfile=$HOME/.vim/spell/en.utf-8.add
+set spelllang=en_us
+
 
 "-----------------------------------
 "  Fancy fonts
@@ -335,6 +339,8 @@ augroup filetype_indent
     au FileType coffee,jade setl sw=2 ts=2 sts=2 et
     au FileType asm setl sw=4 ts=4 sts=4 noet
     au FileType neosnippet setl noet
+
+    au FileType gitcommit setlocal spell
 augroup END
 
 " FileType specs End ----------

@@ -239,3 +239,12 @@ nmap <F10> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 """"""""""""""
 nmap <Leader>hon :%!xxd<cr>
 nmap <Leader>hof :%!xxd -r<cr>
+
+
+" Terminal mappings"{{{
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+    tmap jj <ESC>
+endif
+"}}}
+"

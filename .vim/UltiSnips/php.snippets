@@ -1,0 +1,19 @@
+priority 10
+
+snippet slim_f "slim controller method"
+/**
+ * $2
+ *
+ * @param \Slim\Http\Request $request
+ * @param \Slim\Http\Response $response
+ * @param array $args
+ *
+ * @return \Slim\Http\Response
+ **/
+public function ${1:someFunc}($request, $response, $args)
+{
+    ${3}
+}
+endsnippet
+
+# :vim:ft=snippets:
