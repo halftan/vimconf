@@ -16,4 +16,23 @@ public function ${1:someFunc}($request, $response, $args)
 }
 endsnippet
 
+snippet test "phpunit test class" b
+<?php
+namespace ${1}Test;
+
+
+/**
+ * @author `whoami`
+ */
+class `!p
+snip.rv = re.match(r'.*(?=\.)', fn).group()
+` extends \PHPUnit_Framework_TestCase
+{
+	public function test${2}()
+	{
+		${3}
+	}
+}
+endsnippet
+
 # :vim:ft=snippets:
