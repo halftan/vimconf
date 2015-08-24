@@ -4,4 +4,6 @@ if type sw_vers &> /dev/null; then
     alias eclimd="/opt/homebrew-cask/Caskroom/eclipse-php/4.4.1/eclipse/eclimd"
 fi
 alias zrestart="exec $SHELL"
+alias mt="multitail --mergeall"
+alias ptest="phpunit --verbose --bootstrap tests/bootstrap.php"
 

@@ -15,4 +15,4 @@
 	editor = vim
 	excludesfile = 
 [merge]
-	tool = gvimdiff
+	tool = vimdiff
