@@ -1,3 +1,4 @@
+set nocompatible                " Be iMproved
 "Persistent undo
 set undofile
 set undolevels=1000
@@ -102,7 +103,6 @@ set viewoptions-=options
 
 " NeoBundle Here
 if has('vim_starting')
-    set nocompatible                " Be iMproved
     set rtp+=$HOME/.vim/bundle/neobundle.vim/
 endif
 
@@ -213,6 +213,7 @@ NeoBundle 'junegunn/vim-peekaboo'
 " Filetype plugins & syntaxes
 NeoBundle 'sheerun/vim-polyglot'
 NeoBundle '2072/PHP-Indenting-for-VIm'
+NeoBundle 'pangloss/vim-javascript'
 
 " Color schemes
 NeoBundle 'altercation/vim-colors-solarized'
@@ -349,7 +350,7 @@ augroup filetype_specs
     " au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
     " au FileType php NeoBundleSource "m2mdas/phpcomplete-extended"
     au FileType lua NeoBundleSource "vim-lua-ftplugin"
-    au FileType javascript,html NeoBundleSource "marijnh/tern_for_vim"
+    au FileType javascript NeoBundleSource "marijnh/tern_for_vim"
     au FileType html let g:delimitMate_matchpairs = "(:),[:],{:},<:>"
 augroup END
 
@@ -475,6 +476,8 @@ let g:syntastic_php_checkers = ['phpmd', 'php']
 " JS Options
 let g:syntastic_javascript_checkers = ['jslint']
 
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " proprietary attribute \"bs-"]
+
 " Tagbar ----------------
 let g:tagbar_left = 1
 
@@ -530,6 +533,10 @@ let g:vdebug_options= {
 " Eclim ================
 let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimFileTypeValidate = 0
+
+" HTML indent ===========
+let g:html_exclude_tags = ['html', 'base', 'meta', 'body', 'title', 'link', 'script', 'style']
+let g:polyglot_disabled = ['html5']
 
 " omni completion ----
 
