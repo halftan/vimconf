@@ -5,6 +5,8 @@ if type vim &> /dev/null; then
     export EDITOR=vim
 fi
 
+export LANG="en_US.UTF-8"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -103,3 +105,5 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 export HOMEBREW_GITHUB_API_TOKEN="18d93c652fa3a163cf932a1caa7dbe90c345e5b7"
+
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh

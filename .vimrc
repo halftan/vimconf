@@ -1,4 +1,10 @@
 set nocompatible                " Be iMproved
+
+" Set POSIX compatible shell
+if &shell =~# 'fish$'
+    set shell=sh
+endif
+
 "Persistent undo
 set undofile
 set undolevels=1000
@@ -153,6 +159,7 @@ NeoBundle 'shawncplus/phpcomplete.vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'tpope/vim-endwise'
 " NeoBundle 'jiangmiao/auto-pairs'
 if has('nvim')
     NeoBundle 'SirVer/ultisnips'
@@ -180,9 +187,10 @@ NeoBundle 'mbbill/undotree'
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
+NeoBundle 'vim-ruby/vim-ruby'
 " NeoBundle 'tpope/vim-rails.git'
 " NeoBundle 'tpope/vim-rbenv'
-NeoBundle 'xuhdev/SingleCompile'
+" NeoBundle 'xuhdev/SingleCompile'
 " NeoBundle 'DBGp-X-client'
 NeoBundle 'joonty/vdebug'
 NeoBundle 'hlissner/vim-forrestgump'
@@ -213,7 +221,8 @@ NeoBundle 'junegunn/vim-peekaboo'
 " Filetype plugins & syntaxes
 NeoBundle 'sheerun/vim-polyglot'
 NeoBundle '2072/PHP-Indenting-for-VIm'
-NeoBundle 'pangloss/vim-javascript'
+" NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'dag/vim-fish'
 
 " Color schemes
 NeoBundle 'altercation/vim-colors-solarized'
