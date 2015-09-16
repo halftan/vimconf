@@ -160,6 +160,7 @@ NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'tpope/vim-endwise'
+NeoBundle 'rdnetto/YCM-Generator'
 " NeoBundle 'jiangmiao/auto-pairs'
 if has('nvim')
     NeoBundle 'SirVer/ultisnips'
@@ -223,6 +224,7 @@ NeoBundle 'sheerun/vim-polyglot'
 NeoBundle '2072/PHP-Indenting-for-VIm'
 " NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'dag/vim-fish'
+NeoBundle 'fatih/vim-go'
 
 " Color schemes
 NeoBundle 'altercation/vim-colors-solarized'
@@ -538,6 +540,9 @@ let g:vdebug_options= {
 \    "timeout" : 20,
 \    "watch_window_style": "compact",
 \}
+
+" Golang ================
+let g:go_fmt_command = "goimports"
 
 " Eclim ================
 let g:EclimCompletionMethod = 'omnifunc'

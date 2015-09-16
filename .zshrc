@@ -50,16 +50,24 @@ alias ohmyzsh="${EDITOR} ~/.oh-my-zsh"
 
 # Customize to your needs...
 # export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/usr/bin/vendor_perl
-export PATH=$HOME/bin:$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/opt/go/libexec/bin:$HOME/bin:$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git extract gitignore sudo history history-substring-search\
-    autojump composer rbenv bundler )
+    autojump composer rbenv bundler golang)
 
 if [[ -e ~/.pythonrc ]] then
     export PYTHONSTARTUP=~/.pythonrc
+fi
+
+if type go &> /dev/null; then
+    if [[ ! -d $HOME/goworkspace ]]; then
+        mkdir $HOME/goworkspace
+    fi
+    export GOPATH=$HOME/goworkspace
+    export PATH=$GOPATH/bin:$PATH
 fi
 
 if type sw_vers &> /dev/null; then

@@ -82,6 +82,18 @@ nmap <Leader>th :HighlightTags<cr>
 " -------------
 nmap <Leader>nr :NumbersToggle<cr>
 
+""""""""""""
+"  Golang  "
+""""""""""""
+au FileType go nmap <Leader>r <Plug>(go-run)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>jd <Plug>(go-def)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gi <Plug>(go-implements)
+au FileType go nmap <Leader>gr <Plug>(go-rename)
+
 " -------------
 "  Unite
 " -------------
