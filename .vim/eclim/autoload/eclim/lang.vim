@@ -99,9 +99,6 @@ function! eclim#lang#CodeComplete(command, findstart, base, ...) " {{{
         let word = strpart(word, 0, strlen(word) - 1)
       endif
 
-      " strip off whitespaces.
-      let word = substitute(word, '^\s*\(.\{-}\)(\?)\?\s*$', '\1', '')
-
       let menu = eclim#html#util#HtmlToText(result.menu)
       let info = has_key(result, 'info') ?
         \ eclim#html#util#HtmlToText(result.info) : ''
