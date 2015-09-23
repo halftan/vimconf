@@ -39,6 +39,7 @@ nmap <Leader>nft :VimFilerTab<cr>
 nmap <Leader>nfo :VimFiler<cr>
 nmap <Leader>nfb :VimFilerExplorer<cr>
 nmap <Leader>nfs :VimFilerSplit<cr>
+nmap <Leader>nfr :VimFilerExplorer -find<cr>
 
 " Double click edit file
 autocmd FileType vimfiler nmap <buffer><silent> <2-LeftMouse> :call <SID>vimfiler_on_double_click()<CR>
