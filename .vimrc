@@ -195,6 +195,11 @@ NeoBundle 'vim-ruby/vim-ruby'
 " NeoBundle 'DBGp-X-client'
 NeoBundle 'joonty/vdebug'
 NeoBundle 'hlissner/vim-forrestgump'
+NeoBundleLazy 'shime/vim-livedown', {
+            \ 'autoload' : {
+            \     'filetypes' : ['markdown'],
+            \    },
+            \ }
 
 " Fuzzy search
 NeoBundle 'kien/ctrlp.vim'
@@ -417,7 +422,7 @@ let g:neosnippet#edit_options_vertical = 1
 " NeoComplete ----------------
 augroup NeoComplete
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
     " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
@@ -542,7 +547,7 @@ let g:vdebug_options= {
 \}
 
 " Golang ================
-let g:go_fmt_command = "goimports"
+" let g:go_fmt_command = "goimports"
 
 " Eclim ================
 let g:EclimCompletionMethod = 'omnifunc'

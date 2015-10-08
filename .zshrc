@@ -66,8 +66,9 @@ if type go &> /dev/null; then
     if [[ ! -d $HOME/goworkspace ]]; then
         mkdir $HOME/goworkspace
     fi
-    export GOPATH=$HOME/goworkspace
-    export PATH=$GOPATH/bin:$PATH
+    export GLOBAL_GOPATH=$HOME/goworkspace
+    export GOPATH=$HOME/goworkspace:$HOME/git/goprojects
+    export PATH=$GLOBAL_GOPATH/bin:$PATH
 fi
 
 if type sw_vers &> /dev/null; then
@@ -115,3 +116,9 @@ source $ZSH/oh-my-zsh.sh
 export HOMEBREW_GITHUB_API_TOKEN="18d93c652fa3a163cf932a1caa7dbe90c345e5b7"
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+
+#alias for cnpm
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+  --cache=$HOME/.npm/.cache/cnpm \
+  --disturl=https://npm.taobao.org/dist \
+  --userconfig=$HOME/.cnpmrc"

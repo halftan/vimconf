@@ -95,6 +95,11 @@ au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gi <Plug>(go-implements)
 au FileType go nmap <Leader>gr <Plug>(go-rename)
 
+""""""""""""""
+"  Markdown  "
+""""""""""""""
+nmap <Leader>mp :LivedownToggle<CR>
+
 " -------------
 "  Unite
 " -------------
