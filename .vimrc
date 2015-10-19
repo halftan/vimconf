@@ -38,6 +38,8 @@ set wrap
 set ignorecase
 set smartcase
 
+set switchbuf+=usetab,newtab
+
 
 "Encode
 set fenc=UTF-8 nobomb ff=unix
@@ -195,11 +197,11 @@ NeoBundle 'vim-ruby/vim-ruby'
 " NeoBundle 'DBGp-X-client'
 NeoBundle 'joonty/vdebug'
 NeoBundle 'hlissner/vim-forrestgump'
-NeoBundleLazy 'shime/vim-livedown', {
-            \ 'autoload' : {
-            \     'filetypes' : ['markdown'],
-            \    },
-            \ }
+" NeoBundleLazy 'shime/vim-livedown', {
+"             \ 'autoload' : {
+"             \     'filetypes' : ['markdown'],
+"             \    },
+"             \ }
 
 " Fuzzy search
 NeoBundle 'kien/ctrlp.vim'
@@ -349,7 +351,7 @@ set shiftround
 
 augroup filetype_indent
     au FileType python,vim,c,cpp setl sw=4 ts=4 sts=4 et
-    au FileType make,mkd setl sw=4 ts=4 sts=4 noet
+    au FileType make,mkd,markdown setl sw=4 ts=4 sts=4 noet
     au FileType ruby,eruby,yaml setl sw=2 ts=2 sts=2 et
     au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
     au FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
@@ -582,3 +584,4 @@ for f in split(glob($HOME.'/.vim/vimrc.d/*.vim'), '\n')
     exe 'source '.f
 endfor
 
+let g:markdown_fmt_autosave = 0
