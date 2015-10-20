@@ -10,7 +10,7 @@
 	name = HalFtaN
 	email = half.a.tan@gmail.com
 [push]
-	default = simple
+	default = upstream
 [core]
 	editor = vim
 	excludesfile = 
