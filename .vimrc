@@ -42,8 +42,9 @@ set switchbuf+=usetab,newtab
 
 
 "Encode
-set fenc=UTF-8 nobomb ff=unix
-set encoding=UTF-8
+set fencs=ucs-bom,utf-8,euc-cn,sjis,euc-jp,default,latin1
+set fenc=utf-8 nobomb ff=unix
+set encoding=utf-8
 if has("win32")
     source $VIMRUNTIME/delmenu.vim
     source $VIMRUNTIME/menu.vim
@@ -153,7 +154,7 @@ endif
 " NeoBundle 'osyo-manga/vim-marching'
 NeoBundleLazy 'marijnh/tern_for_vim'
 NeoBundleLazy 'xolox/vim-lua-ftplugin'
-NeoBundle 'othree/html5.vim'
+" NeoBundle 'othree/html5.vim'
 " NeoBundleLazy 'm2mdas/phpcomplete-extended'
 NeoBundle 'shawncplus/phpcomplete.vim'
 
@@ -181,7 +182,7 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'Lokaltog/vim-easymotion'
 " NeoBundle 'mileszs/ack.vim'
 NeoBundle 'ag.vim'
-" NeoBundle 'majutsushi/tagbar'
+NeoBundle 'majutsushi/tagbar'
 " NeoBundle 'spolu/dwm.vim'
 
 " Tools & wrappers
@@ -302,7 +303,7 @@ if has("gui_running")
     set guioptions-=T
     " set guioptions-=r
     set guioptions-=m    "隐藏菜单栏
-    colorscheme hybrid
+    colorscheme molokai
 else
     set background=dark
     set t_Co=256
@@ -497,7 +498,7 @@ let g:syntastic_javascript_checkers = ['jslint']
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " proprietary attribute \"bs-"]
 
 " Tagbar ----------------
-let g:tagbar_left = 1
+let g:tagbar_left = 0
 
 set foldmethod=marker
 set foldlevel=999
@@ -556,8 +557,10 @@ let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimFileTypeValidate = 0
 
 " HTML indent ===========
-let g:html_exclude_tags = ['html', 'base', 'meta', 'body', 'title', 'link', 'script', 'style']
-let g:polyglot_disabled = ['html5']
+let g:html_exclude_tags = ['html', 'body', 'style', 'script']
+" let g:html_indent_inctags = ['th', 'td']
+" let g:html_indent_tags = 'th\|td'
+let g:polyglot_disabled = ['coffee-script']
 
 " omni completion ----
 

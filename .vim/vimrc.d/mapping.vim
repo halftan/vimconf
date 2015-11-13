@@ -75,8 +75,8 @@ nmap <Leader>gs :Gstatus<cr>
 " -------------
 " EasyTags
 " -------------
-nmap <Leader>tu :UpdateTags<cr>
-nmap <Leader>th :HighlightTags<cr>
+" nmap <Leader>tu :UpdateTags<cr>
+" nmap <Leader>th :HighlightTags<cr>
 
 " -------------
 " Toggle relative numbers
@@ -87,6 +87,7 @@ nmap <Leader>nr :NumbersToggle<cr>
 "  Golang  "
 """"""""""""
 au FileType go nmap <Leader>r <Plug>(go-run)
+au FileType go nmap <Leader>gt <Plug>(go-test)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
@@ -232,6 +233,8 @@ nmap <M-Down> :tablast<cr>
 
 nmap <S-H> :tabprevious<cr>
 nmap <S-L> :tabnext<cr>
+nmap <S-Left> :-tabm<cr>
+nmap <S-Right> :+tabm<cr>
 
 
 " -------------

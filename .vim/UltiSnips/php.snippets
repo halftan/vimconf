@@ -1,4 +1,5 @@
 priority 10
+extends bootstrap
 
 snippet slim_f "slim controller method"
 /**
@@ -35,7 +36,7 @@ snip.rv = re.match(r'.*(?=\.)', fn).group()
 }
 endsnippet
 
-snippet pes "<?= ?>"
+snippet pes "<?= ?>" i
 <?= ${1:$var} ?>
 endsnippet
 

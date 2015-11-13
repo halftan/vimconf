@@ -50,7 +50,8 @@ alias ohmyzsh="${EDITOR} ~/.oh-my-zsh"
 
 # Customize to your needs...
 # export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/usr/bin/vendor_perl
-export PATH=/usr/local/opt/go/libexec/bin:$HOME/bin:$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/opt/go/libexec/bin:$HOME/bin:/usr/local/sbin:$PATH
+export MANPATH=""
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -113,8 +114,6 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-export HOMEBREW_GITHUB_API_TOKEN="18d93c652fa3a163cf932a1caa7dbe90c345e5b7"
-
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
 if type thefuck &> /dev/null; then
@@ -126,3 +125,15 @@ alias cnpm="npm --registry=https://registry.npm.taobao.org \
   --cache=$HOME/.npm/.cache/cnpm \
   --disturl=https://npm.taobao.org/dist \
   --userconfig=$HOME/.cnpmrc"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if type sw_vers &> /dev/null; then
+    # Mac OS X settings
+    if [[ -d /usr/local/opt/coreutils ]]; then
+        PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+        MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+        alias ls="ls --color=auto"
+    fi
+fi
+

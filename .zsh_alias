@@ -1,5 +1,5 @@
 if type sw_vers &> /dev/null; then
-    alias flushdns="sudo dscacheutil -flushcache"
+    alias flushdns="sudo killall -HUP mDNSResponder"
     alias routes="netstat -nrfinet"
     alias eclimd="/opt/homebrew-cask/Caskroom/eclipse-php/4.5/Eclipse.app/Contents/Eclipse/eclimd"
 fi
@@ -7,3 +7,12 @@ alias zrestart="exec $SHELL"
 alias mt="multitail --mergeall"
 alias ptest="phpunit --verbose --bootstrap tests/bootstrap.php"
 
+alias ss-local="ss-local -c ~/.shadowsocks.json"
+alias ss-tunnel="ss-tunnel -U -c ~/.shadowsocks.json -L 8.8.8.8:53 -b 0.0.0.0 -l 5300"
+
+if brew list | grep findutils > /dev/null
+then
+    alias find="gfind"
+    alias xargs="gxargs"
+    alias locate="glocate"
+fi
