@@ -13,8 +13,12 @@ cmap w!! w !sudo tee > /dev/null %
 " -------------
 "  editor's command
 " -------------
-imap jj <ESC>l
-nmap <Leader>w :w<cr>
+imap jk <ESC>l
+
+nmap j gj
+nmap k gk
+" file save
+nmap <Leader>fs :w<cr>
 nmap <Leader>ev :tabe $MYVIMRC<cr>
 nmap <Leader>em :tabe ~/.vim/vimrc.d/mapping.vim<cr>
 nmap <Leader>sv :so $MYVIMRC<cr>
@@ -29,17 +33,35 @@ nmap <leader>cd :cd %:p:h<cr>
 " -------------
 " NERDTree shortcuts
 " -------------
-" nmap <Leader>nt :NERDTreeToggle<CR>
-" nmap <Leader>nt <plug>NERDTreeTabsToggle<CR>
+nmap <Leader>nt <plug>NERDTreeTabsToggle<CR>
+nmap <Leader>nmt <plug>NERDTreeMirrorToggle<CR>
+nmap <Leader>nfr :NERDTreeFind<cr>
+
+"""""""""
+"  FZF  "
+"""""""""
+nmap <Leader>pf :Files<CR>
+nmap <Leader>pg :GitFiles<CR>
+nmap <Leader>bb :Buffers<CR>
+nmap <Leader>pw :Windows<CR>
+nmap <Leader>pc :BCommits<CR>
+nmap <Leader>ph :History
+
+
+""""""""""""""""
+"  Easy Align  "
+""""""""""""""""
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
 
 " -------------
 " VimFiler
 " -------------
-nmap <Leader>nft :VimFilerTab<cr>
-nmap <Leader>nfo :VimFiler<cr>
-nmap <Leader>nfb :VimFilerExplorer<cr>
-nmap <Leader>nfs :VimFilerSplit<cr>
-nmap <Leader>nfr :VimFilerExplorer -find<cr>
+" nmap <Leader>nft :VimFilerTab<cr>
+" nmap <Leader>nfo :VimFiler<cr>
+" nmap <Leader>nfb :VimFilerExplorer<cr>
+" nmap <Leader>nfs :VimFilerSplit<cr>
+" nmap <Leader>nfr :VimFilerExplorer -find<cr>
 
 " Double click edit file
 autocmd FileType vimfiler nmap <buffer><silent> <2-LeftMouse> :call <SID>vimfiler_on_double_click()<CR>
@@ -64,8 +86,8 @@ endfunction"}}}
 " -------------
 " NeoBundle
 " -------------
-nmap <Leader>bi :NeoBundleInstall<cr>
-nmap <Leader>bu :NeoBundleInstall!<cr>
+" nmap <Leader>bi :NeoBundleInstall<cr>
+" nmap <Leader>bu :NeoBundleInstall!<cr>
 
 " -------------
 " Fugitive
@@ -86,15 +108,30 @@ nmap <Leader>nr :NumbersToggle<cr>
 """"""""""""
 "  Golang  "
 """"""""""""
-au FileType go nmap <Leader>r <Plug>(go-run)
-au FileType go nmap <Leader>gt <Plug>(go-test)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>jd <Plug>(go-def)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gi <Plug>(go-implements)
-au FileType go nmap <Leader>gr <Plug>(go-rename)
+augroup gomap
+    au FileType go nmap <buffer> <Leader>xx <Plug>(go-run)
+    au FileType go nmap <buffer> <Leader>gt <Plug>(go-test)
+    au FileType go nmap <buffer> <Leader>dt <Plug>(go-def-tab)
+    au FileType go nmap <buffer> <Leader>ds <Plug>(go-def-split)
+    au FileType go nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
+    au FileType go nmap <buffer> <Leader>jd <Plug>(go-def)
+    au FileType go nmap <buffer> <Leader>gd <Plug>(go-doc)
+    au FileType go nmap <buffer> <Leader>gi <Plug>(go-implements)
+    au FileType go nmap <buffer> <Leader>gr <Plug>(go-rename)
+augroup END
+
+"""""""""
+"  CPP  "
+"""""""""
+augroup cpp
+    au FileType c,cpp nnoremap <Leader>jd :YcmCompleter GoTo<CR>
+augroup END
+
+
+""""""""""
+"  Dash  "
+""""""""""
+nmap <silent> <Leader>dd <Plug>DashSearch
 
 """"""""""""""
 "  Markdown  "
@@ -104,16 +141,16 @@ nmap <Leader>mp :LivedownToggle<CR>
 " -------------
 "  Unite
 " -------------
-nmap <Leader>uc :Unite 
-nmap <Leader>uf :Unite -toggle -start-insert file_rec/async<cr>
-nmap <Leader>uqb :Unite -toggle -quick-match buffer<cr>
-nmap <Leader>uqt :Unite -toggle -quick-match tab<cr>
-nmap <Leader>ub :Unite -toggle buffer<cr>
-nmap <Leader>ut :Unite -toggle tab<cr>
-nmap <Leader>up :Unite -toggle process<cr>
-nmap <Leader>ur :Unite -toggle file_mru<cr>
-nmap <Leader>uy :Unite history/yank<cr>
-nmap <Leader>u/ :Unite grep:.<cr>
+" nmap <Leader>uc :Unite 
+" nmap <Leader>uf :Unite -toggle -start-insert file_rec/async<cr>
+" nmap <Leader>uqb :Unite -toggle -quick-match buffer<cr>
+" nmap <Leader>uqt :Unite -toggle -quick-match tab<cr>
+" nmap <Leader>ub :Unite -toggle buffer<cr>
+" nmap <Leader>ut :Unite -toggle tab<cr>
+" nmap <Leader>up :Unite -toggle process<cr>
+" nmap <Leader>ur :Unite -toggle file_mru<cr>
+" nmap <Leader>uy :Unite history/yank<cr>
+" nmap <Leader>u/ :Unite grep:.<cr>
 
 " " -------------
 " "  NeoSnippet
@@ -145,7 +182,7 @@ nmap <Leader>u/ :Unite grep:.<cr>
 "     " return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 "     " endif
 "     " endfunction
-"     imap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
 "     " inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "     if g:delimitMate_expand_cr != 0
 "         imap <expr> <CR> pumvisible()
@@ -157,6 +194,8 @@ nmap <Leader>u/ :Unite grep:.<cr>
 "                     \ : "\<CR>"
 "     endif
 " endif
+" inoremap <silent><expr> <C-@>
+"             \ deoplete#mappings#manual_complete()
 
 " -------------
 " NeoSnippet
@@ -233,9 +272,10 @@ nmap <M-Down> :tablast<cr>
 
 nmap <S-H> :tabprevious<cr>
 nmap <S-L> :tabnext<cr>
+nmap <Leader>w <c-w>
 nmap <S-Left> :-tabm<cr>
 nmap <S-Right> :+tabm<cr>
-
+nmap <Leader>q :q<cr>
 
 " -------------
 " Undotree Here --------------
@@ -245,15 +285,15 @@ nmap <leader>ut :UndotreeToggle<CR>
 " -------------
 " SingleCompile Here ----------
 " -------------
-nmap <leader>cc :SCCompile<cr>
-nmap <leader>cr :SCCompileRun<cr>
+nmap <leader>xc :SCCompile<cr>
+nmap <leader>xx :SCCompileRun<cr>
 " nmap <Leader>gc :call CompileCode()<CR>
 " nmap <Leader>gr :call RunCode()<CR>
 " nmap <Leader>cc :call CompileCodeClang()<CR>
 " nmap <Leader>ct :call CompileCodeClangTest()<CR>
 " nmap <Leader>cr :call RunCode()<CR>
 
-nmap <F10> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+" nmap <F10> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 """"""""""""""
 "  Hex mode  "

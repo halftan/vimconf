@@ -17,3 +17,6 @@ Icon
 
 .tags
 tags
+
+.vim/.netrwhist
+.vim/.init.vim-rplugin~

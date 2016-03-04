@@ -1,0 +1,3 @@
+nmap <S-H> :tabprevious<cr>
+nmap <S-L> :tabnext<cr>
+set editor=/usr/local/bin/atom

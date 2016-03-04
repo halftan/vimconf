@@ -16,17 +16,24 @@ set history=1000
 set modeline
 set clipboard+=unnamed
 set mouse=a
-set timeoutlen=500
 set updatetime=2000
 
-set completeopt=menuone,preview
+set completeopt=menuone,preview,noinsert,noselect
+set complete-=i
 
 set autoindent
-set smartindent
+set smarttab
+
 " set expandtab
-set nu
+set rnu
 set hlsearch
 set incsearch
+
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+    nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
+
 " set autochdir
 set laststatus=2
 set showmatch
@@ -34,12 +41,19 @@ set list
 set textwidth=0
 set wrapmargin=0
 set wrap
+set nrformats-=octal
+set display+=lastline
+
+set ttimeout timeoutlen=400 ttimeoutlen=100
 
 set ignorecase
 set smartcase
 
 set switchbuf+=usetab,newtab
 
+if v:version > 703 || v:version == 703 && has("patch541")
+    set formatoptions+=j " Delete comment character when joining commented lines
+endif
 
 "Encode
 set fencs=ucs-bom,utf-8,euc-cn,sjis,euc-jp,default,latin1
@@ -48,6 +62,10 @@ set encoding=utf-8
 if has("win32")
     source $VIMRUNTIME/delmenu.vim
     source $VIMRUNTIME/menu.vim
+
+if &encoding ==# 'latin1' && has('gui_running')
+    set encoding=utf-8
+endif
 
 " 解决consle输出乱码
     language messages zh_CN.UTF-8
@@ -88,23 +106,11 @@ autocmd BufWinEnter *.* silent! loadview " Make Vim load view (state) (folds, cu
 " No sound on errors
 set noerrorbells
 set novisualbell
-set t_vb=
-
-
-"------------------------------------
-"    platform specific settings
-"------------------------------------
-"
-" On Windows, also use .vim instead of vimfiles
-if has('win32') || has('win64')
-    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+    set t_Co=16
 endif
-
-" if has("gui") && !has("win32")
-"     set listchars=tab:\|_,trail:·
-" else
-"     set listchars=tab:\|_,trail:*
-" endif
+" set t_vb=1
 
 set viewoptions+=slash,unix
 set viewoptions-=options
@@ -112,144 +118,162 @@ set viewoptions-=options
 
 " NeoBundle Here
 if has('vim_starting')
-    set rtp+=$HOME/.vim/bundle/neobundle.vim/
+"     set rtp+=$HOME/.vim/bundle/neobundle.vim/
+    set rtp+=/usr/local/opt/fzf
 endif
 
 if $USER != "root"
-    call neobundle#begin(expand('~/.vim/bundle/'))
+    call plug#begin(expand('~/.vim/bundle/'))
 else
     if has("mac")
-        call neobundle#begin(expand('/Users/halftan/.vim/bundle/'))
+        call plug#begin(expand('~/.vim/bundle/'))
     else
-        call neobundle#begin(expand('/home/halftan/.vim/bundle/'))
+        call plug#begin(expand('~/.vim/bundle/'))
     endif
 endif
 
 " Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
+" NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Recommended to install
 " After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
-NeoBundle 'Shougo/vimproc.vim', {
-            \ 'build' : {
-            \       'windows' : 'make -f make_mingw32.mak',
-            \       'cygwin' : 'make -f make_cygwin.mak',
-            \       'mac' : 'make -f make_mac.mak',
-            \       'unix' : 'make -f make_unix.mak',
-            \       'linux': 'make',
-            \   },
-            \ }
+" NeoBundle 'Shougo/vimproc.vim', {
+"             \ 'build' : {
+"             \       'windows' : 'make -f make_mingw32.mak',
+"             \       'cygwin' : 'make -f make_cygwin.mak',
+"             \       'mac' : 'make -f make_mac.mak',
+"             \       'unix' : 'make -f make_unix.mak',
+"             \       'linux': 'make',
+"             \   },
+"             \ }
+
+if has('mac')
+    Plug 'Shougo/vimproc.vim', { 'do': 'make -f make_mac.mak' }
+else
+    Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+endif
 
 " Libraries
 " NeoBundle 'L9'
-NeoBundle 'xolox/vim-misc'
+Plug 'xolox/vim-misc'
+Plug 'vim-scripts/progressbar-widget'
 
 " Completion
-if has('nvim')
-    NeoBundle 'Valloric/YouCompleteMe'
-else
-    NeoBundle 'Valloric/YouCompleteMe'
-    " NeoBundle 'Shougo/neocomplete.vim'
-endif
+Plug 'Valloric/YouCompleteMe'
+" Plug 'phpvim/phpcd.vim', { 'for': 'php' }
+" if has('nvim')
+"     Plug 'Shougo/deoplete.nvim'
+"     Plug 'Shougo/neco-vim'
+"     Plug 'Shougo/neco-syntax'
+"     Plug 'zchee/deoplete-go'
+" else
+"     Plug 'Valloric/YouCompleteMe'
+" endif
 " NeoBundle 'osyo-manga/vim-marching'
-NeoBundleLazy 'marijnh/tern_for_vim'
-NeoBundleLazy 'xolox/vim-lua-ftplugin'
+" Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
+Plug 'xolox/vim-lua-ftplugin', { 'for': 'lua' }
 " NeoBundle 'othree/html5.vim'
 " NeoBundleLazy 'm2mdas/phpcomplete-extended'
-NeoBundle 'shawncplus/phpcomplete.vim'
+" Plug 'shawncplus/phpcomplete.vim'
 
 " Editing
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'junegunn/vim-easy-align'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'rdnetto/YCM-Generator'
-" NeoBundle 'jiangmiao/auto-pairs'
+Plug 'tomtom/tcomment_vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-endwise'
+Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'jiangmiao/auto-pairs'
+" Plug 'rdnetto/YCM-Generator', { 'for': ['c', 'cpp'], 'branch': 'stable' }
 if has('nvim')
-    NeoBundle 'SirVer/ultisnips'
-    NeoBundle 'honza/vim-snippets'
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 else
-    NeoBundle 'SirVer/ultisnips'
-    NeoBundle 'honza/vim-snippets'
-    " NeoBundle 'Shougo/neosnippet'
-    " NeoBundle 'Shougo/neosnippet-snippets'
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    " Plug 'Shougo/neosnippet'
+    " Plug 'Shougo/neosnippet-snippets'
 endif
-" NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'mattn/emmet-vim'
-" NeoBundle 'xolox/vim-easytags'
+" Plug 'terryma/vim-multiple-cursors'
+Plug 'mattn/emmet-vim', { 'for': ['xml', 'html', 'php'] }
+" Plug 'xolox/vim-easytags'
 
 " Navigating
-NeoBundle 'Lokaltog/vim-easymotion'
-" NeoBundle 'mileszs/ack.vim'
-NeoBundle 'ag.vim'
-NeoBundle 'majutsushi/tagbar'
-" NeoBundle 'spolu/dwm.vim'
+Plug 'Lokaltog/vim-easymotion'
+" Plug 'mileszs/ack.vim'
+Plug 'ag.vim'
+Plug 'majutsushi/tagbar'
+" Plug 'spolu/dwm.vim'
 
 " Tools & wrappers
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'mbbill/undotree'
-NeoBundle 'myusuf3/numbers.vim'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'vim-ruby/vim-ruby'
-" NeoBundle 'tpope/vim-rails.git'
-" NeoBundle 'tpope/vim-rbenv'
-" NeoBundle 'xuhdev/SingleCompile'
-" NeoBundle 'DBGp-X-client'
-NeoBundle 'joonty/vdebug'
-NeoBundle 'hlissner/vim-forrestgump'
-" NeoBundleLazy 'shime/vim-livedown', {
+Plug 'tpope/vim-fugitive'
+Plug 'mbbill/undotree'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
+" Plug 'tpope/vim-rails.git'
+" Plug 'tpope/vim-rbenv'
+Plug 'xuhdev/SingleCompile'
+" Plug 'DBGp-X-client'
+Plug 'joonty/vdebug'
+Plug 'hlissner/vim-forrestgump'
+if has('mac')
+    Plug 'rizzatti/dash.vim'
+endif
+" PlugLazy 'shime/vim-livedown', {
 "             \ 'autoload' : {
 "             \     'filetypes' : ['markdown'],
 "             \    },
 "             \ }
 
 " Fuzzy search
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'Shougo/unite.vim'
-" NeoBundle 'Shougo/unite-outline'
-NeoBundle 'Shougo/unite-help'
-NeoBundle 'Shougo/neomru.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf.vim'
+" Plug 'Shougo/unite.vim'
+" Plug 'Shougo/unite-outline'
+" Plug 'Shougo/unite-help'
+" Plug 'Shougo/neomru.vim'
 
 " Project drawer
-" NeoBundle 'scrooloose/nerdtree'
-" NeoBundle 'jistr/vim-nerdtree-tabs'
-NeoBundle 'Shougo/vimfiler'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+" Plug 'Shougo/vimfiler'
 
 " Syntax linter
-NeoBundle 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " Visual helpers
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'junegunn/vim-peekaboo'
-" NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-" NeoBundle 'bling/vim-bufferline'
+" Plug 'nathanaelkane/vim-indent-guides'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/vim-peekaboo'
+" Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Plug 'bling/vim-bufferline'
 
 
 " Filetype plugins & syntaxes
-NeoBundle 'sheerun/vim-polyglot'
-NeoBundle '2072/PHP-Indenting-for-VIm'
-" NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'dag/vim-fish'
-NeoBundle 'fatih/vim-go'
+Plug 'sheerun/vim-polyglot'
+Plug '2072/PHP-Indenting-for-VIm'
+" Plug 'pangloss/vim-javascript'
+Plug 'dag/vim-fish'
+Plug 'fatih/vim-go'
+Plug 'superbrothers/vim-vimperator'
 
 " Color schemes
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'w0ng/vim-hybrid'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tomasr/molokai'
+Plug 'w0ng/vim-hybrid'
 
 " Text Objects
-NeoBundle 'wellle/targets.vim'
-NeoBundle 'matchit.zip'
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kana/vim-textobj-indent'          "ii ai
-" NeoBundle 'kana/vim-textobj-line'            "al il
-" NeoBundle 'kana/vim-textobj-entire'          "ae ie
-NeoBundle 'bkad/CamelCaseMotion'             ",w ,b
-NeoBundle 'argtextobj.vim'                   "via vaa da ca
-NeoBundle 'nelstrom/vim-textobj-rubyblock'   "vir var
-NeoBundle 'lucapette/vim-textobj-underscore' " a_, i_
+Plug 'wellle/targets.vim'
+Plug 'matchit.zip'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'          "ii ai
+" Plug 'kana/vim-textobj-line'            "al il
+" Plug 'kana/vim-textobj-entire'          "ae ie
+Plug 'bkad/CamelCaseMotion'             ",w ,b
+Plug 'argtextobj.vim'                   "via vaa da ca
+Plug 'nelstrom/vim-textobj-rubyblock'   "vir var
+Plug 'lucapette/vim-textobj-underscore' " a_, i_
 
 
 """"""""""""""""
@@ -273,21 +297,14 @@ NeoBundle 'lucapette/vim-textobj-underscore' " a_, i_
 " :NeoBundleSearch(!) foo - search(or refresh cache first) for foo
 " :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
-call neobundle#end()
+call plug#end()
 
-filetype plugin indent on     " required!
-syntax enable
+" filetype plugin indent on     " required!
+" syntax enable
 
-set path+=$PWD/include,$PWD/../include
+set path+=$PWD/include,$PWD/../include,/usr/local/include,/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
 
-NeoBundleCheck
-
-if has("mac")
-    let g:hybrid_use_Xresources = 1
-    colorscheme hybrid
-else
-    colorscheme solarized
-endif
+" NeoBundleCheck
 
 if has("gui_running")
     " Solarized theme
@@ -307,7 +324,7 @@ if has("gui_running")
 else
     set background=dark
     set t_Co=256
-    colorscheme hybrid
+    colorscheme solarized
 endif
 
 augroup cursorline
@@ -368,8 +385,8 @@ augroup END
 augroup filetype_specs
     " au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
     " au FileType php NeoBundleSource "m2mdas/phpcomplete-extended"
-    au FileType lua NeoBundleSource "vim-lua-ftplugin"
-    au FileType javascript NeoBundleSource "marijnh/tern_for_vim"
+    " au FileType lua NeoBundleSource "vim-lua-ftplugin"
+    " au FileType javascript NeoBundleSource "marijnh/tern_for_vim"
     au FileType html let g:delimitMate_matchpairs = "(:),[:],{:},<:>"
 augroup END
 
@@ -394,16 +411,11 @@ let g:UltiSnipsEditSplit = "vertical"
 let g:indent_guides_guide_size = 1
 " au VimEnter * IndentGuidesEnable
 
-" Vim easy align Here ---------------
-vnoremap <silent> <Enter> :EasyAlign<cr>
-
 " Airline Here -------------
 let g:airline_powerline_fonts = 1
-if has("gui_running")
-    let g:airline_theme='hybrid'
-else
-    let g:airline_theme='luna'
-end
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#default#section_use_groupitems = 0
+let g:airline#extensions#tabline#fnametruncate = 20
 
 " easy motion leader key -----------------
 " let g:EasyMotion_leader_key = '\'
@@ -412,7 +424,10 @@ end
 let g:rspec_command = "!bundle exec rspec {spec}"
 
 " NERDTree Here -------------
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "left"
+let g:nerdtree_tabs_open_on_console_startup = 1
+let g:nerdtree_tabs_focus_on_files = 1
+let g:nerdtree_tabs_smart_startup_focus = 2
 
 " YouCompleteMe ---------------
 let g:ycm_confirm_extra_conf = 1
@@ -423,48 +438,41 @@ let g:neosnippet#edit_options_split = 1
 let g:neosnippet#edit_options_vertical = 1
 
 " NeoComplete ----------------
-augroup NeoComplete
+augroup OmniCompleteOpts
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
     autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
     " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    " autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
+    " autocmd FileType php setlocal omnifunc=phpcd#CompletePHP
 augroup END
 
 if (!has('gui'))
     let g:acp_enableAtStartup = 0
 endif
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_auto_select = 0
-let g:neocomplete#disable_auto_complete = 1
-let g:neocomplete#manual_completion_start_length = 0
-let g:neocomplete#auto_completion_start_length = 3
+let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_auto_select = 0
+" let g:deoplete#disable_auto_complete = 1
+" let g:deoplete#manual_completion_start_length = 0
+" let g:deoplete#auto_completion_start_length = 3
 
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" let g:deoplete#enable_smart_case = 1
+" let g:deoplete#sources#syntax#min_keyword_length = 3
+" let g:deoplete#lock_buffer_name_pattern = '\*ku\*'
 
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+let g:deoplete#omni#input_patterns = {}
+" let g:deoplete#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
+let g:deoplete#omni#input_patterns.php = '\h[a-zA-Z_]*|[^. \t]->(.*)?|\h\w*::(.*)?'
 
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" let g:deoplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+" let g:deoplete#force_omni_input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+" let g:deoplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
-let g:neocomplete#force_omni_input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:deoplete#sources = {}
+let g:deoplete#sources#go = 'vim-go'
+let g:deoplete#sources._ = ['buffer', 'file', 'ultisnips']
+let g:deoplete#sources.php = ['buffer', 'file', 'ultisnips', 'omni']
 
 " -------------
 " vim-marching
@@ -484,10 +492,14 @@ let g:marching_enable_neocomplete = 1
 let g:syntastic_aggregate_errors = 1
 " C++ Options
 let g:syntastic_check_header = 1
-let g:syntastic_cpp_include_dirs = ['/usr/include/c++/4.9.2', '/usr/include']
+let g:syntastic_cpp_include_dirs = ['/usr/include/c++/4.2.1', '/usr/include', '/usr/local/include',
+            \ '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1',
+            \ '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.2/include',
+            \ '/usr/local/Cellar/boost/1.60.0_1'
+            \ ]
 let g:syntastic_cpp_checkers = ["clang++"]
 let g:syntastic_cpp_compiler = "clang++"
-let g:syntastic_cpp_compiler_options = '-std=c++1y'
+let g:syntastic_cpp_compiler_options = '-std=c++11'
 " Python Options
 let g:syntastic_python_checkers = ['pylint']
 " PHP Options
@@ -518,7 +530,7 @@ let g:phpcomplete_index_composer_command = "composer"
 
 " Unite -------------------
 let g:unite_source_history_yank_enable = 1
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 au FileType unite call s:unite_settings()
 function! s:unite_settings()
@@ -527,12 +539,12 @@ function! s:unite_settings()
 endfunction
 
 " VimFiler ----------------
-let g:vimfiler_as_default_explorer = 1
+" let g:vimfiler_as_default_explorer = 1
 
-call vimfiler#custom#profile('default', 'context', {
-\   'safe' : 0,
-\   'split_action' : 'tabopen',
-\})
+" call vimfiler#custom#profile('default', 'context', {
+" \   'safe' : 0,
+" \   'split_action' : 'tabopen',
+" \})
 
 " delimitMate =================
 let g:delimitMate_expand_cr = 2
@@ -550,7 +562,7 @@ let g:vdebug_options= {
 \}
 
 " Golang ================
-" let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "goimports"
 
 " Eclim ================
 let g:EclimCompletionMethod = 'omnifunc'
@@ -588,3 +600,5 @@ for f in split(glob($HOME.'/.vim/vimrc.d/*.vim'), '\n')
 endfor
 
 let g:markdown_fmt_autosave = 0
+
+call camelcasemotion#CreateMotionMappings(',')

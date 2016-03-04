@@ -75,23 +75,12 @@ fi
 if type sw_vers &> /dev/null; then
     # Mac OS X
     export JAVA_HOME=$(/usr/libexec/java_home)
+    # export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
     plugins=($plugins brew)
 else
     # Linux
-    alias open="xdg-open"
     ngvim() { gvim > /dev/null 2>&1 $@ }
     plugins=($plugins systemd)
-fi
-alias ll="ls -lh"
-alias la="ls -lAh"
-alias sl="ls"
-alias glglr="git log --oneline --graph --left-right"
-
-if type ag &> /dev/null
-then
-    alias psg="ps aux|ag"
-else
-    alias psg="ps aux|grep -i"
 fi
 
 if type npm &> /dev/null; then
@@ -108,23 +97,17 @@ if type grunt &> /dev/null; then
     eval "$(grunt --completion=zsh)"
 fi
 
+source $ZSH/oh-my-zsh.sh
+
 if [[ -e ~/.zsh_alias ]]; then
     . ~/.zsh_alias
 fi
-
-source $ZSH/oh-my-zsh.sh
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
 if type thefuck &> /dev/null; then
     eval $(thefuck --alias)
 fi
-
-#alias for cnpm
-alias cnpm="npm --registry=https://registry.npm.taobao.org \
-  --cache=$HOME/.npm/.cache/cnpm \
-  --disturl=https://npm.taobao.org/dist \
-  --userconfig=$HOME/.cnpmrc"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -137,3 +120,10 @@ if type sw_vers &> /dev/null; then
     fi
 fi
 
+LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+    . $LUNCHY_DIR/lunchy-completion.zsh
+fi
+
+export HOMEBREW_GITHUB_API_TOKEN="453581faa1baa382ad9f441fc6e872a7814573ce"
+export TERM=xterm-256color
