@@ -320,11 +320,11 @@ if has("gui_running")
     set guioptions-=T
     " set guioptions-=r
     set guioptions-=m    "隐藏菜单栏
-    colorscheme molokai
+    colorscheme hybrid
 else
     set background=dark
     set t_Co=256
-    colorscheme solarized
+    colorscheme hybrid
 endif
 
 augroup cursorline

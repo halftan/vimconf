@@ -12,7 +12,7 @@ export LANG="en_US.UTF-8"
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 if [[ -n $DISPLAY ]] || [[ $VENDOR = "apple" ]] then
-    ZSH_THEME="muse"
+    ZSH_THEME="ys"
 else
     ZSH_THEME="gallois"
 fi
