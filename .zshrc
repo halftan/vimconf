@@ -125,5 +125,5 @@ if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
     . $LUNCHY_DIR/lunchy-completion.zsh
 fi
 
-export HOMEBREW_GITHUB_API_TOKEN="453581faa1baa382ad9f441fc6e872a7814573ce"
 export TERM=xterm-256color
+
