@@ -118,11 +118,13 @@ if type sw_vers &> /dev/null; then
         MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
         alias ls="ls --color=auto"
     fi
-fi
 
-LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
-if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
-    . $LUNCHY_DIR/lunchy-completion.zsh
+    if type lunchy &> /dev/null; then
+        LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+        if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+            . $LUNCHY_DIR/lunchy-completion.zsh
+        fi
+    fi
 fi
 
 export TERM=xterm-256color

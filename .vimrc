@@ -210,6 +210,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
+Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
 " Plug 'tpope/vim-rails.git'
 " Plug 'tpope/vim-rbenv'
 Plug 'xuhdev/SingleCompile'
@@ -425,6 +426,7 @@ let g:rspec_command = "!bundle exec rspec {spec}"
 
 " NERDTree Here -------------
 let g:NERDTreeWinPos = "left"
+let g:NERDTreeWinSize = 30
 let g:nerdtree_tabs_open_on_console_startup = 1
 let g:nerdtree_tabs_focus_on_files = 1
 let g:nerdtree_tabs_smart_startup_focus = 2

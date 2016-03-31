@@ -4,12 +4,19 @@ alias sl="ls"
 alias glglr="git log --oneline --graph --left-right"
 
 if type sw_vers &> /dev/null; then
-    alias flushdns="sudo killall -HUP mDNSResponder"
-    alias routes="netstat -nrfinet"
-    alias eclimd="/opt/homebrew-cask/Caskroom/eclipse-php/4.5/Eclipse.app/Contents/Eclipse/eclimd"
-    alias l="lunchy"
+
+  alias flushdns="sudo killall -HUP mDNSResponder"
+  alias routes="netstat -nrfinet"
+  alias eclimd="/opt/homebrew-cask/Caskroom/eclipse-php/4.5/Eclipse.app/Contents/Eclipse/eclimd"
+  alias l="lunchy"
+
+  if brew list | grep findutils > /dev/null; then
+    alias find="gfind"
+    alias xargs="gxargs"
+    alias locate="glocate"
+  fi
 else
-    alias open="xdg-open"
+  alias open="xdg-open"
 fi
 alias zrestart="exec $SHELL"
 alias mt="multitail --mergeall"
@@ -22,20 +29,13 @@ alias youtube-dl-proxy="youtube-dl --proxy=127.0.0.1:8080"
 
 if type ag &> /dev/null
 then
-    alias psg="ps aux|ag"
+  alias psg="ps aux|ag"
 else
-    alias psg="ps aux|grep -i"
-fi
-
-if brew list | grep findutils > /dev/null
-then
-    alias find="gfind"
-    alias xargs="gxargs"
-    alias locate="glocate"
+  alias psg="ps aux|grep -i"
 fi
 
 function randmac() {
-    openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
+  openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
 }
 
 #alias for cnpm
