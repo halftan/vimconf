@@ -1,1 +1,1 @@
-/Users/halftan/git/dotfiles/.vimrc
+../.vimrc
