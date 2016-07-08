@@ -183,7 +183,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'jiangmiao/auto-pairs'
-" Plug 'rdnetto/YCM-Generator', { 'for': ['c', 'cpp'], 'branch': 'stable' }
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 if has('nvim')
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 else
@@ -303,7 +303,9 @@ call plug#end()
 " filetype plugin indent on     " required!
 " syntax enable
 
-set path+=$PWD/include,$PWD/../include,/usr/local/include,/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
+set path+=$PWD/include,$PWD/../include,/usr/local/include
+            \,/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
+            \,/usr/local/opt/qt/include
 
 " NeoBundleCheck
 
@@ -388,7 +390,7 @@ augroup filetype_specs
     " au FileType php NeoBundleSource "m2mdas/phpcomplete-extended"
     " au FileType lua NeoBundleSource "vim-lua-ftplugin"
     " au FileType javascript NeoBundleSource "marijnh/tern_for_vim"
-    au FileType html let g:delimitMate_matchpairs = "(:),[:],{:},<:>"
+    au FileType html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
 augroup END
 
 " UltiSnips config Here ------------
@@ -571,7 +573,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimFileTypeValidate = 0
 
 " HTML indent ===========
-let g:html_exclude_tags = ['html', 'body', 'style', 'script']
+let g:html_exclude_tags = ['html', 'body', 'style', 'script', 'source']
 " let g:html_indent_inctags = ['th', 'td']
 " let g:html_indent_tags = 'th\|td'
 let g:polyglot_disabled = ['coffee-script']

@@ -7,14 +7,15 @@ if type sw_vers &> /dev/null; then
 
   alias flushdns="sudo killall -HUP mDNSResponder"
   alias routes="netstat -nrfinet"
-  alias eclimd="/opt/homebrew-cask/Caskroom/eclipse-php/4.5/Eclipse.app/Contents/Eclipse/eclimd"
-  alias l="lunchy"
+  alias eclimd="~/Applications/Eclipse.app/Contents/Eclipse/eclimd"
 
   if brew list | grep findutils > /dev/null; then
     alias find="gfind"
     alias xargs="gxargs"
     alias locate="glocate"
   fi
+
+  alias ldd="otool -L"
 else
   alias open="xdg-open"
 fi

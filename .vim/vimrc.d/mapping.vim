@@ -43,6 +43,7 @@ nmap <Leader>nfr :NERDTreeFind<cr>
 nmap <Leader>pf :Files<CR>
 nmap <Leader>pg :GitFiles<CR>
 nmap <Leader>bb :Buffers<CR>
+nmap <Leader>pb :Buffers<CR>
 nmap <Leader>pw :Windows<CR>
 nmap <Leader>pc :BCommits<CR>
 nmap <Leader>ph :History
