@@ -27,3 +27,4 @@ bind branch P !@git branch -D %(branch)
 
 #}}}
 
+set line-graphics = ascii

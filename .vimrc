@@ -160,6 +160,7 @@ Plug 'vim-scripts/progressbar-widget'
 
 " Completion
 Plug 'Valloric/YouCompleteMe'
+" Plug 'mkusher/padawan.vim'
 " Plug 'phpvim/phpcd.vim', { 'for': 'php' }
 " if has('nvim')
 "     Plug 'Shougo/deoplete.nvim'
@@ -510,6 +511,8 @@ let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_php_checkers = ['phpmd', 'php']
 " JS Options
 let g:syntastic_javascript_checkers = ['jslint']
+" Go options
+" let g:syntastic_go_checkers = ['gometalinter']
 
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " proprietary attribute \"bs-"]
 
@@ -567,6 +570,7 @@ let g:vdebug_options= {
 
 " Golang ================
 let g:go_fmt_command = "goimports"
+let g:go_metalinter_autosave = 1
 
 " Eclim ================
 let g:EclimCompletionMethod = 'omnifunc'
@@ -606,3 +610,6 @@ endfor
 let g:markdown_fmt_autosave = 0
 
 call camelcasemotion#CreateMotionMappings(',')
+
+" FZF
+let g:fzf_layout = { 'down': '~60%' }
