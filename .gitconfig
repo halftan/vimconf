@@ -4,6 +4,8 @@
 	co = checkout
 	br = branch
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	r = reset
+	ll = log --pretty=oneline
 [color]
 	ui = true
 [user]

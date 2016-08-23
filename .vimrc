@@ -161,7 +161,7 @@ Plug 'vim-scripts/progressbar-widget'
 " Completion
 Plug 'Valloric/YouCompleteMe'
 " Plug 'mkusher/padawan.vim'
-" Plug 'phpvim/phpcd.vim', { 'for': 'php' }
+" Plug 'phpvim/phpcd.vim', { 'for': 'php' , 'do': 'composer update'}
 " if has('nvim')
 "     Plug 'Shougo/deoplete.nvim'
 "     Plug 'Shougo/neco-vim'
@@ -218,9 +218,9 @@ Plug 'xuhdev/SingleCompile'
 " Plug 'DBGp-X-client'
 Plug 'joonty/vdebug'
 Plug 'hlissner/vim-forrestgump'
-if has('mac')
-    Plug 'rizzatti/dash.vim'
-endif
+" if has('mac')
+"     Plug 'rizzatti/dash.vim'
+" endif
 " PlugLazy 'shime/vim-livedown', {
 "             \ 'autoload' : {
 "             \     'filetypes' : ['markdown'],
@@ -428,8 +428,8 @@ let g:airline#extensions#tabline#fnametruncate = 20
 let g:rspec_command = "!bundle exec rspec {spec}"
 
 " NERDTree Here -------------
-let g:NERDTreeWinPos = "left"
-let g:NERDTreeWinSize = 30
+let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinSize = 33
 let g:nerdtree_tabs_open_on_console_startup = 1
 let g:nerdtree_tabs_focus_on_files = 1
 let g:nerdtree_tabs_smart_startup_focus = 2
@@ -517,7 +517,7 @@ let g:syntastic_javascript_checkers = ['jslint']
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " proprietary attribute \"bs-"]
 
 " Tagbar ----------------
-let g:tagbar_left = 0
+let g:tagbar_left = 1
 
 set foldmethod=marker
 set foldlevel=999
@@ -612,4 +612,10 @@ let g:markdown_fmt_autosave = 0
 call camelcasemotion#CreateMotionMappings(',')
 
 " FZF
-let g:fzf_layout = { 'down': '~60%' }
+let g:fzf_layout = { 'down': '~40%' }
+
+" PHP indent
+" let g:PHP_vintage_case_default_indent=1
+
+" Colors ========
+highlight LineNr ctermfg=241

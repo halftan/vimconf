@@ -57,7 +57,7 @@ export MANPATH=""
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git extract gitignore sudo history history-substring-search\
-    autojump composer rbenv bundler golang)
+    autojump composer rbenv bundler golang tig)
 
 if [[ -e ~/.pythonrc ]] then
     export PYTHONSTARTUP=~/.pythonrc
