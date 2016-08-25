@@ -50,6 +50,7 @@ alias ohmyzsh="${EDITOR} ~/.oh-my-zsh"
 
 # Customize to your needs...
 # export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/usr/bin/vendor_perl
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 export PATH=/usr/local/opt/go/libexec/bin:$HOME/bin:/usr/local/sbin:$PATH
 export MANPATH=""
 

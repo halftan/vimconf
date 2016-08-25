@@ -110,6 +110,7 @@ set novisualbell
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
     set t_Co=16
 endif
+set termguicolors
 " set t_vb=1
 
 set viewoptions+=slash,unix
@@ -324,12 +325,11 @@ if has("gui_running")
     set guioptions-=T
     " set guioptions-=r
     set guioptions-=m    "隐藏菜单栏
-    colorscheme hybrid
 else
     set background=dark
     set t_Co=256
-    colorscheme hybrid
 endif
+colorscheme hybrid
 
 augroup cursorline
     autocmd WinLeave * set nocursorline
