@@ -58,14 +58,9 @@ endif
 "Encode
 set fencs=ucs-bom,utf-8,euc-cn,sjis,euc-jp,default,latin1
 set fenc=utf-8 nobomb ff=unix
-set encoding=utf-8
 if has("win32")
     source $VIMRUNTIME/delmenu.vim
     source $VIMRUNTIME/menu.vim
-
-if &encoding ==# 'latin1' && has('gui_running')
-    set encoding=utf-8
-endif
 
 " 解决consle输出乱码
     language messages zh_CN.UTF-8
@@ -121,6 +116,11 @@ set viewoptions-=options
 if has('vim_starting')
 "     set rtp+=$HOME/.vim/bundle/neobundle.vim/
     set rtp+=/usr/local/opt/fzf
+
+    set encoding=utf-8
+    if &encoding ==# 'latin1' && has('gui_running')
+        set encoding=utf-8
+    endif
 endif
 
 if $USER != "root"
@@ -209,10 +209,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sleuth'
+" Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
-Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
+" Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
 " Plug 'tpope/vim-rails.git'
 " Plug 'tpope/vim-rbenv'
 Plug 'xuhdev/SingleCompile'
@@ -227,6 +227,8 @@ Plug 'hlissner/vim-forrestgump'
 "             \     'filetypes' : ['markdown'],
 "             \    },
 "             \ }
+Plug 'wakatime/vim-wakatime'
+Plug 'vim-scripts/BufOnly.vim'
 
 " Fuzzy search
 Plug 'kien/ctrlp.vim'
@@ -331,13 +333,14 @@ else
 endif
 colorscheme hybrid
 
-augroup cursorline
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter * set cursorline
-    autocmd InsertEnter * set nocursorline
-    autocmd InsertLeave * set cursorline
-augroup END
+" augroup cursorline
+"     autocmd WinLeave * set nocursorline
+"     autocmd WinEnter * set cursorline
+"     autocmd InsertEnter * set nocursorline
+"     autocmd InsertLeave * set cursorline
+" augroup END
 
+set nocul
 set wildmenu " Show list instead of just completing
 set wildmode=list:longest,full " Use powerful wildmenu
 set shortmess=at " Avoids hit enter
@@ -618,4 +621,4 @@ let g:fzf_layout = { 'down': '~40%' }
 " let g:PHP_vintage_case_default_indent=1
 
 " Colors ========
-highlight LineNr ctermfg=241
+highlight LineNr guifg=#777777

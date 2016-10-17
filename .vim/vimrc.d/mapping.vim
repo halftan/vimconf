@@ -309,4 +309,9 @@ if has('nvim')
     tmap jj <ESC>
 endif
 "}}}
-"
+
+""""""""""""
+"  iTunes  "
+""""""""""""
+nmap <leader>ip :!itunes pause<cr>
+nmap <leader>il :!itunes play<cr>

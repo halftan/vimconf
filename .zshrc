@@ -70,6 +70,7 @@ if type go &> /dev/null; then
     fi
     export GOBIN=$HOME/goworkspace/bin
     export GOPATH=$HOME/goworkspace:$HOME/git/goprojects
+    export GOROOT=`go env GOROOT`
     export PATH=$GOBIN:$PATH
 fi
 
