@@ -7,7 +7,7 @@ if type sw_vers &> /dev/null; then
 
   alias flushdns="sudo killall -HUP mDNSResponder"
   alias routes="netstat -nrfinet"
-  alias eclimd="~/Applications/Eclipse.app/Contents/Eclipse/eclimd"
+  alias eclimd="~/eclipse/php-neon/Eclipse.app/Contents/Eclipse/eclimd"
 
   if brew list | grep findutils > /dev/null; then
     alias find="gfind"

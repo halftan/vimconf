@@ -1,11 +1,11 @@
 " Author:  Eric Van Dewoestine
 "
 " Description: {{{
-"   see http://eclim.org/vim/php/complete.html
+"   Extension to default mysql syntax to add additional syntax support.
 "
 " License:
 "
-" Copyright (C) 2005 - 2015  Eric Van Dewoestine
+" Copyright (C) 2005 - 2009  Eric Van Dewoestine
 "
 " This program is free software: you can redistribute it and/or modify
 " it under the terms of the GNU General Public License as published by
@@ -22,22 +22,24 @@
 "
 " }}}
 
-" Script Varables {{{
-  let s:complete_command =
-    \ '-command php_complete -p "<project>" -f "<file>" -o <offset> -e <encoding>'
-" }}}
+source $VIMRUNTIME/syntax/mysql.vim
 
-" CodeComplete(findstart, base) {{{
-" Handles php code completion.
-function! eclim#php#complete#CodeComplete(findstart, base)
-  if !eclim#php#util#IsPhpCode(line('.'))
-    return eclim#html#complete#CodeComplete(a:findstart, a:base)
-  endif
+syn keyword mysqlKeyword engine
+syn keyword mysqlKeyword if elseif else loop leave while
+syn keyword mysqlKeyword before close cursor each fetch open set trigger
+syn keyword mysqlKeyword begin call declare return
+syn keyword mysqlKeyword delimiter
+syn keyword mysqlKeyword truncate
+syn keyword mysqlKeyword duplicate union
+syn keyword mysqlKeyword interval
 
-  return eclim#lang#CodeComplete(s:complete_command, a:findstart, a:base, {
-    \   'temp': 0,
-    \   'regex': '\(\w\|\$\)',
-    \ })
-endfunction " }}}
+syn keyword sqlTodo TODO FIXME NOTE
+
+syn match mysqlEscaped "`.\{-}`"
+
+syn region mysqlVariable start="\(NEW\|OLD\)\." end="\W"
+
+hi def link sqlComment Comment
+hi def link sqlTodo Todo
 
 " vim:ft=vim:fdm=marker

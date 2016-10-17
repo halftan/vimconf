@@ -1,11 +1,12 @@
 " Author:  Eric Van Dewoestine
 "
 " Description: {{{
-"   see http://eclim.org/vim/php/complete.html
+"   Extension to default perl syntax to support spell checking in comments and
+"   plain POD syntax.
 "
 " License:
 "
-" Copyright (C) 2005 - 2015  Eric Van Dewoestine
+" Copyright (C) 2005 - 2009  Eric Van Dewoestine
 "
 " This program is free software: you can redistribute it and/or modify
 " it under the terms of the GNU General Public License as published by
@@ -22,22 +23,16 @@
 "
 " }}}
 
-" Script Varables {{{
-  let s:complete_command =
-    \ '-command php_complete -p "<project>" -f "<file>" -o <offset> -e <encoding>'
-" }}}
+source $VIMRUNTIME/syntax/perl.vim
 
-" CodeComplete(findstart, base) {{{
-" Handles php code completion.
-function! eclim#php#complete#CodeComplete(findstart, base)
-  if !eclim#php#util#IsPhpCode(line('.'))
-    return eclim#html#complete#CodeComplete(a:findstart, a:base)
+syn match perlComment "#.*" contains=perlTodo,@Spell
+
+if !exists("perl_include_pod")
+  if exists("perl_fold")
+    syn region perlPOD start="^=[a-z]" end="^=cut" fold contains=@Spell
+  else
+    syn region perlPOD start="^=[a-z]" end="^=cut" contains=@Spell
   endif
-
-  return eclim#lang#CodeComplete(s:complete_command, a:findstart, a:base, {
-    \   'temp': 0,
-    \   'regex': '\(\w\|\$\)',
-    \ })
-endfunction " }}}
+endif
 
 " vim:ft=vim:fdm=marker
