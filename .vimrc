@@ -29,11 +29,6 @@ set rnu
 set hlsearch
 set incsearch
 
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-    nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-endif
-
 " set autochdir
 set laststatus=2
 set showmatch
@@ -43,6 +38,7 @@ set wrapmargin=0
 set wrap
 set nrformats-=octal
 set display+=lastline
+set pvh=6  " preview window height
 
 set ttimeout timeoutlen=400 ttimeoutlen=100
 
@@ -56,7 +52,7 @@ if v:version > 703 || v:version == 703 && has("patch541")
 endif
 
 "Encode
-set fencs=ucs-bom,utf-8,euc-cn,sjis,euc-jp,default,latin1
+set fencs=ucs-bom,utf-8,euc-cn,gbk,sjis,euc-jp,default,latin1
 set fenc=utf-8 nobomb ff=unix
 if has("win32")
     source $VIMRUNTIME/delmenu.vim
@@ -101,12 +97,6 @@ autocmd BufWinEnter *.* silent! loadview " Make Vim load view (state) (folds, cu
 " No sound on errors
 set noerrorbells
 set novisualbell
-" Allow color schemes to do bright colors without forcing bold.
-if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
-    set t_Co=16
-endif
-set termguicolors
-" set t_vb=1
 
 set viewoptions+=slash,unix
 set viewoptions-=options
@@ -148,11 +138,11 @@ endif
 "             \   },
 "             \ }
 
-if has('mac')
-    Plug 'Shougo/vimproc.vim', { 'do': 'make -f make_mac.mak' }
-else
-    Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-endif
+" if has('mac')
+"     Plug 'Shougo/vimproc.vim', { 'do': 'make -f make_mac.mak' }
+" else
+"     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" endif
 
 " Libraries
 " NeoBundle 'L9'
@@ -160,17 +150,21 @@ Plug 'xolox/vim-misc'
 Plug 'vim-scripts/progressbar-widget'
 
 " Completion
-Plug 'Valloric/YouCompleteMe'
-" Plug 'mkusher/padawan.vim'
+" Plug 'padawan-php/padawan.vim'
 " Plug 'phpvim/phpcd.vim', { 'for': 'php' , 'do': 'composer update'}
-" if has('nvim')
-"     Plug 'Shougo/deoplete.nvim'
-"     Plug 'Shougo/neco-vim'
-"     Plug 'Shougo/neco-syntax'
-"     Plug 'zchee/deoplete-go'
-" else
-"     Plug 'Valloric/YouCompleteMe'
-" endif
+if has('nvim')
+    let g:deoplete_loaded=1
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'Shougo/neco-vim', { 'for': 'vim' }
+    Plug 'Shougo/neco-syntax', { 'for': 'vim' }
+    Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
+    Plug 'pbogut/deoplete-padawan', { 'for': 'php' }
+    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'vue'] }
+else
+    Plug 'Valloric/YouCompleteMe'
+    " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+endif
 " NeoBundle 'osyo-manga/vim-marching'
 " Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
 Plug 'xolox/vim-lua-ftplugin', { 'for': 'lua' }
@@ -185,16 +179,9 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'jiangmiao/auto-pairs'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-if has('nvim')
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-else
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-    " Plug 'Shougo/neosnippet'
-    " Plug 'Shougo/neosnippet-snippets'
-endif
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Plug 'terryma/vim-multiple-cursors'
-Plug 'mattn/emmet-vim', { 'for': ['xml', 'html', 'php'] }
+Plug 'mattn/emmet-vim', { 'for': ['xml', 'html', 'php', 'vue'] }
 " Plug 'xolox/vim-easytags'
 
 " Navigating
@@ -229,6 +216,7 @@ Plug 'hlissner/vim-forrestgump'
 "             \ }
 Plug 'wakatime/vim-wakatime'
 Plug 'vim-scripts/BufOnly.vim'
+Plug 'mzlogin/vim-markdown-toc'
 
 " Fuzzy search
 Plug 'kien/ctrlp.vim'
@@ -257,16 +245,21 @@ Plug 'junegunn/vim-peekaboo'
 
 " Filetype plugins & syntaxes
 Plug 'sheerun/vim-polyglot'
+Plug 'pangloss/vim-javascript'
 Plug '2072/PHP-Indenting-for-VIm'
 " Plug 'pangloss/vim-javascript'
-Plug 'dag/vim-fish'
-Plug 'fatih/vim-go'
-Plug 'superbrothers/vim-vimperator'
+" Plug 'dag/vim-fish'
+Plug 'fatih/vim-go', { 'for': 'go' }
+" Plug 'superbrothers/vim-vimperator'
+Plug 'posva/vim-vue'
+Plug 'elzr/vim-json'
 
 " Color schemes
-Plug 'altercation/vim-colors-solarized'
-Plug 'tomasr/molokai'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'tomasr/molokai'
 Plug 'w0ng/vim-hybrid'
+Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
 
 " Text Objects
 Plug 'wellle/targets.vim'
@@ -327,11 +320,12 @@ if has("gui_running")
     set guioptions-=T
     " set guioptions-=r
     set guioptions-=m    "隐藏菜单栏
-else
-    set background=dark
-    set t_Co=256
 endif
-colorscheme hybrid
+" set t_Co=256
+set termguicolors
+set background=dark
+colorscheme gruvbox
+" set t_vb=1
 
 " augroup cursorline
 "     autocmd WinLeave * set nocursorline
@@ -459,28 +453,28 @@ if (!has('gui'))
     let g:acp_enableAtStartup = 0
 endif
 let g:deoplete#enable_at_startup = 1
-" let g:deoplete#enable_auto_select = 0
-" let g:deoplete#disable_auto_complete = 1
-" let g:deoplete#manual_completion_start_length = 0
-" let g:deoplete#auto_completion_start_length = 3
-
-" let g:deoplete#enable_smart_case = 1
-" let g:deoplete#sources#syntax#min_keyword_length = 3
-" let g:deoplete#lock_buffer_name_pattern = '\*ku\*'
-
-let g:deoplete#omni#input_patterns = {}
+" let g:deoplete#omni#input_patterns = {}
 " let g:deoplete#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
-let g:deoplete#omni#input_patterns.php = '\h[a-zA-Z_]*|[^. \t]->(.*)?|\h\w*::(.*)?'
+" let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
+" let g:deoplete#omni#input_patterns.php = '\h[a-zA-Z_]*|[^. \t]->(.*)?|\h\w*::(.*)?'
 
 " let g:deoplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 " let g:deoplete#force_omni_input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 " let g:deoplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 let g:deoplete#sources = {}
-let g:deoplete#sources#go = 'vim-go'
-let g:deoplete#sources._ = ['buffer', 'file', 'ultisnips']
-let g:deoplete#sources.php = ['buffer', 'file', 'ultisnips', 'omni']
+let g:deoplete#sources._ = ['ultisnips', 'buffer']
+let g:deoplete#sources.php = ['padawan', 'ultisnips']
+let g:deoplete#sources.python = ['jedi', 'ultisnips']
+let g:deoplete#sources.go = ['go', 'ultisnips']
+if (exists('g:deoplete_loaded') && g:deoplete_loaded)
+    call deoplete#custom#set('_', 'matchers', ['matcher_length', 'matcher_full_fuzzy'])
+    call deoplete#custom#set('_', 'disabled_syntaxes', ['String'])
+    call deoplete#custom#set('_', 'converters', ['converter_remove_overlap', 'converter_remove_paren'])
+    call deoplete#custom#set('_', 'sorters', ['sorter_rank', 'sorter_word'])
+	call deoplete#custom#set('ultisnips', 'rank', 1000)
+	call deoplete#custom#set('buffer', 'rank', 100)
+endif
 
 " -------------
 " vim-marching
@@ -511,9 +505,10 @@ let g:syntastic_cpp_compiler_options = '-std=c++11'
 " Python Options
 let g:syntastic_python_checkers = ['pylint']
 " PHP Options
-let g:syntastic_php_checkers = ['phpmd', 'php']
+let g:syntastic_php_checkers = ['php']
 " JS Options
-let g:syntastic_javascript_checkers = ['jslint']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_vue_checkers = ['eslint']
 " Go options
 " let g:syntastic_go_checkers = ['gometalinter']
 
@@ -521,6 +516,33 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " propr
 
 " Tagbar ----------------
 let g:tagbar_left = 1
+let g:tagbar_type_go = {
+            \ 'ctagstype' : 'go',
+            \ 'kinds'     : [
+            \ 'p:package',
+            \ 'i:imports:1',
+            \ 'c:constants',
+            \ 'v:variables',
+            \ 't:types',
+            \ 'n:interfaces',
+            \ 'w:fields',
+            \ 'e:embedded',
+            \ 'm:methods',
+            \ 'r:constructor',
+            \ 'f:functions'
+            \ ],
+            \ 'sro' : '.',
+            \ 'kind2scope' : {
+            \ 't' : 'ctype',
+            \ 'n' : 'ntype'
+            \ },
+            \ 'scope2kind' : {
+            \ 'ctype' : 't',
+            \ 'ntype' : 'n'
+            \ },
+            \ 'ctagsbin'  : 'gotags',
+            \ 'ctagsargs' : '-sort -silent'
+            \ }
 
 set foldmethod=marker
 set foldlevel=999
@@ -573,7 +595,7 @@ let g:vdebug_options= {
 
 " Golang ================
 let g:go_fmt_command = "goimports"
-let g:go_metalinter_autosave = 1
+" let g:go_metalinter_autosave = 1
 
 " Eclim ================
 let g:EclimCompletionMethod = 'omnifunc'
@@ -583,7 +605,8 @@ let g:EclimFileTypeValidate = 0
 let g:html_exclude_tags = ['html', 'body', 'style', 'script', 'source']
 " let g:html_indent_inctags = ['th', 'td']
 " let g:html_indent_tags = 'th\|td'
-let g:polyglot_disabled = ['coffee-script']
+let g:polyglot_disabled = ['coffee-script', 'javascript']
+let g:jsx_ext_required = 0
 
 " omni completion ----
 
@@ -621,4 +644,21 @@ let g:fzf_layout = { 'down': '~40%' }
 " let g:PHP_vintage_case_default_indent=1
 
 " Colors ========
-highlight LineNr guifg=#777777
+" highlight LineNr guifg=#777777
+
+" Javascript Syntax
+let g:javascript_plugin_jsdoc = 1
+
+let g:ycm_semantic_triggers = {}
+let g:ycm_semantic_triggers.php =
+            \ ['->', '::', 'use ', 'namespace ', '\']
+
+" deoplete tern
+let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx', 'vue']
+
+" deoplete-go
+let g:deoplete#sources#go#gocode_binary = '/Users/halftan/goworkspace/bin/gocode'
+let g:deoplete#sources#go#use_cache = 1
+let g:deoplete#sources#go#json_directory = '/Users/halftan/temp/.gocode'
+let g:deoplete#sources#go#pointer = 1
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']

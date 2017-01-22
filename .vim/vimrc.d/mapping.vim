@@ -24,7 +24,7 @@ nmap <Leader>em :tabe ~/.vim/vimrc.d/mapping.vim<cr>
 nmap <Leader>sv :so $MYVIMRC<cr>
 nmap <Leader>sm :so ~/.vim/vimrc.d/mapping.vim<cr>
 
-nmap <Leader>/ :nohlsearch<cr>
+nnoremap <silent> <Leader>/ :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 " Change PWD to current where file locates.
 nmap <leader>cd :cd %:p:h<cr>
@@ -47,6 +47,7 @@ nmap <Leader>pb :Buffers<CR>
 nmap <Leader>pw :Windows<CR>
 nmap <Leader>pc :BCommits<CR>
 nmap <Leader>ph :History
+nmap <Leader>pt :BTags<CR>
 
 
 """"""""""""""""
@@ -183,8 +184,6 @@ nmap <Leader>mp :LivedownToggle<CR>
 "     " return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 "     " endif
 "     " endfunction
-imap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
-"     " inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "     if g:delimitMate_expand_cr != 0
 "         imap <expr> <CR> pumvisible()
 "                     \ ? "\<C-Y>"
@@ -197,6 +196,14 @@ imap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
 " endif
 " inoremap <silent><expr> <C-@>
 "             \ deoplete#mappings#manual_complete()
+
+if (exists('g:deoplete_loaded') && g:deoplete_loaded)
+    inoremap <silent><expr> <C-space> deoplete#mappings#manual_complete()
+    inoremap <expr><C-g> deoplete#undo_completion()
+    inoremap <expr><C-l> deoplete#refresh()
+    imap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
+    inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
+endif
 
 " -------------
 " NeoSnippet
@@ -246,7 +253,7 @@ nmap <Leader>tt :TagbarToggle<cr>
 
 " FileType specific map {{{"
 " au FileType php nmap <leader>jd :PhpSearchContext -a tabedit <c-r>=expand("<cword>")<cr><cr>
-au FileType php nmap <leader>jd :PhpSearchContext <c-r>=expand("<cword>") . " -a tabedit"<cr><cr>
+au FileType php nmap <leader>jd :PhpSearchContext <c-r>=expand("<cword>") . " -a tabedit -s project"<cr><cr>
 au FileType php nmap <leader>js :PhpSearch -p <c-r>=expand("<cword>") . " -a tabedit -t "<cr>
 " }}} "
 
@@ -315,3 +322,7 @@ endif
 """"""""""""
 nmap <leader>ip :!itunes pause<cr>
 nmap <leader>il :!itunes play<cr>
+
+command! StartPadawan call deoplete#sources#padawan#StartServer()
+command! StopPadawan call deoplete#sources#padawan#StopServer()
+command! RestartPadawan call deoplete#sources#padawan#RestartServer()

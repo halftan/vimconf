@@ -9,13 +9,14 @@
 [color]
 	ui = true
 [user]
-	name = HalFtaN
-	email = half.a.tan@gmail.com
+	name = zhangfengming
+	email = zhangfengming@baidu.com
 [push]
 	default = upstream
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = 
+	ignorecase = false
 [merge]
 	tool = vimdiff
 [http]

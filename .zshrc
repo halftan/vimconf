@@ -57,8 +57,7 @@ export MANPATH=""
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git extract gitignore sudo history history-substring-search\
-    autojump composer rbenv bundler golang tig)
+plugins=(git extract sudo history history-substring-search autojump golang tig composer)
 
 if [[ -e ~/.pythonrc ]] then
     export PYTHONSTARTUP=~/.pythonrc
@@ -79,6 +78,7 @@ if type sw_vers &> /dev/null; then
     export JAVA_HOME=$(/usr/libexec/java_home)
     # export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
     plugins=($plugins brew)
+    export PATH="$(brew --prefix vim)/bin:$PATH"
 else
     # Linux
     ngvim() { gvim > /dev/null 2>&1 $@ }
@@ -107,9 +107,6 @@ fi
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
-if type thefuck &> /dev/null; then
-    eval $(thefuck --alias)
-fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

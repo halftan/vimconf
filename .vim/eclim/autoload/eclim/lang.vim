@@ -83,21 +83,24 @@ function! eclim#lang#CodeComplete(command, findstart, base, ...) " {{{
       return
     endif
 
-    let open_paren = getline('.') =~ '\%' . col('.') . 'c\s*('
-    let close_paren = getline('.') =~ '\%' . col('.') . 'c\s*(\s*)'
+    " let open_paren = getline('.') =~ '\%' . col('.') . 'c\s*('
+    " let close_paren = getline('.') =~ '\%' . col('.') . 'c\s*(\s*)'
 
     for result in results
       let word = result.completion
 
-      " strip off close paren if necessary.
-      if word =~ ')$' && close_paren
-        let word = strpart(word, 0, strlen(word) - 1)
-      endif
+      " strip off parens
+      let word = substitute(word, '(.\+)\?', '', '')
 
-      " strip off open paren if necessary.
-      if word =~ '($' && open_paren
-        let word = strpart(word, 0, strlen(word) - 1)
-      endif
+      " " strip off close paren if necessary.
+      " if word =~ ')$' && close_paren
+      "   let word = strpart(word, 0, strlen(word) - 1)
+      " endif
+      "
+      " " strip off open paren if necessary.
+      " if word =~ '($' && open_paren
+      "   let word = strpart(word, 0, strlen(word) - 1)
+      " endif
 
       " strip off whitespaces.
       let word = substitute(word, '^\s*\(.\{-}\)(\?)\?\s*$', '\1', '')
