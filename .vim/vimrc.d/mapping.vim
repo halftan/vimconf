@@ -323,6 +323,7 @@ endif
 nmap <leader>ip :!itunes pause<cr>
 nmap <leader>il :!itunes play<cr>
 
-command! StartPadawan call deoplete#sources#padawan#StartServer()
-command! StopPadawan call deoplete#sources#padawan#StopServer()
-command! RestartPadawan call deoplete#sources#padawan#RestartServer()
+" command! StartPadawan call deoplete#sources#padawan#StartServer()
+" command! StopPadawan call deoplete#sources#padawan#StopServer()
+" command! RestartPadawan call deoplete#sources#padawan#RestartServer()
+

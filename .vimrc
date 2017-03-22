@@ -158,9 +158,11 @@ if has('nvim')
     Plug 'Shougo/neco-vim', { 'for': 'vim' }
     Plug 'Shougo/neco-syntax', { 'for': 'vim' }
     Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
-    Plug 'pbogut/deoplete-padawan', { 'for': 'php' }
+    " Plug 'halftan/deoplete-padawan', { 'for': 'php' }
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'vue'] }
+    Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'vue.html.javascript.css'] }
+    Plug 'Robzz/deoplete-omnisharp', { 'for': 'cs' }
+    Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp'] }
 else
     Plug 'Valloric/YouCompleteMe'
     " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
@@ -171,6 +173,7 @@ Plug 'xolox/vim-lua-ftplugin', { 'for': 'lua' }
 " NeoBundle 'othree/html5.vim'
 " NeoBundleLazy 'm2mdas/phpcomplete-extended'
 " Plug 'shawncplus/phpcomplete.vim'
+Plug 'halftan/vim-javacomplete2', { 'for': 'java' }
 
 " Editing
 Plug 'tomtom/tcomment_vim'
@@ -181,7 +184,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'jiangmiao/auto-pairs'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Plug 'terryma/vim-multiple-cursors'
-Plug 'mattn/emmet-vim', { 'for': ['xml', 'html', 'php', 'vue'] }
+Plug 'mattn/emmet-vim', { 'for': ['xml', 'html', 'php', 'vue.html.javascript.css'] }
 " Plug 'xolox/vim-easytags'
 
 " Navigating
@@ -190,6 +193,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'ag.vim'
 Plug 'majutsushi/tagbar'
 " Plug 'spolu/dwm.vim'
+Plug 'airblade/vim-rooter'
 
 " Tools & wrappers
 Plug 'tpope/vim-fugitive'
@@ -253,6 +257,8 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 " Plug 'superbrothers/vim-vimperator'
 Plug 'posva/vim-vue'
 Plug 'elzr/vim-json'
+Plug 'OrangeT/vim-csharp'
+Plug 'tfnico/vim-gradle'
 
 " Color schemes
 " Plug 'altercation/vim-colors-solarized'
@@ -377,6 +383,7 @@ augroup filetype_indent
     au FileType coffee,jade setl sw=2 ts=2 sts=2 et
     au FileType asm setl sw=4 ts=4 sts=4 noet
     au FileType neosnippet setl noet
+    au FileType java setl noet
 
     au FileType gitcommit setlocal spell
 augroup END
@@ -453,27 +460,28 @@ if (!has('gui'))
     let g:acp_enableAtStartup = 0
 endif
 let g:deoplete#enable_at_startup = 1
-" let g:deoplete#omni#input_patterns = {}
-" let g:deoplete#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-" let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
-" let g:deoplete#omni#input_patterns.php = '\h[a-zA-Z_]*|[^. \t]->(.*)?|\h\w*::(.*)?'
 
-" let g:deoplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
-" let g:deoplete#force_omni_input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-" let g:deoplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" let g:deoplete#omni#input_patterns.php = '\w+|[^. \t]->\w*|\w+::\w*'
 
 let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['ultisnips', 'buffer']
-let g:deoplete#sources.php = ['padawan', 'ultisnips']
-let g:deoplete#sources.python = ['jedi', 'ultisnips']
-let g:deoplete#sources.go = ['go', 'ultisnips']
+let g:deoplete#sources._ = ['ultisnips', 'buffer', 'file']
+let g:deoplete#sources.php = ['omni', 'ultisnips', 'file']
+let g:deoplete#sources.python = ['jedi', 'ultisnips', 'file']
+let g:deoplete#sources.go = ['go', 'ultisnips', 'file']
+let g:deoplete#sources.cs = ['cs', 'buffer', 'ultisnips', 'file']
+let g:deoplete#sources.c = ['clang2', 'buffer', 'ultisnips', 'file']
+let g:deoplete#sources.cpp = ['clang2', 'buffer', 'ultisnips', 'file']
+let g:deoplete#sources.objc = ['clang2', 'buffer', 'ultisnips', 'file']
+let g:deoplete#sources.objcpp = ['clang2', 'buffer', 'ultisnips', 'file']
+let g:deoplete#sources.java = ['javacomplete2', 'buffer', 'ultisnips', 'file']
 if (exists('g:deoplete_loaded') && g:deoplete_loaded)
     call deoplete#custom#set('_', 'matchers', ['matcher_length', 'matcher_full_fuzzy'])
     call deoplete#custom#set('_', 'disabled_syntaxes', ['String'])
     call deoplete#custom#set('_', 'converters', ['converter_remove_overlap', 'converter_remove_paren'])
     call deoplete#custom#set('_', 'sorters', ['sorter_rank', 'sorter_word'])
-	call deoplete#custom#set('ultisnips', 'rank', 1000)
-	call deoplete#custom#set('buffer', 'rank', 100)
+    call deoplete#custom#set('ultisnips', 'rank', 1000)
+    call deoplete#custom#set('buffer', 'rank', 100)
+    call deoplete#custom#set('around', 'rank', 200)
 endif
 
 " -------------
@@ -503,7 +511,7 @@ let g:syntastic_cpp_checkers = ["clang++"]
 let g:syntastic_cpp_compiler = "clang++"
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 " Python Options
-let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_checkers = ['flake8']
 " PHP Options
 let g:syntastic_php_checkers = ['php']
 " JS Options
@@ -513,6 +521,9 @@ let g:syntastic_vue_checkers = ['eslint']
 " let g:syntastic_go_checkers = ['gometalinter']
 
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " proprietary attribute \"bs-"]
+
+let g:syntastic_java_checkers=['javac']
+let g:syntastic_java_javac_config_file_enabled=1
 
 " Tagbar ----------------
 let g:tagbar_left = 1
@@ -654,7 +665,7 @@ let g:ycm_semantic_triggers.php =
             \ ['->', '::', 'use ', 'namespace ', '\']
 
 " deoplete tern
-let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx', 'vue']
+let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx', 'vue.html.javascript.css']
 
 " deoplete-go
 let g:deoplete#sources#go#gocode_binary = '/Users/halftan/goworkspace/bin/gocode'
@@ -662,3 +673,13 @@ let g:deoplete#sources#go#use_cache = 1
 let g:deoplete#sources#go#json_directory = '/Users/halftan/temp/.gocode'
 let g:deoplete#sources#go#pointer = 1
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+
+" OmniSharp
+let g:OmniSharp_host = "http://localhost:2000"
+
+" javacomplete2
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+" Neovim python
+let g:python_host_prog = '/Users/halftan/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/halftan/.pyenv/versions/neovim3/bin/python'

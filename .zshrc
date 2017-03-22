@@ -57,7 +57,7 @@ export MANPATH=""
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git extract sudo history history-substring-search autojump golang tig composer)
+plugins=(git extract sudo history history-substring-search autojump golang tig composer pyenv gitignore laravel5)
 
 if [[ -e ~/.pythonrc ]] then
     export PYTHONSTARTUP=~/.pythonrc
@@ -68,7 +68,7 @@ if type go &> /dev/null; then
         mkdir $HOME/goworkspace
     fi
     export GOBIN=$HOME/goworkspace/bin
-    export GOPATH=$HOME/goworkspace:$HOME/git/goprojects
+    export GOPATH=$HOME/git/leafserver:$HOME/goworkspace:$HOME/git/goprojects
     export GOROOT=`go env GOROOT`
     export PATH=$GOBIN:$PATH
 fi
