@@ -208,11 +208,9 @@ endif
 " -------------
 " NeoSnippet
 " -------------
-" if !has('nvim')
-"     imap <C-K>      <Plug>(neosnippet_expand_or_jump)
-"     smap <C-K>      <Plug>(neosnippet_expand_or_jump)
-"     xmap <C-K>      <Plug>(neosnippet_expand_target)
-" endif
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " -------------
 " UltiSnips
@@ -323,7 +321,11 @@ endif
 nmap <leader>ip :!itunes pause<cr>
 nmap <leader>il :!itunes play<cr>
 
+nmap <leader>jf :%!python -m json.tool<cr>
+
 " command! StartPadawan call deoplete#sources#padawan#StartServer()
 " command! StopPadawan call deoplete#sources#padawan#StopServer()
 " command! RestartPadawan call deoplete#sources#padawan#RestartServer()
 
+" Jump to the first placeholder by typing `<C-k>`.
+" autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)

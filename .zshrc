@@ -50,8 +50,8 @@ alias ohmyzsh="${EDITOR} ~/.oh-my-zsh"
 
 # Customize to your needs...
 # export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/usr/bin/vendor_perl
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
-export PATH=/usr/local/opt/go/libexec/bin:$HOME/bin:/usr/local/sbin:$PATH
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+PATH=/usr/local/opt/go/libexec/bin:$HOME/bin:/usr/local/sbin:$PATH
 export MANPATH=""
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
@@ -70,7 +70,7 @@ if type go &> /dev/null; then
     export GOBIN=$HOME/goworkspace/bin
     export GOPATH=$HOME/git/leafserver:$HOME/goworkspace:$HOME/git/goprojects
     export GOROOT=`go env GOROOT`
-    export PATH=$GOBIN:$PATH
+    PATH=$GOBIN:$PATH
 fi
 
 if type sw_vers &> /dev/null; then
@@ -78,7 +78,7 @@ if type sw_vers &> /dev/null; then
     export JAVA_HOME=$(/usr/libexec/java_home)
     # export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
     plugins=($plugins brew)
-    export PATH="$(brew --prefix vim)/bin:$PATH"
+    PATH="$(brew --prefix vim)/bin:$PATH"
 else
     # Linux
     ngvim() { gvim > /dev/null 2>&1 $@ }
@@ -127,4 +127,5 @@ if type sw_vers &> /dev/null; then
 fi
 
 export TERM=xterm-256color
+export -U PATH
 

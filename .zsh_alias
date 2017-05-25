@@ -26,7 +26,7 @@ alias ptest="phpunit --verbose --bootstrap tests/bootstrap.php"
 alias ss-local="ss-local -c ~/.shadowsocks.json"
 alias ss-tunnel="ss-tunnel -U -c ~/.shadowsocks.json -L 8.8.8.8:53 -b 0.0.0.0 -l 5300"
 
-alias youtube-dl-proxy="youtube-dl --proxy=127.0.0.1:8080"
+alias youtube-dl-proxy="youtube-dl --proxy=127.0.0.1:18080"
 
 if type ag &> /dev/null
 then

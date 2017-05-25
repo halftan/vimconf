@@ -154,15 +154,17 @@ Plug 'vim-scripts/progressbar-widget'
 " Plug 'phpvim/phpcd.vim', { 'for': 'php' , 'do': 'composer update'}
 if has('nvim')
     let g:deoplete_loaded=1
-    Plug 'Shougo/deoplete.nvim'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/neco-vim', { 'for': 'vim' }
     Plug 'Shougo/neco-syntax', { 'for': 'vim' }
+    Plug 'Shougo/neosnippet' | Plug 'honza/vim-snippets'
     Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
-    " Plug 'halftan/deoplete-padawan', { 'for': 'php' }
+    Plug 'halftan/deoplete-padawan', { 'for': 'php' }
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
     Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'vue.html.javascript.css'] }
-    Plug 'Robzz/deoplete-omnisharp', { 'for': 'cs' }
+    Plug 'dimixar/deoplete-omnisharp', { 'for': 'cs' }
     Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp'] }
+    Plug 'mitsuse/autocomplete-swift', { 'for': ['swift'] }
 else
     Plug 'Valloric/YouCompleteMe'
     " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
@@ -182,7 +184,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'jiangmiao/auto-pairs'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'mattn/emmet-vim', { 'for': ['xml', 'html', 'php', 'vue.html.javascript.css'] }
 " Plug 'xolox/vim-easytags'
@@ -245,6 +247,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/vim-peekaboo'
 " Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 " Plug 'bling/vim-bufferline'
+Plug 'kien/rainbow_parentheses.vim'
 
 
 " Filetype plugins & syntaxes
@@ -396,6 +399,7 @@ augroup filetype_specs
     " au FileType lua NeoBundleSource "vim-lua-ftplugin"
     " au FileType javascript NeoBundleSource "marijnh/tern_for_vim"
     au FileType html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
+    au FileType scheme,lisp RainbowParenthesesToggle
 augroup END
 
 " UltiSnips config Here ------------
@@ -442,9 +446,13 @@ let g:nerdtree_tabs_smart_startup_focus = 2
 let g:ycm_confirm_extra_conf = 1
 
 " NeoSnippets ----------------
-let g:neosnippet#snippets_directory = "~/.vim/snips"
+let g:neosnippet#snippets_directory = ["~/.vim/snips", "~/.vim/bundle/vim-snippets/snippets"]
 let g:neosnippet#edit_options_split = 1
 let g:neosnippet#edit_options_vertical = 1
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#disable_runtime_snippets = {
+            \   '_' : 1,
+            \ }
 
 " NeoComplete ----------------
 augroup OmniCompleteOpts
@@ -461,25 +469,31 @@ if (!has('gui'))
 endif
 let g:deoplete#enable_at_startup = 1
 
-" let g:deoplete#omni#input_patterns.php = '\w+|[^. \t]->\w*|\w+::\w*'
+let g:deoplete#omni#input_patterns = {}
+" let g:deoplete#omni#input_patterns.php = '[a-zA-Z_0-9]+|[^. \t]->(.*)?|\w*::(.*)?'
+" let g:deoplete#omni#input_patterns.php = '\h[a-zA-Z_]*|[^. \t]->(.*)?|\h\w*::(.*)?'
+
+let g:deoplete#omni#functions = {}
+" let g:deoplete#omni#functions.php = 'eclim#php#complete#CodeComplete'
 
 let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['ultisnips', 'buffer', 'file']
-let g:deoplete#sources.php = ['omni', 'ultisnips', 'file']
-let g:deoplete#sources.python = ['jedi', 'ultisnips', 'file']
-let g:deoplete#sources.go = ['go', 'ultisnips', 'file']
-let g:deoplete#sources.cs = ['cs', 'buffer', 'ultisnips', 'file']
-let g:deoplete#sources.c = ['clang2', 'buffer', 'ultisnips', 'file']
-let g:deoplete#sources.cpp = ['clang2', 'buffer', 'ultisnips', 'file']
-let g:deoplete#sources.objc = ['clang2', 'buffer', 'ultisnips', 'file']
-let g:deoplete#sources.objcpp = ['clang2', 'buffer', 'ultisnips', 'file']
-let g:deoplete#sources.java = ['javacomplete2', 'buffer', 'ultisnips', 'file']
+let g:deoplete#sources._ = ['buffer', 'file', 'neosnippet']
+let g:deoplete#sources.php = ['padawan']
+let g:deoplete#sources.python = ['jedi', 'file']
+let g:deoplete#sources.go = ['go', 'file']
+let g:deoplete#sources.cs = ['cs', 'buffer', 'file']
+let g:deoplete#sources.c = ['clang2', 'buffer', 'file']
+let g:deoplete#sources.cpp = ['clang2', 'buffer', 'file']
+let g:deoplete#sources.objc = ['clang2', 'buffer', 'file']
+let g:deoplete#sources.objcpp = ['clang2', 'buffer', 'file']
+let g:deoplete#sources.java = ['javacomplete2', 'buffer', 'file']
+let g:deoplete#sources.swift = ['swift', 'buffer', 'file']
 if (exists('g:deoplete_loaded') && g:deoplete_loaded)
     call deoplete#custom#set('_', 'matchers', ['matcher_length', 'matcher_full_fuzzy'])
     call deoplete#custom#set('_', 'disabled_syntaxes', ['String'])
     call deoplete#custom#set('_', 'converters', ['converter_remove_overlap', 'converter_remove_paren'])
     call deoplete#custom#set('_', 'sorters', ['sorter_rank', 'sorter_word'])
-    call deoplete#custom#set('ultisnips', 'rank', 1000)
+    call deoplete#custom#set('neosnippet', 'rank', 1000)
     call deoplete#custom#set('buffer', 'rank', 100)
     call deoplete#custom#set('around', 'rank', 200)
 endif
@@ -683,3 +697,8 @@ autocmd FileType java setlocal omnifunc=javacomplete#Complete
 " Neovim python
 let g:python_host_prog = '/Users/halftan/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/halftan/.pyenv/versions/neovim3/bin/python'
+
+" Singl compile
+call SingleCompile#SetCompilerTemplate('swift', 'swift', 'swift compiler', 'swiftc', '', '$(FILE_EXEC)$')
+call SingleCompile#SetOutfile('swift', 'swift', '$(FILE_EXEC)$')
+call SingleCompile#ChooseCompiler('swift', 'swift')
