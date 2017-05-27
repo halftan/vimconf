@@ -52,51 +52,29 @@ alias ohmyzsh="${EDITOR} ~/.oh-my-zsh"
 # export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/usr/bin/vendor_perl
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 PATH=/usr/local/opt/go/libexec/bin:$HOME/bin:/usr/local/sbin:$PATH
-export MANPATH=""
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git extract sudo history history-substring-search autojump golang tig composer pyenv gitignore laravel5)
+plugins=(zsh_reload git extract sudo history-substring-search autojump golang tig gitignore laravel5 npm pip)
 
-if [[ -e ~/.pythonrc ]] then
-    export PYTHONSTARTUP=~/.pythonrc
-fi
+export GOBIN=$HOME/goworkspace/bin
+export GOPATH=$HOME/git/leafserver:$HOME/goworkspace:$HOME/git/goprojects
+export GOROOT=`go env GOROOT`
+PATH=$GOBIN:$PATH
 
-if type go &> /dev/null; then
-    if [[ ! -d $HOME/goworkspace ]]; then
-        mkdir $HOME/goworkspace
-    fi
-    export GOBIN=$HOME/goworkspace/bin
-    export GOPATH=$HOME/git/leafserver:$HOME/goworkspace:$HOME/git/goprojects
-    export GOROOT=`go env GOROOT`
-    PATH=$GOBIN:$PATH
-fi
-
-if type sw_vers &> /dev/null; then
+if [[ -e /usr/bin/sw_vers ]]; then
     # Mac OS X
     export JAVA_HOME=$(/usr/libexec/java_home)
+    export ON_MAC_OS=1
     # export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
     plugins=($plugins brew)
-    PATH="$(brew --prefix vim)/bin:$PATH"
+    # PATH="$(brew --prefix vim)/bin:$PATH"
+
 else
     # Linux
     ngvim() { gvim > /dev/null 2>&1 $@ }
     plugins=($plugins systemd)
-fi
-
-if type npm &> /dev/null; then
-    plugins=($plugins npm)
-fi
-
-if type pip &> /dev/null; then
-    plugins=($plugins pip virtualenv)
-    eval "$(pip completion --zsh)"
-fi
-
-if type grunt &> /dev/null; then
-    # Load grunt completion
-    eval "$(grunt --completion=zsh)"
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -105,27 +83,40 @@ if [[ -e ~/.zsh_alias ]]; then
     . ~/.zsh_alias
 fi
 
+if [[ $ON_MAC_OS ]]; then
+    LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+    if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+        . $LUNCHY_DIR/lunchy-completion.zsh
+    fi
+    if [[ -e /usr/local/opt/coreutils ]]; then
+        PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+        MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+        unalias ls
+        alias ls="ls --color=auto"
+        alias find="gfind"
+        alias xargs="gxargs"
+        alias locate="glocate"
+    fi
+fi
+
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if type sw_vers &> /dev/null; then
-    # Mac OS X settings
-    if [[ -d /usr/local/opt/coreutils ]]; then
-        PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-        MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-        alias ls="ls --color=auto"
-    fi
-
-    if type lunchy &> /dev/null; then
-        LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
-        if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
-            . $LUNCHY_DIR/lunchy-completion.zsh
-        fi
-    fi
-fi
-
 export TERM=xterm-256color
 export -U PATH
+export -U MANPATH
+
+if [[ -d $HOME/.pyenv ]]; then
+    PATH=$HOME/.pyenv/bin:$PATH
+    eval "$(pyenv init - zsh)"
+    eval "$(pyenv virtualenv-init - zsh)"
+fi
+
+function pyenv_prompt_info() {
+    echo "$(pyenv version-name)"
+}
+
+export HOMEBREW_NO_AUTO_UPDATE=1
 

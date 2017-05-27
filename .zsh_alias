@@ -3,22 +3,17 @@ alias la="ls -lAh"
 alias sl="ls"
 alias glglr="git log --oneline --graph --left-right"
 
-if type sw_vers &> /dev/null; then
+if [[ $ON_MAC_OS ]]; then
 
   alias flushdns="sudo killall -HUP mDNSResponder"
   alias routes="netstat -nrfinet"
   alias eclimd="~/eclipse/php-neon/Eclipse.app/Contents/Eclipse/eclimd"
-
-  if brew list | grep findutils > /dev/null; then
-    alias find="gfind"
-    alias xargs="gxargs"
-    alias locate="glocate"
-  fi
-
   alias ldd="otool -L"
+
 else
   alias open="xdg-open"
 fi
+
 alias zrestart="exec $SHELL"
 alias mt="multitail --mergeall"
 alias ptest="phpunit --verbose --bootstrap tests/bootstrap.php"
@@ -28,12 +23,7 @@ alias ss-tunnel="ss-tunnel -U -c ~/.shadowsocks.json -L 8.8.8.8:53 -b 0.0.0.0 -l
 
 alias youtube-dl-proxy="youtube-dl --proxy=127.0.0.1:18080"
 
-if type ag &> /dev/null
-then
-  alias psg="ps aux|ag"
-else
-  alias psg="ps aux|grep -i"
-fi
+alias psg="ps aux|ag"
 
 function randmac() {
   openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
