@@ -19,7 +19,7 @@ nmap j gj
 nmap k gk
 " file save
 nmap <Leader>fs :w<cr>
-nmap <Leader>ev :tabe $MYVIMRC<cr>
+nmap <Leader>ev :tabe ~/.vimrc<cr>
 nmap <Leader>em :tabe ~/.vim/vimrc.d/mapping.vim<cr>
 nmap <Leader>sv :so $MYVIMRC<cr>
 nmap <Leader>sm :so ~/.vim/vimrc.d/mapping.vim<cr>

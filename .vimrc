@@ -192,7 +192,7 @@ Plug 'mattn/emmet-vim', { 'for': ['xml', 'html', 'php', 'vue.html.javascript.css
 " Navigating
 Plug 'Lokaltog/vim-easymotion'
 " Plug 'mileszs/ack.vim'
-Plug 'ag.vim'
+Plug 'vim-scripts/ag.vim'
 Plug 'majutsushi/tagbar'
 " Plug 'spolu/dwm.vim'
 Plug 'airblade/vim-rooter'
@@ -272,13 +272,13 @@ Plug 'joshdick/onedark.vim'
 
 " Text Objects
 Plug 'wellle/targets.vim'
-Plug 'matchit.zip'
+Plug 'vim-scripts/matchit.zip'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'          "ii ai
 " Plug 'kana/vim-textobj-line'            "al il
 " Plug 'kana/vim-textobj-entire'          "ae ie
 Plug 'bkad/CamelCaseMotion'             ",w ,b
-Plug 'argtextobj.vim'                   "via vaa da ca
+Plug 'vim-scripts/argtextobj.vim'                   "via vaa da ca
 Plug 'nelstrom/vim-textobj-rubyblock'   "vir var
 Plug 'lucapette/vim-textobj-underscore' " a_, i_
 
