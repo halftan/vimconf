@@ -682,9 +682,9 @@ let g:ycm_semantic_triggers.php =
 let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx', 'vue.html.javascript.css']
 
 " deoplete-go
-let g:deoplete#sources#go#gocode_binary = '/Users/halftan/goworkspace/bin/gocode'
+let g:deoplete#sources#go#gocode_binary = $HOME.'/goworkspace/bin/gocode'
 let g:deoplete#sources#go#use_cache = 1
-let g:deoplete#sources#go#json_directory = '/Users/halftan/temp/.gocode'
+let g:deoplete#sources#go#json_directory = $HOME.'/temp/.gocode'
 let g:deoplete#sources#go#pointer = 1
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
@@ -695,8 +695,8 @@ let g:OmniSharp_host = "http://localhost:2000"
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 " Neovim python
-let g:python_host_prog = '/Users/halftan/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/halftan/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
 
 " Singl compile
 call SingleCompile#SetCompilerTemplate('swift', 'swift', 'swift compiler', 'swiftc', '', '$(FILE_EXEC)$')
