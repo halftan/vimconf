@@ -56,7 +56,7 @@ PATH=/usr/local/opt/go/libexec/bin:$HOME/bin:/usr/local/sbin:$PATH
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(zsh_reload git extract sudo history-substring-search autojump golang tig gitignore laravel5 npm pip)
+plugins=(zsh_reload git extract sudo history history-substring-search composer autojump golang tig gitignore laravel5 npm pip)
 
 export GOBIN=$HOME/goworkspace/bin
 export GOPATH=$HOME/git/leafserver:$HOME/goworkspace:$HOME/git/goprojects
