@@ -220,7 +220,7 @@ Plug 'hlissner/vim-forrestgump'
 "             \     'filetypes' : ['markdown'],
 "             \    },
 "             \ }
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'mzlogin/vim-markdown-toc'
 
