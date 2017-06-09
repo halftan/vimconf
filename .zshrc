@@ -114,6 +114,10 @@ if [[ -d $HOME/.pyenv ]]; then
     eval "$(pyenv virtualenv-init - zsh)"
 fi
 
+if [[ -e /usr/local/bin/yarn ]]; then
+    PATH=$(yarn global bin):$PATH
+fi
+
 function pyenv_prompt_info() {
     echo "$(pyenv version-name)"
 }

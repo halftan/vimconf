@@ -157,7 +157,7 @@ if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/neco-vim', { 'for': 'vim' }
     Plug 'Shougo/neco-syntax', { 'for': 'vim' }
-    Plug 'Shougo/neosnippet' | Plug 'honza/vim-snippets'
+    " Plug 'Shougo/neosnippet' | Plug 'honza/vim-snippets'
     Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
     Plug 'halftan/deoplete-padawan', { 'for': 'php' }
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
@@ -184,7 +184,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'jiangmiao/auto-pairs'
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'mattn/emmet-vim', { 'for': ['xml', 'html', 'php', 'vue.html.javascript.css'] }
 " Plug 'xolox/vim-easytags'
@@ -386,7 +386,7 @@ augroup filetype_indent
     au FileType coffee,jade setl sw=2 ts=2 sts=2 et
     au FileType asm setl sw=4 ts=4 sts=4 noet
     au FileType neosnippet setl noet
-    au FileType java setl noet
+    au FileType java setl sw=4 ts=4 sts=4 et
 
     au FileType gitcommit setlocal spell
 augroup END
@@ -477,10 +477,10 @@ let g:deoplete#omni#functions = {}
 " let g:deoplete#omni#functions.php = 'eclim#php#complete#CodeComplete'
 
 let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['buffer', 'file', 'neosnippet']
-let g:deoplete#sources.php = ['padawan']
-let g:deoplete#sources.python = ['jedi', 'file']
-let g:deoplete#sources.go = ['go', 'file']
+let g:deoplete#sources._ = ['buffer', 'file', 'ultisnips']
+let g:deoplete#sources.php = ['padawan', 'buffer']
+let g:deoplete#sources.python = ['jedi', 'buffer', 'file']
+let g:deoplete#sources.go = ['go', 'buffer', 'file']
 let g:deoplete#sources.cs = ['cs', 'buffer', 'file']
 let g:deoplete#sources.c = ['clang2', 'buffer', 'file']
 let g:deoplete#sources.cpp = ['clang2', 'buffer', 'file']
@@ -493,9 +493,10 @@ if (exists('g:deoplete_loaded') && g:deoplete_loaded)
     call deoplete#custom#set('_', 'disabled_syntaxes', ['String'])
     call deoplete#custom#set('_', 'converters', ['converter_remove_overlap', 'converter_remove_paren'])
     call deoplete#custom#set('_', 'sorters', ['sorter_rank', 'sorter_word'])
-    call deoplete#custom#set('neosnippet', 'rank', 1000)
+    " call deoplete#custom#set('neosnippet', 'rank', 1000)
     call deoplete#custom#set('buffer', 'rank', 100)
     call deoplete#custom#set('around', 'rank', 200)
+    call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 endif
 
 " -------------
@@ -693,6 +694,7 @@ let g:OmniSharp_host = "http://localhost:2000"
 
 " javacomplete2
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
+let g:JavaComplete_GradleExecutable = './gradlew'
 
 " Neovim python
 let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
