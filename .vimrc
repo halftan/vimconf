@@ -148,6 +148,7 @@ endif
 " NeoBundle 'L9'
 Plug 'xolox/vim-misc'
 Plug 'vim-scripts/progressbar-widget'
+Plug 'tpope/vim-dispatch'
 
 " Completion
 " Plug 'padawan-php/padawan.vim'
@@ -159,16 +160,20 @@ if has('nvim')
     Plug 'Shougo/neco-syntax', { 'for': 'vim' }
     " Plug 'Shougo/neosnippet' | Plug 'honza/vim-snippets'
     Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
-    Plug 'halftan/deoplete-padawan', { 'for': 'php' }
+    " Plug 'halftan/deoplete-padawan', { 'for': 'php' }
+    Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
     Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'vue.html.javascript.css'] }
-    Plug 'dimixar/deoplete-omnisharp', { 'for': 'cs' }
+    Plug 'Robzz/deoplete-omnisharp', { 'for': 'cs' }
     Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp'] }
     Plug 'mitsuse/autocomplete-swift', { 'for': ['swift'] }
+    Plug 'rafaelndev/deoplete-laravel-plugin', { 'for': 'php', 'do': 'composer install' }
 else
     Plug 'Valloric/YouCompleteMe'
     " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 endif
+
+Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
 " NeoBundle 'osyo-manga/vim-marching'
 " Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
 Plug 'xolox/vim-lua-ftplugin', { 'for': 'lua' }
@@ -223,6 +228,7 @@ Plug 'hlissner/vim-forrestgump'
 " Plug 'wakatime/vim-wakatime'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'mzlogin/vim-markdown-toc'
+Plug 'editorconfig/editorconfig-vim'
 
 " Fuzzy search
 Plug 'kien/ctrlp.vim'
@@ -262,6 +268,7 @@ Plug 'posva/vim-vue'
 Plug 'elzr/vim-json'
 Plug 'OrangeT/vim-csharp'
 Plug 'tfnico/vim-gradle'
+Plug 'lervag/vimtex', { 'for': 'tex' }
 
 " Color schemes
 " Plug 'altercation/vim-colors-solarized'
@@ -478,7 +485,7 @@ let g:deoplete#omni#functions = {}
 
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = ['buffer', 'file', 'ultisnips']
-let g:deoplete#sources.php = ['padawan', 'buffer']
+let g:deoplete#sources.php = ['phpcd', 'buffer']
 let g:deoplete#sources.python = ['jedi', 'buffer', 'file']
 let g:deoplete#sources.go = ['go', 'buffer', 'file']
 let g:deoplete#sources.cs = ['cs', 'buffer', 'file']
@@ -497,6 +504,8 @@ if (exists('g:deoplete_loaded') && g:deoplete_loaded)
     call deoplete#custom#set('buffer', 'rank', 100)
     call deoplete#custom#set('around', 'rank', 200)
     call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+    let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+    " let g:deoplete#ignore_sources.php = ['phpcd']
 endif
 
 " -------------
@@ -510,6 +519,12 @@ let g:marching_include_paths = [
             \ "/usr/include/c++/4.9.2"
             \]
 let g:marching_enable_neocomplete = 1
+
+"""""""""""""""""""""
+"  deoplete-clang2  "
+"""""""""""""""""""""
+let g:deoplete#sources#clang#executable = "/usr/bin/clang"
+let g:deoplete#sources#clang#flags = ['-darwin=10.12']
 
 " -------------
 " Syntastic
@@ -704,3 +719,7 @@ let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
 call SingleCompile#SetCompilerTemplate('swift', 'swift', 'swift compiler', 'swiftc', '', '$(FILE_EXEC)$')
 call SingleCompile#SetOutfile('swift', 'swift', '$(FILE_EXEC)$')
 call SingleCompile#ChooseCompiler('swift', 'swift')
+
+" OmniSharp
+let g:OmniSharp_selector_ui = 'fzf'    " Use fzf.vim
+" let g:OmniSharp_server_type = 'roslyn'

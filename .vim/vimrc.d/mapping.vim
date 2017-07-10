@@ -323,6 +323,9 @@ nmap <leader>il :!itunes play<cr>
 
 nmap <leader>jf :%!python -m json.tool<cr>
 
+" Indent file
+nmap <leader>if gg=G
+
 " command! StartPadawan call deoplete#sources#padawan#StartServer()
 " command! StopPadawan call deoplete#sources#padawan#StopServer()
 " command! RestartPadawan call deoplete#sources#padawan#RestartServer()

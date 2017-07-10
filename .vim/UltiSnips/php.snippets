@@ -40,4 +40,18 @@ snippet ppes "<?= ?>" i
 <?= ${1:$var} ?>
 endsnippet
 
+snippet pif "php template if" i
+<?php if ($1): ?>
+$2
+<?php endif ?>
+endsnippet
+
+snippet pifelse "php template if else" i
+<?php if ($1): ?>
+$2
+<?php else: ?>
+$3
+<?php endif ?>
+endsnippet
+
 # :vim:ft=snippets:
