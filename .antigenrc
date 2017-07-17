@@ -1,0 +1,30 @@
+# vim:ft=zsh
+antigen use oh-my-zsh
+
+antigen bundles <<EOBUNDLES
+
+zsh_reload
+extract
+sudo
+history
+history-substring-search
+composer
+autojump
+golang
+tig
+gitignore
+git
+laravel5
+npm
+pip
+yarn
+pyenv
+
+zsh-users/zsh-syntax-highlighting
+denysdovhan/gitio-zsh
+
+EOBUNDLES
+
+antigen theme skylerlee/zeta-zsh-theme zeta
+
+antigen apply
