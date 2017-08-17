@@ -69,8 +69,8 @@ function pyenv_prompt_info() {
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
-PATH=/usr/local/opt/go/libexec/bin:$HOME/bin:/usr/local/sbin:$PATH
+PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+PATH=$PATH:/usr/local/opt/go/libexec/bin:$HOME/bin:/usr/local/sbin
 
 export GOBIN=$HOME/goworkspace/bin
 export GOPATH=$HOME/git/leafserver:$HOME/goworkspace:$HOME/git/goprojects
