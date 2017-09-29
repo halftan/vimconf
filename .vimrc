@@ -173,6 +173,7 @@ else
     " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 endif
 
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
 " NeoBundle 'osyo-manga/vim-marching'
 " Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
@@ -497,7 +498,7 @@ let g:deoplete#sources.java = ['javacomplete2', 'buffer', 'file']
 let g:deoplete#sources.swift = ['swift', 'buffer', 'file']
 if (exists('g:deoplete_loaded') && g:deoplete_loaded)
     call deoplete#custom#set('_', 'matchers', ['matcher_length', 'matcher_full_fuzzy'])
-    call deoplete#custom#set('_', 'disabled_syntaxes', ['String'])
+    " call deoplete#custom#set('_', 'disabled_syntaxes', ['String'])
     call deoplete#custom#set('_', 'converters', ['converter_remove_overlap', 'converter_remove_paren'])
     call deoplete#custom#set('_', 'sorters', ['sorter_rank', 'sorter_word'])
     " call deoplete#custom#set('neosnippet', 'rank', 1000)
@@ -723,3 +724,9 @@ call SingleCompile#ChooseCompiler('swift', 'swift')
 " OmniSharp
 let g:OmniSharp_selector_ui = 'fzf'    " Use fzf.vim
 " let g:OmniSharp_server_type = 'roslyn'
+
+" vim-jedi
+let g:jedi#completions_enabled = 0
+let g:jedi#goto_command = "<Leader>jd"
+let g:jedi#goto_assignments_command = "<Leader>ja"
+autocmd BufWinEnter '__doc__' setlocal bufhidden=delete

@@ -198,11 +198,19 @@ nmap <Leader>mp :LivedownToggle<CR>
 "             \ deoplete#mappings#manual_complete()
 
 if (exists('g:deoplete_loaded') && g:deoplete_loaded)
-    inoremap <silent><expr> <C-space> deoplete#mappings#manual_complete()
+    inoremap <silent><expr> <C-space> deoplete#manual_complete()
     inoremap <expr><C-g> deoplete#undo_completion()
     inoremap <expr><C-l> deoplete#refresh()
-    imap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
+    " imap <expr><TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
     inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    inoremap <silent><expr> <TAB>
+                \ pumvisible() ? "\<C-n>" :
+                \ <SID>check_back_space() ? "\<TAB>" :
+                \ deoplete#mappings#manual_complete()
+    function! s:check_back_space() abort "{{{
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction"}}}
 endif
 
 " -------------
@@ -251,8 +259,8 @@ nmap <Leader>tt :TagbarToggle<cr>
 
 " FileType specific map {{{"
 " au FileType php nmap <leader>jd :PhpSearchContext -a tabedit <c-r>=expand("<cword>")<cr><cr>
-au FileType php nmap <leader>jd :PhpSearchContext <c-r>=expand("<cword>") . " -a tabedit -s project"<cr><cr>
-au FileType php nmap <leader>js :PhpSearch -p <c-r>=expand("<cword>") . " -a tabedit -t "<cr>
+" au FileType php nmap <leader>jd :PhpSearchContext <c-r>=expand("<cword>") . " -a tabedit -s project"<cr><cr>
+" au FileType php nmap <leader>js :PhpSearch -p <c-r>=expand("<cword>") . " -a tabedit -t "<cr>
 " }}} "
 
 

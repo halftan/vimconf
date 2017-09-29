@@ -48,3 +48,7 @@ noproxy () {
   unset https_proxy
   echo "HTTP Proxy off"
 }
+
+gpref() {
+    git push origin HEAD:refs/for/$(git_current_branch)
+}
