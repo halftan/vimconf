@@ -94,10 +94,10 @@ if [[ -e ~/.zsh_alias ]]; then
 fi
 
 if [[ $ON_MAC_OS ]]; then
-    LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
-    if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
-        . $LUNCHY_DIR/lunchy-completion.zsh
-    fi
+    # LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+    # if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+    #     . $LUNCHY_DIR/lunchy-completion.zsh
+    # fi
     if [[ -e /usr/local/opt/coreutils ]]; then
         PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
         MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
