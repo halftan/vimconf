@@ -498,7 +498,7 @@ let g:deoplete#sources.java = ['javacomplete2', 'buffer', 'file']
 let g:deoplete#sources.swift = ['swift', 'buffer', 'file']
 if (exists('g:deoplete_loaded') && g:deoplete_loaded)
     call deoplete#custom#set('_', 'matchers', ['matcher_length', 'matcher_full_fuzzy'])
-    " call deoplete#custom#set('_', 'disabled_syntaxes', ['String'])
+    call deoplete#custom#set('_', 'disabled_syntaxes', ['String'])
     call deoplete#custom#set('_', 'converters', ['converter_remove_overlap', 'converter_remove_paren'])
     call deoplete#custom#set('_', 'sorters', ['sorter_rank', 'sorter_word'])
     " call deoplete#custom#set('neosnippet', 'rank', 1000)

@@ -83,27 +83,21 @@ function! eclim#lang#CodeComplete(command, findstart, base, ...) " {{{
       return
     endif
 
-    " let open_paren = getline('.') =~ '\%' . col('.') . 'c\s*('
-    " let close_paren = getline('.') =~ '\%' . col('.') . 'c\s*(\s*)'
+    let open_paren = getline('.') =~ '\%' . col('.') . 'c\s*('
+    let close_paren = getline('.') =~ '\%' . col('.') . 'c\s*(\s*)'
 
     for result in results
       let word = result.completion
 
-      " strip off parens
-      let word = substitute(word, '(.\+)\?', '', '')
+      " strip off close paren if necessary.
+      if word =~ ')$' && close_paren
+        let word = strpart(word, 0, strlen(word) - 1)
+      endif
 
-      " " strip off close paren if necessary.
-      " if word =~ ')$' && close_paren
-      "   let word = strpart(word, 0, strlen(word) - 1)
-      " endif
-      "
-      " " strip off open paren if necessary.
-      " if word =~ '($' && open_paren
-      "   let word = strpart(word, 0, strlen(word) - 1)
-      " endif
-
-      " strip off whitespaces.
-      let word = substitute(word, '^\s*\(.\{-}\)(\?)\?\s*$', '\1', '')
+      " strip off open paren if necessary.
+      if word =~ '($' && open_paren
+        let word = strpart(word, 0, strlen(word) - 1)
+      endif
 
       let menu = eclim#html#util#HtmlToText(result.menu)
       let info = has_key(result, 'info') ?
@@ -471,11 +465,12 @@ function! eclim#lang#Refactor(command)
       endfor
     finally
       exec curwin . 'winc w'
-      if cwd_return
-        exec 'cd ' . escape(cwd, ' ')
-      endif
     endtry
   finally
+    if cwd_return
+      exec 'cd ' . escape(cwd, ' ')
+    endif
+
     " re-enable swap files
     let bufnum = 1
     while bufnum <= bufend
