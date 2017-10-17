@@ -14,7 +14,6 @@ golang
 tig
 gitignore
 git
-laravel5
 npm
 pip
 yarn
@@ -22,6 +21,7 @@ pyenv
 
 zsh-users/zsh-syntax-highlighting
 denysdovhan/gitio-zsh
+halftan/zsh_laravel5_plugin
 
 EOBUNDLES
 
