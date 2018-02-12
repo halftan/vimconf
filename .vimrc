@@ -259,7 +259,7 @@ Plug 'kien/rainbow_parentheses.vim'
 
 " Filetype plugins & syntaxes
 Plug 'sheerun/vim-polyglot'
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 Plug '2072/PHP-Indenting-for-VIm'
 " Plug 'pangloss/vim-javascript'
 " Plug 'dag/vim-fish'
@@ -647,7 +647,7 @@ let g:EclimFileTypeValidate = 0
 let g:html_exclude_tags = ['html', 'body', 'style', 'script', 'source']
 " let g:html_indent_inctags = ['th', 'td']
 " let g:html_indent_tags = 'th\|td'
-let g:polyglot_disabled = ['coffee-script', 'javascript']
+let g:polyglot_disabled = ['coffee-script']
 let g:jsx_ext_required = 0
 
 " omni completion ----
@@ -730,3 +730,7 @@ let g:jedi#completions_enabled = 0
 let g:jedi#goto_command = "<Leader>jd"
 let g:jedi#goto_assignments_command = "<Leader>ja"
 autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
+
+" vim-vue
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+let g:vue_disable_pre_processors=1

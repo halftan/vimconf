@@ -107,6 +107,18 @@ if [[ $ON_MAC_OS ]]; then
         alias xargs="gxargs"
         alias locate="glocate"
     fi
+
+    if [[ -e /usr/local/opt/node@8/bin ]]; then
+        PATH=/usr/local/opt/node@8/bin:$PATH
+    fi
+
+    if [[ -e /usr/local/bin/gtar ]]; then
+        alias tar="gtar"
+    fi
+fi
+
+if [[ -e /usr/local/bin/yarn ]]; then
+    PATH=$(yarn global bin):$PATH
 fi
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
@@ -114,7 +126,3 @@ test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_in
 export TERM=xterm-256color
 export -U PATH
 export -U MANPATH
-
-if [[ -e /usr/local/bin/yarn ]]; then
-    PATH=$(yarn global bin):$PATH
-fi
