@@ -25,6 +25,8 @@ alias youtube-dl-proxy="youtube-dl --proxy=127.0.0.1:18080"
 
 alias psg="ps aux|ag -v ag|ag"
 
+alias rg="rg -S"
+
 function randmac() {
   openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
 }
