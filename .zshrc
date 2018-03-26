@@ -11,7 +11,7 @@ fi
 
 if type nvim &> /dev/null; then
     export EDITOR=nvim
-else type vim &> /dev/null; then
+elif type vim &> /dev/null; then
     export EDITOR=vim
 fi
 
