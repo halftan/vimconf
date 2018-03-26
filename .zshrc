@@ -1,13 +1,17 @@
 # Path to your oh-my-zsh configuration.
 # ZSH=$HOME/.oh-my-zsh
 
+export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/go/libexec/bin:$HOME/bin:/usr/local/sbin
+
 # Load antigen on macOS
 if [[ -f  /usr/local/share/antigen/antigen.zsh ]] then
     source /usr/local/share/antigen/antigen.zsh
     antigen init ~/.antigenrc
 fi
 
-if type vim &> /dev/null; then
+if type nvim &> /dev/null; then
+    export EDITOR=nvim
+else type vim &> /dev/null; then
     export EDITOR=vim
 fi
 
@@ -68,9 +72,6 @@ function pyenv_prompt_info() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export HOMEBREW_NO_AUTO_UPDATE=1
-
-PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-PATH=$PATH:/usr/local/opt/go/libexec/bin:$HOME/bin:/usr/local/sbin
 
 export GOBIN=$HOME/goworkspace/bin
 export GOPATH=$HOME/git/leafserver:$HOME/goworkspace:$HOME/git/goprojects
