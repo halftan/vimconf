@@ -18,6 +18,7 @@ npm
 pip
 yarn
 pyenv
+rbenv
 
 zsh-users/zsh-syntax-highlighting
 denysdovhan/gitio-zsh
