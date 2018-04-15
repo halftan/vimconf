@@ -116,10 +116,10 @@ if [[ $ON_MAC_OS ]]; then
     if [[ -e /usr/local/bin/gtar ]]; then
         alias tar="gtar"
     fi
-fi
-
-if [[ -e /usr/local/bin/yarn ]]; then
-    PATH=$(yarn global bin):$PATH
+else
+    if [[ -e /usr/local/bin/yarn ]]; then
+        PATH=$(yarn global bin):$PATH
+    fi
 fi
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh

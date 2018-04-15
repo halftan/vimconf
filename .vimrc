@@ -497,14 +497,14 @@ let g:deoplete#sources.objcpp = ['clang2', 'buffer', 'file']
 let g:deoplete#sources.java = ['javacomplete2', 'buffer', 'file']
 let g:deoplete#sources.swift = ['swift', 'buffer', 'file']
 if (exists('g:deoplete_loaded') && g:deoplete_loaded)
-    call deoplete#custom#set('_', 'matchers', ['matcher_length', 'matcher_full_fuzzy'])
-    call deoplete#custom#set('_', 'disabled_syntaxes', ['String'])
-    call deoplete#custom#set('_', 'converters', ['converter_remove_overlap', 'converter_remove_paren'])
-    call deoplete#custom#set('_', 'sorters', ['sorter_rank', 'sorter_word'])
-    " call deoplete#custom#set('neosnippet', 'rank', 1000)
-    call deoplete#custom#set('buffer', 'rank', 100)
-    call deoplete#custom#set('around', 'rank', 200)
-    call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+    call deoplete#custom#source('_', 'matchers', ['matcher_length', 'matcher_full_fuzzy'])
+    call deoplete#custom#source('_', 'disabled_syntaxes', ['String'])
+    call deoplete#custom#source('_', 'converters', ['converter_remove_overlap', 'converter_remove_paren'])
+    call deoplete#custom#source('_', 'sorters', ['sorter_rank', 'sorter_word'])
+    " call deoplete#custom#source('neosnippet', 'rank', 1000)
+    call deoplete#custom#source('buffer', 'rank', 100)
+    call deoplete#custom#source('around', 'rank', 200)
+    call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
     let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
     " let g:deoplete#ignore_sources.php = ['phpcd']
 endif
@@ -648,7 +648,8 @@ let g:html_exclude_tags = ['html', 'body', 'style', 'script', 'source']
 " let g:html_indent_inctags = ['th', 'td']
 " let g:html_indent_tags = 'th\|td'
 let g:polyglot_disabled = ['coffee-script']
-let g:jsx_ext_required = 0
+let g:jsx_ext_required = 1
+let g:jsx_pragma_required = 1
 
 " omni completion ----
 
