@@ -23,7 +23,9 @@ alias ss-tunnel="ss-tunnel -U -c ~/.shadowsocks.json -L 8.8.8.8:53 -b 0.0.0.0 -l
 
 alias youtube-dl-proxy="youtube-dl --proxy=127.0.0.1:18080"
 
-alias psg="ps aux|ag -v ag|ag"
+function psg() {
+  ps aux | ag -v "ag $1" | ag $1
+}
 
 alias rg="rg -S"
 

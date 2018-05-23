@@ -17,6 +17,8 @@ imap jk <ESC>l
 
 nmap j gj
 nmap k gk
+nnoremap <silent><Leader>] <c-w><c-]><c-w>T
+
 " file save
 nmap <Leader>fs :w<cr>
 nmap <Leader>ev :tabe ~/.vimrc<cr>

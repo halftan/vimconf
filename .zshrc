@@ -74,7 +74,7 @@ function pyenv_prompt_info() {
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 export GOBIN=$HOME/goworkspace/bin
-export GOPATH=$HOME/git/leafserver:$HOME/goworkspace:$HOME/git/goprojects
+export GOPATH=$HOME/goworkspace:$HOME/git/goprojects
 export GOROOT=`go env GOROOT`
 PATH=$GOBIN:$PATH
 

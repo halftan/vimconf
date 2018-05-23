@@ -165,6 +165,7 @@ if has('nvim')
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
     Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'vue.html.javascript.css'] }
     Plug 'Robzz/deoplete-omnisharp', { 'for': 'cs' }
+    " Plug 'halftan/deoplete-solargraph', { 'for': ['ruby', 'eruby'] }
     Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp'] }
     Plug 'mitsuse/autocomplete-swift', { 'for': ['swift'] }
     Plug 'rafaelndev/deoplete-laravel-plugin', { 'for': 'php', 'do': 'composer install' }
@@ -449,6 +450,8 @@ let g:NERDTreeWinSize = 33
 let g:nerdtree_tabs_open_on_console_startup = 1
 let g:nerdtree_tabs_focus_on_files = 1
 let g:nerdtree_tabs_smart_startup_focus = 2
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeMinimalUI=1
 
 " YouCompleteMe ---------------
 let g:ycm_confirm_extra_conf = 1
@@ -477,7 +480,6 @@ if (!has('gui'))
 endif
 let g:deoplete#enable_at_startup = 1
 
-let g:deoplete#omni#input_patterns = {}
 " let g:deoplete#omni#input_patterns.php = '[a-zA-Z_0-9]+|[^. \t]->(.*)?|\w*::(.*)?'
 " let g:deoplete#omni#input_patterns.php = '\h[a-zA-Z_]*|[^. \t]->(.*)?|\h\w*::(.*)?'
 
@@ -487,7 +489,7 @@ let g:deoplete#omni#functions = {}
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = ['buffer', 'file', 'ultisnips']
 let g:deoplete#sources.php = ['phpcd', 'buffer']
-let g:deoplete#sources.python = ['jedi', 'buffer', 'file']
+let g:deoplete#sources.python = ['jedi', 'buffer', 'file', 'ultisnips']
 let g:deoplete#sources.go = ['go', 'buffer', 'file']
 let g:deoplete#sources.cs = ['cs', 'buffer', 'file']
 let g:deoplete#sources.c = ['clang2', 'buffer', 'file']
@@ -496,6 +498,8 @@ let g:deoplete#sources.objc = ['clang2', 'buffer', 'file']
 let g:deoplete#sources.objcpp = ['clang2', 'buffer', 'file']
 let g:deoplete#sources.java = ['javacomplete2', 'buffer', 'file']
 let g:deoplete#sources.swift = ['swift', 'buffer', 'file']
+let g:deoplete#sources.ruby = ['tag', 'omni', 'buffer', 'file', 'ultisnips']
+let g:deoplete#sources.eruby = ['tag', 'omni', 'buffer', 'file', 'ultisnips']
 if (exists('g:deoplete_loaded') && g:deoplete_loaded)
     call deoplete#custom#source('_', 'matchers', ['matcher_length', 'matcher_full_fuzzy'])
     call deoplete#custom#source('_', 'disabled_syntaxes', ['String'])
@@ -507,6 +511,11 @@ if (exists('g:deoplete_loaded') && g:deoplete_loaded)
     call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
     let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
     " let g:deoplete#ignore_sources.php = ['phpcd']
+    call deoplete#custom#var('omni', 'input_patterns', {
+                \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
+                \ 'java': '[^. *\t]\.\w*',
+                \ 'php': '\w+|[^. \t]->\w*|\w+::\w*',
+                \})
 endif
 
 " -------------

@@ -19,6 +19,9 @@ pip
 yarn
 pyenv
 rbenv
+rails
+docker
+docker-compose
 
 zsh-users/zsh-syntax-highlighting
 denysdovhan/gitio-zsh
