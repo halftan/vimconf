@@ -163,7 +163,8 @@ if has('nvim')
     " Plug 'halftan/deoplete-padawan', { 'for': 'php' }
     Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'vue.html.javascript.css'] }
+    " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'vue.html.javascript.css'] }
+    Plug 'wokalski/autocomplete-flow'
     Plug 'Robzz/deoplete-omnisharp', { 'for': 'cs' }
     " Plug 'halftan/deoplete-solargraph', { 'for': ['ruby', 'eruby'] }
     Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp'] }
@@ -498,6 +499,7 @@ let g:deoplete#sources.objc = ['clang2', 'buffer', 'file']
 let g:deoplete#sources.objcpp = ['clang2', 'buffer', 'file']
 let g:deoplete#sources.java = ['javacomplete2', 'buffer', 'file']
 let g:deoplete#sources.swift = ['swift', 'buffer', 'file']
+let g:deoplete#sources.javascript = ['flow', 'buffer', 'file', 'ultisnips']
 let g:deoplete#sources.ruby = ['tag', 'omni', 'buffer', 'file', 'ultisnips']
 let g:deoplete#sources.eruby = ['tag', 'omni', 'buffer', 'file', 'ultisnips']
 if (exists('g:deoplete_loaded') && g:deoplete_loaded)
