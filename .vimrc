@@ -560,7 +560,7 @@ let g:syntastic_php_checkers = ['php']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_vue_checkers = ['eslint']
 " Go options
-" let g:syntastic_go_checkers = ['gometalinter']
+let g:syntastic_go_checkers = ['golint']
 
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " proprietary attribute \"bs-"]
 
