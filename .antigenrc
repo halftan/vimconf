@@ -26,6 +26,7 @@ docker-compose
 zsh-users/zsh-syntax-highlighting
 denysdovhan/gitio-zsh
 halftan/zsh_laravel5_plugin
+Tarrasch/zsh-autoenv
 
 EOBUNDLES
 

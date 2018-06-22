@@ -109,10 +109,6 @@ if [[ $ON_MAC_OS ]]; then
         alias locate="glocate"
     fi
 
-    if [[ -e /usr/local/opt/node@8/bin ]]; then
-        PATH=/usr/local/opt/node@8/bin:$PATH
-    fi
-
     if [[ -e /usr/local/bin/gtar ]]; then
         alias tar="gtar"
     fi
