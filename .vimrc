@@ -157,7 +157,7 @@ if has('nvim')
     let g:deoplete_loaded=1
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/neco-vim', { 'for': 'vim' }
-    Plug 'Shougo/neco-syntax', { 'for': 'vim' }
+    Plug 'Shougo/neco-syntax'
     " Plug 'Shougo/neosnippet' | Plug 'honza/vim-snippets'
     Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
     " Plug 'halftan/deoplete-padawan', { 'for': 'php' }
@@ -179,11 +179,12 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
 " NeoBundle 'osyo-manga/vim-marching'
 " Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
-Plug 'xolox/vim-lua-ftplugin', { 'for': 'lua' }
+Plug 'xolox/vim-lua-ftplugin', { 'for': ['lua', 'nginx'] }
 " NeoBundle 'othree/html5.vim'
 " NeoBundleLazy 'm2mdas/phpcomplete-extended'
 " Plug 'shawncplus/phpcomplete.vim'
 Plug 'halftan/vim-javacomplete2', { 'for': 'java' }
+" Plug 'spacewander/openresty-vim', { 'for': 'nginx' }
 
 " Editing
 Plug 'tomtom/tcomment_vim'
@@ -262,8 +263,9 @@ Plug 'kien/rainbow_parentheses.vim'
 " Filetype plugins & syntaxes
 Plug 'sheerun/vim-polyglot'
 " Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
+Plug 'othree/javascript-libraries-syntax.vim'
 Plug '2072/PHP-Indenting-for-VIm'
-" Plug 'pangloss/vim-javascript'
 " Plug 'dag/vim-fish'
 Plug 'fatih/vim-go', { 'for': 'go' }
 " Plug 'superbrothers/vim-vimperator'
@@ -412,6 +414,11 @@ augroup filetype_specs
     au FileType scheme,lisp RainbowParenthesesToggle
 augroup END
 
+au BufRead,BufNewFile nginx.d/*.conf set ft=nginx
+au BufRead,BufNewFile *.nginx set ft=nginx
+au BufRead,BufNewFile *.nginx.* set ft=nginx
+au BufRead,BufNewFile nginx.conf.* set ft=nginx
+
 " UltiSnips config Here ------------
 
 let g:UltiSnipsEditSplit = "vertical"
@@ -487,21 +494,24 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni#functions = {}
 " let g:deoplete#omni#functions.php = 'eclim#php#complete#CodeComplete'
 
+let s:default_sources = ['syntax', 'tag', 'buffer', 'file', 'ultisnips']
 let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['buffer', 'file', 'ultisnips']
+let g:deoplete#sources._ = s:default_sources
 let g:deoplete#sources.php = ['phpcd', 'buffer']
-let g:deoplete#sources.python = ['jedi', 'buffer', 'file', 'ultisnips']
-let g:deoplete#sources.go = ['go', 'buffer', 'file']
-let g:deoplete#sources.cs = ['cs', 'buffer', 'file']
-let g:deoplete#sources.c = ['clang2', 'buffer', 'file']
-let g:deoplete#sources.cpp = ['clang2', 'buffer', 'file']
-let g:deoplete#sources.objc = ['clang2', 'buffer', 'file']
-let g:deoplete#sources.objcpp = ['clang2', 'buffer', 'file']
-let g:deoplete#sources.java = ['javacomplete2', 'buffer', 'file']
-let g:deoplete#sources.swift = ['swift', 'buffer', 'file']
-let g:deoplete#sources.javascript = ['flow', 'buffer', 'file', 'ultisnips']
-let g:deoplete#sources.ruby = ['tag', 'omni', 'buffer', 'file', 'ultisnips']
-let g:deoplete#sources.eruby = ['tag', 'omni', 'buffer', 'file', 'ultisnips']
+let g:deoplete#sources.python = ['jedi'] + s:default_sources
+let g:deoplete#sources.go = ['go'] + s:default_sources
+let g:deoplete#sources.cs = ['cs'] + s:default_sources
+let g:deoplete#sources.c = ['clang2'] + s:default_sources
+let g:deoplete#sources.cpp = ['clang2'] + s:default_sources
+let g:deoplete#sources.objc = ['clang2'] + s:default_sources
+let g:deoplete#sources.objcpp = ['clang2'] + s:default_sources
+let g:deoplete#sources.java = ['javacomplete2'] + s:default_sources
+let g:deoplete#sources.swift = ['swift'] + s:default_sources
+let g:deoplete#sources.javascript = ['flow'] + s:default_sources
+let g:deoplete#sources.ruby = ['omni'] + s:default_sources
+let g:deoplete#sources.eruby = ['omni'] + s:default_sources
+let g:deoplete#sources.lua = ['omni'] + s:default_sources
+" let g:deoplete#sources.nginx = ['syntax', 'buffer', 'file', 'ultisnips']
 if (exists('g:deoplete_loaded') && g:deoplete_loaded)
     call deoplete#custom#source('_', 'matchers', ['matcher_length', 'matcher_full_fuzzy'])
     call deoplete#custom#source('_', 'disabled_syntaxes', ['String'])
@@ -518,6 +528,9 @@ if (exists('g:deoplete_loaded') && g:deoplete_loaded)
                 \ 'java': '[^. *\t]\.\w*',
                 \ 'php': '\w+|[^. \t]->\w*|\w+::\w*',
                 \})
+    call deoplete#custom#var('omni', 'functions', {
+                \ 'lua': 'xolox#lua#omnifunc',
+                \ })
 endif
 
 " -------------
@@ -658,7 +671,7 @@ let g:EclimFileTypeValidate = 0
 let g:html_exclude_tags = ['html', 'body', 'style', 'script', 'source']
 " let g:html_indent_inctags = ['th', 'td']
 " let g:html_indent_tags = 'th\|td'
-let g:polyglot_disabled = ['coffee-script']
+let g:polyglot_disabled = ['coffee-script', 'javascript']
 let g:jsx_ext_required = 1
 let g:jsx_pragma_required = 1
 
@@ -747,3 +760,15 @@ autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
 " vim-vue
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 let g:vue_disable_pre_processors=1
+
+" vim-lua-ftplugin
+let g:lua_check_syntax = 0
+let g:lua_complete_omni = 1
+let g:lua_complete_dynamic = 0
+let g:lua_define_completion_mappings = 0
+
+" neco-syntax
+let g:necosyntax#max_syntax_lines = 9999
+
+" javascript libraries
+let g:used_javascript_libs = 'underscore'
