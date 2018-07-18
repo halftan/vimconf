@@ -164,14 +164,15 @@ if has('nvim')
     Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
     " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'vue.html.javascript.css'] }
-    Plug 'wokalski/autocomplete-flow'
+    " Plug 'wokalski/autocomplete-flow'
     Plug 'Robzz/deoplete-omnisharp', { 'for': 'cs' }
     " Plug 'halftan/deoplete-solargraph', { 'for': ['ruby', 'eruby'] }
     Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp'] }
     Plug 'mitsuse/autocomplete-swift', { 'for': ['swift'] }
     Plug 'rafaelndev/deoplete-laravel-plugin', { 'for': 'php', 'do': 'composer install' }
+    Plug 'mhartington/nvim-typescript', { 'do': './install.sh', 'for': ['typescript', 'javascript', 'vue'] }
 else
-    Plug 'Valloric/YouCompleteMe'
+    " Plug 'Valloric/YouCompleteMe'
     " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 endif
 
@@ -205,6 +206,7 @@ Plug 'vim-scripts/ag.vim'
 Plug 'majutsushi/tagbar'
 " Plug 'spolu/dwm.vim'
 Plug 'airblade/vim-rooter'
+" Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 
 " Tools & wrappers
 Plug 'tpope/vim-fugitive'
@@ -219,7 +221,7 @@ Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
 " Plug 'tpope/vim-rbenv'
 Plug 'xuhdev/SingleCompile'
 " Plug 'DBGp-X-client'
-Plug 'joonty/vdebug'
+" Plug 'joonty/vdebug'
 Plug 'hlissner/vim-forrestgump'
 " if has('mac')
 "     Plug 'rizzatti/dash.vim'
@@ -267,13 +269,15 @@ Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug '2072/PHP-Indenting-for-VIm'
 " Plug 'dag/vim-fish'
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go'
 " Plug 'superbrothers/vim-vimperator'
 Plug 'posva/vim-vue'
 Plug 'elzr/vim-json'
 Plug 'OrangeT/vim-csharp'
 Plug 'tfnico/vim-gradle'
-Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'lervag/vimtex'
+Plug 'lepture/vim-jinja'
+Plug 'HerringtonDarkholme/yats.vim'
 
 " Color schemes
 " Plug 'altercation/vim-colors-solarized'
@@ -424,6 +428,11 @@ au BufRead,BufNewFile nginx.conf.* set ft=nginx
 let g:UltiSnipsEditSplit = "vertical"
 " let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/UltiSnips"
 " let g:UltiSnipsDontReverseSearchPath="1"
+let g:ultisnips_javascript = {
+            \ 'keyword-spacing': 'always',
+            \ 'semi': 'always',
+            \ 'space-before-function-paren': 'never',
+            \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   emmet                                    "
@@ -507,7 +516,8 @@ let g:deoplete#sources.objc = ['clang2'] + s:default_sources
 let g:deoplete#sources.objcpp = ['clang2'] + s:default_sources
 let g:deoplete#sources.java = ['javacomplete2'] + s:default_sources
 let g:deoplete#sources.swift = ['swift'] + s:default_sources
-let g:deoplete#sources.javascript = ['flow'] + s:default_sources
+let g:deoplete#sources.javascript = ['typescript'] + s:default_sources
+let g:deoplete#sources.typescript = ['typescript'] + s:default_sources
 let g:deoplete#sources.ruby = ['omni'] + s:default_sources
 let g:deoplete#sources.eruby = ['omni'] + s:default_sources
 let g:deoplete#sources.lua = ['omni'] + s:default_sources
@@ -722,7 +732,9 @@ let g:ycm_semantic_triggers.php =
             \ ['->', '::', 'use ', 'namespace ', '\']
 
 " deoplete tern
-let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx', 'vue.html.javascript.css']
+let g:tern#filetypes = ['javascript', 'vue.html.javascript.css']
+let g:tern#command = ['tern']
+let g:tern#arguments = ['--presistent']
 
 " deoplete-go
 let g:deoplete#sources#go#gocode_binary = $HOME.'/goworkspace/bin/gocode'
@@ -768,7 +780,12 @@ let g:lua_complete_dynamic = 0
 let g:lua_define_completion_mappings = 0
 
 " neco-syntax
-let g:necosyntax#max_syntax_lines = 9999
+let g:necosyntax#max_syntax_lines = 99999
 
 " javascript libraries
 let g:used_javascript_libs = 'underscore'
+
+" nvim_typescript
+let g:nvim_typescript#default_mappings = 1
+let g:nvim_typescript#javascript_support = 1
+let g:nvim_typescript#vue_support = 1

@@ -1,0 +1,75 @@
+priority -50
+
+############
+#  COMMON  #
+############
+
+# The smart snippets use a global options called
+# "g:ultisnips_javascript.{option}" which can control the format
+# of trailing semicolon, space before function paren, etc.
+#
+# e.g.
+# let g:ultisnips_javascript = {
+#      \ 'keyword-spacing': 'always',
+#      \ 'semi': 'never',
+#      \ 'space-before-function-paren': 'always',
+#      \ }
+
+global !p
+from javascript_snippets import (
+	semi, space_before_function_paren, keyword_spacing
+)
+endglobal
+
+snippet des "describe" b
+describe('${1:description}', function`!p snip.rv = space_before_function_paren(snip)`() {
+	${VISUAL}$0
+})`!p snip.rv = semi(snip)`
+endsnippet
+
+snippet desa "describe arrow function" w
+describe('${1:description}', () => {
+	${VISUAL}$0
+})`!p snip.rv = semi(snip)`
+endsnippet
+
+snippet it "it" b
+it('${1:description}', ${2:async }function`!p snip.rv = space_before_function_paren(snip)`() {
+	${VISUAL}$0
+})`!p snip.rv = semi(snip)`
+endsnippet
+
+snippet itp "it pending" b
+it('${1:description}');
+${VISUAL}$0
+endsnippet
+
+snippet ita "it arrow function" b
+it('${1:description}', ${2:async }() => {
+	${VISUAL}$0
+})`!p snip.rv = semi(snip)`
+endsnippet
+
+snippet before "before" b
+before(${1:'${2:description}', }${3:async }function`!p snip.rv = space_before_function_paren(snip)`() {
+	${VISUAL}$0
+})`!p snip.rv = semi(snip)`
+endsnippet
+
+snippet beforeeach "beforeEach" b
+beforeEach(${1:'${2:description}', }${3:async }function`!p snip.rv = space_before_function_paren(snip)`() {
+	${VISUAL}$0
+})`!p snip.rv = semi(snip)`
+endsnippet
+
+snippet after "after" b
+after(${1:'${2:description}', }${3:async }function`!p snip.rv = space_before_function_paren(snip)`() {
+	${VISUAL}$0
+})`!p snip.rv = semi(snip)`
+endsnippet
+
+snippet aftereach "afterEach" b
+afterEach(${1:'${2:description}', }${3:async }function`!p snip.rv = space_before_function_paren(snip)`() {
+	${VISUAL}$0
+})`!p snip.rv = semi(snip)`
+endsnippet
