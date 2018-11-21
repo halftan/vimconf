@@ -3,12 +3,10 @@ antigen use oh-my-zsh
 
 antigen bundles <<EOBUNDLES
 
-zsh_reload
 extract
 sudo
 history
 history-substring-search
-composer
 autojump
 golang
 tig
@@ -18,18 +16,20 @@ npm
 pip
 yarn
 pyenv
-rbenv
-rails
 docker
 docker-compose
+kubectl
+terraform
 
 zsh-users/zsh-syntax-highlighting
 denysdovhan/gitio-zsh
-halftan/zsh_laravel5_plugin
 Tarrasch/zsh-autoenv
 
 EOBUNDLES
 
-antigen theme skylerlee/zeta-zsh-theme zeta
+antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
 
 antigen apply
+
+# halftan/zsh_laravel5_plugin
+# minikube

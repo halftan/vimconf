@@ -253,7 +253,7 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'scrooloose/syntastic'
 
 " Visual helpers
-" Plug 'nathanaelkane/vim-indent-guides'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/vim-peekaboo'
@@ -323,7 +323,7 @@ Plug 'lucapette/vim-textobj-underscore' " a_, i_
 call plug#end()
 
 " filetype plugin indent on     " required!
-" syntax enable
+syntax enable
 
 set path+=$PWD/include,$PWD/../include,/usr/local/include
             \,/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
@@ -455,8 +455,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#default#section_use_groupitems = 0
 let g:airline#extensions#tabline#fnametruncate = 20
 
-" easy motion leader key -----------------
+" easymotion -----------------
 " let g:EasyMotion_leader_key = '\'
+let g:EasyMotion_smartcase = 1
 
 " Vim-rspec Here ------------
 let g:rspec_command = "!bundle exec rspec {spec}"
@@ -732,7 +733,7 @@ let g:ycm_semantic_triggers.php =
             \ ['->', '::', 'use ', 'namespace ', '\']
 
 " deoplete tern
-let g:tern#filetypes = ['javascript', 'vue.html.javascript.css']
+let g:tern#filetypes = ['javascript', 'vue']
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--presistent']
 
@@ -770,7 +771,9 @@ let g:jedi#goto_assignments_command = "<Leader>ja"
 autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
 
 " vim-vue
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+" autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+autocmd FileType vue syntax sync fromstart
+autocmd FileType javascript syntax sync fromstart
 let g:vue_disable_pre_processors=1
 
 " vim-lua-ftplugin

@@ -9,9 +9,9 @@ if [[ -f  /usr/local/share/antigen/antigen.zsh ]] then
     antigen init ~/.antigenrc
 fi
 
-if type nvim &> /dev/null; then
+if [ $commands[nvim] ]; then
     export EDITOR=nvim
-elif type vim &> /dev/null; then
+elif [ $commands[vim] ]; then
     export EDITOR=vim
 fi
 
@@ -78,7 +78,7 @@ export GOPATH=$HOME/goworkspace
 export GOROOT=`go env GOROOT`
 PATH=$GOBIN:$PATH
 
-if [[ -e /usr/bin/sw_vers ]]; then
+if [ $commands[sw_vers] ]; then
     # Mac OS X
     export JAVA_HOME=$(/usr/libexec/java_home)
     export ON_MAC_OS=1
@@ -109,13 +109,17 @@ if [[ $ON_MAC_OS ]]; then
         alias locate="glocate"
     fi
 
-    if [[ -e /usr/local/bin/gtar ]]; then
+    if [ $commands[gtar] ]; then
         alias tar="gtar"
     fi
 else
-    if [[ -e /usr/local/bin/yarn ]]; then
+    if [ $commands[yarn] ]; then
         PATH=$(yarn global bin):$PATH
     fi
+fi
+
+if [ $commands[kubectl] ]; then
+    alias kc="kubectl"
 fi
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
