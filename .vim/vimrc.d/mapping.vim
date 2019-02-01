@@ -19,6 +19,10 @@ nmap j gj
 nmap k gk
 nnoremap <silent><Leader>] <c-w><c-]><c-w>T
 
+" Inplace base64 decode/encode
+vnoremap <leader>d64 c<c-r>=system('base64 --decode', @")<cr><esc>
+vnoremap <leader>e64 c<c-r>=system('base64 -w0', @")<cr><esc>
+
 " file save
 nmap <Leader>fs :w<cr>
 nmap <Leader>ev :tabe ~/.vimrc<cr>

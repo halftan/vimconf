@@ -165,7 +165,7 @@ if has('nvim')
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
     " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'vue.html.javascript.css'] }
     " Plug 'wokalski/autocomplete-flow'
-    Plug 'Robzz/deoplete-omnisharp', { 'for': 'cs' }
+    " Plug 'Robzz/deoplete-omnisharp', { 'for': 'cs' }
     " Plug 'halftan/deoplete-solargraph', { 'for': ['ruby', 'eruby'] }
     Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp'] }
     Plug 'mitsuse/autocomplete-swift', { 'for': ['swift'] }
@@ -207,6 +207,7 @@ Plug 'majutsushi/tagbar'
 " Plug 'spolu/dwm.vim'
 Plug 'airblade/vim-rooter'
 " Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+Plug 'othree/eregex.vim'
 
 " Tools & wrappers
 Plug 'tpope/vim-fugitive'

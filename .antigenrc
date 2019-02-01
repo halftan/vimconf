@@ -19,6 +19,7 @@ pyenv
 docker
 docker-compose
 kubectl
+helm
 terraform
 
 zsh-users/zsh-syntax-highlighting
