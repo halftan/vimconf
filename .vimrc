@@ -508,7 +508,7 @@ let g:deoplete#omni#functions = {}
 let s:default_sources = ['syntax', 'tag', 'buffer', 'file', 'ultisnips']
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = s:default_sources
-let g:deoplete#sources.php = ['phpcd', 'buffer']
+let g:deoplete#sources.php = ['buffer']
 let g:deoplete#sources.python = ['jedi'] + s:default_sources
 let g:deoplete#sources.go = ['go'] + s:default_sources
 let g:deoplete#sources.cs = ['cs'] + s:default_sources
@@ -534,7 +534,7 @@ if (exists('g:deoplete_loaded') && g:deoplete_loaded)
     call deoplete#custom#source('around', 'rank', 200)
     call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
     let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-    " let g:deoplete#ignore_sources.php = ['phpcd']
+    let g:deoplete#ignore_sources.php = ['omni']
     call deoplete#custom#var('omni', 'input_patterns', {
                 \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
                 \ 'java': '[^. *\t]\.\w*',
@@ -769,6 +769,7 @@ let g:OmniSharp_selector_ui = 'fzf'    " Use fzf.vim
 let g:jedi#completions_enabled = 0
 let g:jedi#goto_command = "<Leader>jd"
 let g:jedi#goto_assignments_command = "<Leader>ja"
+let g:jedi#use_tabs_not_buffers = 1
 autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
 
 " vim-vue
@@ -793,3 +794,6 @@ let g:used_javascript_libs = 'underscore'
 let g:nvim_typescript#default_mappings = 1
 let g:nvim_typescript#javascript_support = 1
 let g:nvim_typescript#vue_support = 1
+
+" editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']

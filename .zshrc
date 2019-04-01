@@ -127,3 +127,5 @@ test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_in
 export TERM=xterm-256color
 export -U PATH
 export -U MANPATH
+
+autoload -U +X bashcompinit && bashcompinit
