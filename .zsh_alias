@@ -33,6 +33,10 @@ function randmac() {
   openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
 }
 
+function i() {
+  curl https://ip.cn/$1
+}
+
 #alias for cnpm
 alias cnpm="npm --registry=https://registry.npm.taobao.org \
   --cache=$HOME/.npm/.cache/cnpm \
@@ -55,4 +59,13 @@ noproxy () {
 
 gpref() {
     git push origin HEAD:refs/for/$(git_current_branch)
+}
+
+xns() {
+    if [[ -z $1 ]]; then
+        echo Please provide a namespace
+        return
+    fi
+    echo Switching to $1
+    kubectl config set-context $(kubectl config current-context) --namespace=$1
 }

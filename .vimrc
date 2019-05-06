@@ -264,6 +264,7 @@ Plug 'kien/rainbow_parentheses.vim'
 
 
 " Filetype plugins & syntaxes
+Plug 'google/vim-jsonnet'
 Plug 'sheerun/vim-polyglot'
 " Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'

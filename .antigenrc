@@ -25,6 +25,7 @@ terraform
 zsh-users/zsh-syntax-highlighting
 denysdovhan/gitio-zsh
 Tarrasch/zsh-autoenv
+paulirish/git-open
 
 EOBUNDLES
 
