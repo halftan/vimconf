@@ -154,47 +154,53 @@ Plug 'tpope/vim-dispatch'
 " Plug 'padawan-php/padawan.vim'
 " Plug 'phpvim/phpcd.vim', { 'for': 'php' , 'do': 'composer update'}
 if has('nvim')
-    let g:deoplete_loaded=1
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'Shougo/neco-vim', { 'for': 'vim' }
-    Plug 'Shougo/neco-syntax'
+    " let g:deoplete_loaded=1
+    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    " Plug 'Shougo/neco-vim', { 'for': 'vim' }
+    " Plug 'Shougo/neco-syntax'
     " Plug 'Shougo/neosnippet' | Plug 'honza/vim-snippets'
-    Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
+    " Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
     " Plug 'halftan/deoplete-padawan', { 'for': 'php' }
-    Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
-    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    " Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
+    " Plug 'zchee/deoplete-jedi', { 'for': 'python' }
     " Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'vue.html.javascript.css'] }
     " Plug 'wokalski/autocomplete-flow'
     " Plug 'Robzz/deoplete-omnisharp', { 'for': 'cs' }
     " Plug 'halftan/deoplete-solargraph', { 'for': ['ruby', 'eruby'] }
-    Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp'] }
-    Plug 'mitsuse/autocomplete-swift', { 'for': ['swift'] }
-    Plug 'rafaelndev/deoplete-laravel-plugin', { 'for': 'php', 'do': 'composer install' }
-    Plug 'mhartington/nvim-typescript', { 'do': './install.sh', 'for': ['typescript', 'javascript', 'vue'] }
+    " Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp'] }
+    " Plug 'mitsuse/autocomplete-swift', { 'for': ['swift'] }
+    " Plug 'rafaelndev/deoplete-laravel-plugin', { 'for': 'php', 'do': 'composer install' }
+    " Plug 'mhartington/nvim-typescript', { 'do': './install.sh', 'for': ['typescript', 'javascript', 'vue'] }
+    " Plug 'autozimu/LanguageClient-neovim', {
+    "             \ 'branch': 'next',
+    "             \ 'do': 'bash install.sh',
+    "             \ }
+    Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 else
     " Plug 'Valloric/YouCompleteMe'
     " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 endif
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
+" Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
 " NeoBundle 'osyo-manga/vim-marching'
 " Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
 Plug 'xolox/vim-lua-ftplugin', { 'for': ['lua', 'nginx'] }
 " NeoBundle 'othree/html5.vim'
 " NeoBundleLazy 'm2mdas/phpcomplete-extended'
 " Plug 'shawncplus/phpcomplete.vim'
-Plug 'halftan/vim-javacomplete2', { 'for': 'java' }
+" Plug 'halftan/vim-javacomplete2', { 'for': 'java' }
 " Plug 'spacewander/openresty-vim', { 'for': 'nginx' }
 
 " Editing
 Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'Raimondi/delimitMate'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
 Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'jiangmiao/auto-pairs'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'mattn/emmet-vim', { 'for': ['xml', 'html', 'php', 'vue.html.javascript.css'] }
 " Plug 'xolox/vim-easytags'
@@ -238,7 +244,7 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'editorconfig/editorconfig-vim'
 
 " Fuzzy search
-Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf.vim'
 " Plug 'Shougo/unite.vim'
 " Plug 'Shougo/unite-outline'
@@ -271,7 +277,7 @@ Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug '2072/PHP-Indenting-for-VIm'
 " Plug 'dag/vim-fish'
-Plug 'fatih/vim-go'
+" Plug 'fatih/vim-go'
 " Plug 'superbrothers/vim-vimperator'
 Plug 'posva/vim-vue'
 Plug 'elzr/vim-json'
@@ -280,6 +286,7 @@ Plug 'tfnico/vim-gradle'
 Plug 'lervag/vimtex'
 Plug 'lepture/vim-jinja'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'towolf/vim-helm'
 
 " Color schemes
 " Plug 'altercation/vim-colors-solarized'
@@ -405,6 +412,7 @@ augroup filetype_indent
     au FileType asm setl sw=4 ts=4 sts=4 noet
     au FileType neosnippet setl noet
     au FileType java setl sw=4 ts=4 sts=4 et
+    au FileType gotmpl setl sw=2 ts=2 sts=2 et
 
     au FileType gitcommit setlocal spell
 augroup END
@@ -511,7 +519,7 @@ let g:deoplete#sources = {}
 let g:deoplete#sources._ = s:default_sources
 let g:deoplete#sources.php = ['buffer']
 let g:deoplete#sources.python = ['jedi'] + s:default_sources
-let g:deoplete#sources.go = ['go'] + s:default_sources
+let g:deoplete#sources.go = ['LanguageClient'] + s:default_sources
 let g:deoplete#sources.cs = ['cs'] + s:default_sources
 let g:deoplete#sources.c = ['clang2'] + s:default_sources
 let g:deoplete#sources.cpp = ['clang2'] + s:default_sources
@@ -519,10 +527,10 @@ let g:deoplete#sources.objc = ['clang2'] + s:default_sources
 let g:deoplete#sources.objcpp = ['clang2'] + s:default_sources
 let g:deoplete#sources.java = ['javacomplete2'] + s:default_sources
 let g:deoplete#sources.swift = ['swift'] + s:default_sources
-let g:deoplete#sources.javascript = ['typescript'] + s:default_sources
-let g:deoplete#sources.typescript = ['typescript'] + s:default_sources
-let g:deoplete#sources.ruby = ['omni'] + s:default_sources
-let g:deoplete#sources.eruby = ['omni'] + s:default_sources
+let g:deoplete#sources.javascript = ['LanguageClient'] + s:default_sources
+let g:deoplete#sources.typescript = ['LanguageClient'] + s:default_sources
+let g:deoplete#sources.ruby = ['LanguageClient'] + s:default_sources
+let g:deoplete#sources.eruby = ['LanguageClient'] + s:default_sources
 let g:deoplete#sources.lua = ['omni'] + s:default_sources
 " let g:deoplete#sources.nginx = ['syntax', 'buffer', 'file', 'ultisnips']
 if (exists('g:deoplete_loaded') && g:deoplete_loaded)
@@ -798,3 +806,45 @@ let g:nvim_typescript#vue_support = 1
 
 " editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" LanguageClient
+set hidden
+
+" \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+" \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'python': ['/Users/andy.zhang/.pyenv/shims/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ 'go': ['gopls'],
+    \ }
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+" autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+" let g:airline#extensions#languageclient#enabled = 1
+
+
+"""""""""
+"  CoC  "
+"""""""""
+let g:airline#extensions#coc#enabled = 1
+call coc#add_extension('coc-json', 'coc-marketplace', 'coc-vimlsp', 'coc-tsserver',
+            \ 'coc-yaml', 'coc-python', 'coc-highlight', 'coc-snippets', 'coc-calc',
+            \ 'coc-go', 'coc-css', 'coc-git', 'coc-lists', 'coc-sh', 'coc-project',
+            \ 'coc-tabnine', 'coc-docker'
+            \ )
+
+
+function! SetupCommandAbbrs(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() ==# ":" && getcmdline() ==# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfunction
+
+" Use C to open coc config
+call SetupCommandAbbrs('C', 'CocConfig')
+call SetupCommandAbbrs('S', 'CocList snippets')
+

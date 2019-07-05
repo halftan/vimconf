@@ -5,7 +5,7 @@ alias glglr="git log --oneline --graph --left-right"
 
 if [[ $ON_MAC_OS ]]; then
 
-  alias flushdns="sudo killall -HUP mDNSResponder"
+  alias flushdns="sudo dscacheutil -flushcache"
   alias routes="netstat -nrfinet"
   alias eclimd="~/eclipse/php-neon/Eclipse.app/Contents/Eclipse/eclimd"
   alias ldd="otool -L"
@@ -68,4 +68,10 @@ xns() {
     fi
     echo Switching to $1
     kubectl config set-context $(kubectl config current-context) --namespace=$1
+}
+
+senv() {
+    set -a
+    source .env
+    set +a
 }

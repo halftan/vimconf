@@ -1,0 +1,7 @@
+{
+    "yaml.format.enable": true,
+    "yaml.schemas": {
+        "kubernetes": "*.yaml"
+    },
+    "go.commandPath": "/Users/andy.zhang/goworkspace/bin/gopls"
+}
