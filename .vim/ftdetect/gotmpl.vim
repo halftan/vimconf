@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.gotmpl set ft=gotmpl
+au BufRead,BufNewFile *.gotmpl set ft=helm

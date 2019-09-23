@@ -2,16 +2,16 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/goworkspace/src/github.com/WeConnect/concierge
+cd ~/git/wek8s-bundle
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +45 Gopkg.toml
+badd +0 ~/.gitconfig
 argglobal
-silent! argdel *
-$argadd Gopkg.toml
-edit Gopkg.toml
+%argdel
+$argadd ~/.gitconfig
+edit ~/.gitconfig
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -24,8 +24,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 204 + 119) / 238)
-exe 'vert 2resize ' . ((&columns * 33 + 119) / 238)
+exe 'vert 1resize ' . ((&columns * 210 + 122) / 244)
+exe 'vert 2resize ' . ((&columns * 33 + 122) / 244)
 argglobal
 setlocal fdm=marker
 setlocal fde=0
@@ -35,12 +35,12 @@ setlocal fdl=999
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 49 - ((48 * winheight(0) + 33) / 66)
+let s:l = 1 - ((0 * winheight(0) + 44) / 88)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-49
-normal! 03|
+1
+normal! 0
 wincmd w
 argglobal
 enew
@@ -54,8 +54,8 @@ setlocal fml=1
 setlocal fdn=20
 setlocal nofen
 wincmd w
-exe 'vert 1resize ' . ((&columns * 204 + 119) / 238)
-exe 'vert 2resize ' . ((&columns * 33 + 119) / 238)
+exe 'vert 1resize ' . ((&columns * 210 + 122) / 244)
+exe 'vert 2resize ' . ((&columns * 33 + 122) / 244)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

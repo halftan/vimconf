@@ -123,17 +123,17 @@ nmap <Leader>nr :NumbersToggle<cr>
 """"""""""""
 "  Golang  "
 """"""""""""
-augroup gomap
-    au FileType go nmap <buffer> <Leader>xx <Plug>(go-run)
-    au FileType go nmap <buffer> <Leader>gt <Plug>(go-test)
-    au FileType go nmap <buffer> <Leader>dt <Plug>(go-def-tab)
-    au FileType go nmap <buffer> <Leader>ds <Plug>(go-def-split)
-    au FileType go nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
-    au FileType go nmap <buffer> <Leader>jd <Plug>(go-def)
-    au FileType go nmap <buffer> <Leader>gd <Plug>(go-doc)
-    au FileType go nmap <buffer> <Leader>gi <Plug>(go-implements)
-    au FileType go nmap <buffer> <Leader>gr <Plug>(go-rename)
-augroup END
+" augroup gomap
+"     au FileType go nmap <buffer> <Leader>xx <Plug>(go-run)
+"     au FileType go nmap <buffer> <Leader>gt <Plug>(go-test)
+"     au FileType go nmap <buffer> <Leader>dt <Plug>(go-def-tab)
+"     au FileType go nmap <buffer> <Leader>ds <Plug>(go-def-split)
+"     au FileType go nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
+"     au FileType go nmap <buffer> <Leader>jd <Plug>(go-def)
+"     au FileType go nmap <buffer> <Leader>gd <Plug>(go-doc)
+"     au FileType go nmap <buffer> <Leader>gi <Plug>(go-implements)
+"     au FileType go nmap <buffer> <Leader>gr <Plug>(go-rename)
+" augroup END
 
 """""""""
 "  CPP  "
@@ -382,6 +382,7 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> <c-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -425,9 +426,9 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+" nmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')

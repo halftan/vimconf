@@ -1,7 +1,14 @@
 {
     "yaml.format.enable": true,
     "yaml.schemas": {
-        "kubernetes": "*.yaml"
+        "kubernetes": "*.k8s.yaml",
+        "http://json.schemastore.org/ansible-stable-2.5": "*.ansible.yaml"
     },
-    "go.commandPath": "/Users/andy.zhang/goworkspace/bin/gopls"
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "filetypes": ["go"],
+            "rootPatterns": ["go.mod", ".git/", ".hg/"]
+        }
+    }
 }

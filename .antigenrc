@@ -21,6 +21,7 @@ docker-compose
 kubectl
 helm
 terraform
+rbenv
 
 zsh-users/zsh-syntax-highlighting
 denysdovhan/gitio-zsh
