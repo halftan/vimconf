@@ -182,6 +182,8 @@ else
 endif
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Python code formatting
+Plug 'psf/black', { 'for': 'python', 'tag': '19.10b0' }
 " Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
 " NeoBundle 'osyo-manga/vim-marching'
 " Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
@@ -217,6 +219,7 @@ Plug 'othree/eregex.vim'
 
 " Tools & wrappers
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -242,6 +245,7 @@ Plug 'hlissner/vim-forrestgump'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'sotte/presenting.vim'
 
 " Fuzzy search
 " Plug 'kien/ctrlp.vim'
@@ -263,7 +267,7 @@ Plug 'scrooloose/syntastic'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 " Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 " Plug 'bling/vim-bufferline'
 Plug 'kien/rainbow_parentheses.vim'
@@ -272,12 +276,13 @@ Plug 'kien/rainbow_parentheses.vim'
 " Filetype plugins & syntaxes
 Plug 'google/vim-jsonnet'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-markdown'
 " Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug '2072/PHP-Indenting-for-VIm'
 " Plug 'dag/vim-fish'
-" Plug 'fatih/vim-go'
+Plug 'fatih/vim-go'
 " Plug 'superbrothers/vim-vimperator'
 Plug 'posva/vim-vue'
 Plug 'elzr/vim-json'
@@ -333,6 +338,9 @@ call plug#end()
 
 " filetype plugin indent on     " required!
 syntax enable
+if !exists('g:syntax\_on') | syntax on | endif
+syntax sync minlines=100000
+syntax sync fromstart
 
 set path+=$PWD/include,$PWD/../include,/usr/local/include
             \,/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
@@ -412,7 +420,7 @@ augroup filetype_indent
     au FileType asm setl sw=4 ts=4 sts=4 noet
     au FileType neosnippet setl noet
     au FileType java setl sw=4 ts=4 sts=4 et
-    au FileType gotmpl setl sw=2 ts=2 sts=2 et
+    au FileType gotmpl,helm setl sw=2 ts=2 sts=2 et
 
     au FileType gitcommit setlocal spell
 augroup END
@@ -426,6 +434,8 @@ augroup filetype_specs
     " au FileType javascript NeoBundleSource "marijnh/tern_for_vim"
     au FileType html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
     au FileType scheme,lisp RainbowParenthesesToggle
+    " Auto format python code on save
+    au BufWritePre *.py execute ':Black'
 augroup END
 
 au BufRead,BufNewFile nginx.d/*.conf set ft=nginx
@@ -601,6 +611,11 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " propr
 let g:syntastic_java_checkers=['javac']
 let g:syntastic_java_javac_config_file_enabled=1
 
+let g:syntastic_mode_map = {
+            \ "mode": "active",
+            \ "active_filetypes": [],
+            \ "passive_filetypes": ["sh"] }
+
 " Tagbar ----------------
 let g:tagbar_left = 1
 let g:tagbar_type_go = {
@@ -692,7 +707,7 @@ let g:EclimFileTypeValidate = 0
 let g:html_exclude_tags = ['html', 'body', 'style', 'script', 'source']
 " let g:html_indent_inctags = ['th', 'td']
 " let g:html_indent_tags = 'th\|td'
-let g:polyglot_disabled = ['coffee-script', 'javascript']
+let g:polyglot_disabled = ['coffee-script', 'javascript', 'markdown']
 let g:jsx_ext_required = 1
 let g:jsx_pragma_required = 1
 
@@ -762,8 +777,10 @@ autocmd FileType java setlocal omnifunc=javacomplete#Complete
 let g:JavaComplete_GradleExecutable = './gradlew'
 
 " Neovim python
-let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
+" let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
+let g:loaded_python_provider = 0
+" let g:python3_host_prog = 'python3'
 
 " Singl compile
 call SingleCompile#SetCompilerTemplate('swift', 'swift', 'swift compiler', 'swiftc', '', '$(FILE_EXEC)$')
@@ -780,6 +797,10 @@ let g:jedi#goto_command = "<Leader>jd"
 let g:jedi#goto_assignments_command = "<Leader>ja"
 let g:jedi#use_tabs_not_buffers = 1
 autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
+
+" vim-go
+let g:go_code_completion_enabled = 0
+let g:go_def_mapping_enabled = 0
 
 " vim-vue
 " autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
@@ -807,6 +828,9 @@ let g:nvim_typescript#vue_support = 1
 " editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
+" fugitive
+let g:airline#extensions#fugitiveline#enabled = 1
+
 " LanguageClient
 set hidden
 
@@ -832,8 +856,8 @@ let g:LanguageClient_serverCommands = {
 """""""""
 let g:airline#extensions#coc#enabled = 1
 call coc#add_extension('coc-json', 'coc-marketplace', 'coc-vimlsp', 'coc-tsserver',
-            \ 'coc-yaml', 'coc-python', 'coc-highlight', 'coc-snippets', 'coc-calc',
-            \ 'coc-go', 'coc-css', 'coc-git', 'coc-lists', 'coc-sh', 'coc-project',
+            \ 'coc-yaml', 'coc-highlight', 'coc-snippets', 'coc-calc',
+            \ 'coc-css', 'coc-git', 'coc-lists', 'coc-sh', 'coc-project',
             \ 'coc-tabnine', 'coc-docker'
             \ )
 

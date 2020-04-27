@@ -60,8 +60,8 @@ nmap <Leader>pt :BTags<CR>
 """"""""""""""""
 nmap s <Plug>(easymotion-s2)
 nmap t <Plug>(easymotion-t2)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+" map <Leader>j <Plug>(easymotion-j)
+" map <Leader>k <Plug>(easymotion-k)
 
 """"""""""""""""
 "  Easy Align  "

@@ -8,7 +8,15 @@
         "golang": {
             "command": "gopls",
             "filetypes": ["go"],
-            "rootPatterns": ["go.mod", ".git/", ".hg/"]
+            "rootPatterns": ["go.mod", ".git/", ".hg/"],
+            "initializationOptions": {
+                "usePlaceholders": true
+            }
         }
-    }
+    },
+    "python.jediEnabled": false,
+    "snippets.snipmate.enable": false,
+    "snippets.ultisnips.directories": [
+        "UltiSnips"
+    ]
 }

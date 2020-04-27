@@ -25,19 +25,21 @@ spec:
 				- containerPort: 8080
 endsnippet
 
-snippet dep "Deployment" !b
-apiVersion: extensions/v1beta1
+snippet dep "Deployment" !bm
+apiVersion: apps/v1
 kind: Deployment
 metadata:
 	name: ${1:some-controller}
 	namespace: ${2:default}
 spec:
 	replicas: 1
+	selector:
+		matchLabels:
+			$3
 	template:
 		metadata:
 			labels:
-				app: $1
-				tier: ${3:frontend}
+				${3:app: $1}
 		spec:
 			containers:
 			- name: ${4:name}
@@ -69,18 +71,20 @@ spec:
 endsnippet
 
 snippet depsvc "Deployment and service" !b
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
 	name: ${1:some-controller}
 	namespace: ${2:default}
 spec:
 	replicas: 1
+	selector:
+		matchLabels:
+			$3
 	template:
 		metadata:
 			labels:
-				app: $1
-				tier: ${3:frontend}
+				${3:app: $1}
 		spec:
 			containers:
 			- name: ${4:name}
@@ -103,23 +107,24 @@ spec:
 	- port: ${7:80}
 		targetPort: $6
 	selector:
-		app: $1
-		tier: $3
+		$3
 endsnippet
 
 snippet depsvcing "Deployment, service, and ingress" !b
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
 	name: ${1:some-controller}
 	namespace: ${2:default}
 spec:
 	replicas: 1
+	selector:
+		matchLabels:
+			$3
 	template:
 		metadata:
 			labels:
-				app: $1
-				tier: ${3:frontend}
+				${3:app: $1}
 		spec:
 			containers:
 			- name: ${4:name}
@@ -142,8 +147,7 @@ spec:
 	- port: ${7:80}
 		targetPort: $6
 	selector:
-		app: $1
-		tier: $3
+		$3
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -332,6 +336,27 @@ valueFrom:
 		key: ${2:key}
 endsnippet
 
+snippet cert "cert-manager certificate" !b
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+	name: ${1:name}
+	namespace: ${2:namespace}
+spec:
+	secretName: ${4:$3.tls}
+	dnsNames:
+	- ${3:some.domain.com}
+	acme:
+		config:
+		- dns01:
+				provider: ${4:prod}
+			domains: [ $3 ]
+	issuerRef:
+		name: ${5:letsencrypt}
+		kind: ClusterIssuer
+endsnippet
+
+
 snippet netp "NetworkPolicy" !b
 kind: NetworkPolicy
 apiVersion: extensions/v1beta1
@@ -353,6 +378,55 @@ livenessProbe: &probe
 		port: ${2:8080}
 		path: ${3:/}
 readinessProbe: *probe $0
+endsnippet
+
+snippet ss "StatefulSet" !b
+apiVersion: v1
+kind: Service
+metadata:
+	name: ${1:myservice}
+spec:
+	ports:
+	- port: $5
+		name: $6
+	clusterIP: None
+	selector:
+		$2
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+	name: ${1:mystatefulset}
+spec:
+	selector:
+		matchLabels:
+			$2
+	serviceName: "nginx"
+	replicas: 3 # by default is 1
+	template:
+		metadata:
+			labels:
+				${2:app: $1}
+		spec:
+			# terminationGracePeriodSeconds: 10
+			containers:
+			- name: ${3:$1}
+				image: ${4:$1}
+				ports:
+				- containerPort: ${5:80}
+					name: ${6:web}
+				volumeMounts:
+				- name: ${7:volume}
+					mountPath: ${8:/var/lib/mydata}
+	volumeClaimTemplates:
+	- metadata:
+			name: $7
+		spec:
+			accessModes: [ "ReadWriteOnce" ]
+			storageClassName: "${9:standard}"
+			resources:
+				requests:
+					storage: ${10:1G}
 endsnippet
 
 snippet res "Resources" !b
@@ -381,4 +455,160 @@ strategy:
 	rollingUpdate:
 		maxSurge: ${2:1}
 		maxUnavailable: ${3:1}$0
+endsnippet
+
+snippet atls "tls-acme annotations" !b
+annotations:
+	kubernetes.io/tls-acme: "true"
+endsnippet
+
+snippet vtls "tls-vault annotations" !b
+annotations:
+	kubernetes.io/tls-vault: "true"
+endsnippet
+
+snippet cmtls "cert-manager tls annotations" !b
+${2:annotations:
+	}certmanager.k8s.io/cluster-issuer: ${1:lets-encrypt}
+endsnippet
+
+snippet edns "external dns" !b
+annotations:
+	external-dns.alpha.kubernetes.io/hostname: ${1:myname.mydomain.com}
+endsnippet
+
+snippet role "Role" !b
+kind: ${1:Cluster}Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+	${2:namespace: ${3:default}
+	}name: ${4:configmap-updater}
+rules:
+- apiGroups: ["${5:}"]
+	resources: ["${6:configmaps}"]
+	resourceNames: ["${7:my-configmap}"]
+	verbs: [${8:"update", "get"}]
+endsnippet
+
+snippet rb "RoleBinding" !b
+# This role binding allows "jane" to read pods in the "default" namespace.
+kind: ${1:Cluster}RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+	name: ${2:read-pods}
+	${3:namespace: ${4:pods}
+}subjects:
+- kind: ${5:User|ServiceAccount|Group}
+	name: ${6:jane} # Name is case sensitive
+	apiGroup: rbac.authorization.k8s.io
+roleRef:
+	kind: ${7:Cluster}Role #this must be Role or ClusterRole
+	name: ${8:pod-reader} # this must match the name of the Role or ClusterRole you wish to bind to
+	apiGroup: rbac.authorization.k8s.io
+endsnippet
+
+snippet rbac "Role and Binding" !b
+kind: ${1:Cluster}Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+	${2:namespace: ${3:default}
+	}name: ${4:configmap-updater}
+rules:
+- apiGroups: ["${5:}"]
+	resources: ["${6:configmaps}"]
+	resourceNames: ["${7:my-configmap}"]
+	verbs: [${8:"update", "get"}]
+---
+# This role binding allows "jane" to read pods in the "default" namespace.
+kind: ${9:Cluster}RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+	name: $4
+	$2
+subjects:
+- kind: ${10:User|ServiceAccount|Group}
+	name: ${11:jane} # Name is case sensitive
+	apiGroup: rbac.authorization.k8s.io
+roleRef:
+	kind: $1Role #this must be Role or ClusterRole
+	name: $4 # this must match the name of the Role or ClusterRole you wish to bind to
+	apiGroup: rbac.authorization.k8s.io
+endsnippet
+
+snippet hpa "HorizontalPodAutoscaler" !b
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+	name: ${5:$1}
+spec:
+	scaleTargetRef:
+		apiVersion: apps/v1
+		kind: Deployment
+		name: ${1:mydeployment}
+	minReplicas: ${2:1}
+	maxReplicas: ${3:5}
+	targetCPUUtilizationPercentage: ${4:70}
+endsnippet
+
+snippet pvolm "Volume Mount and spec" !b
+	volumeMounts:
+	- name: ${1:volume}
+		mountPath: ${2:/etc/mount/path}
+		${3:subPath: ${4: key}}
+volumes: 
+- name: $1
+	${5:configMap}:
+		${6:name}: ${7:someName}
+endsnippet
+
+snippet volm "Volume Mount" !b
+- name: ${1:volume}
+	mountPath: ${2:/etc/mount/path}
+	${3:subPath: ${4: key}}
+$0
+endsnippet
+
+snippet prom "Prometheus annotations" !b
+annotations:
+	prometheus.io/scrape: "true"
+	prometheus.io/endpoint: "${1:/metrics}"
+	prometheus.io/port: "${2:8080}"
+endsnippet
+
+snippet aff "Affinitiy/Anti-Affinity" !b
+pod${1:Anti}Affinity:
+	${2:preferred|required}DuringSchedulingIgnoredDuringExecution:
+	- weight: 100
+		podAffinityTerm:
+			labelSelector:
+				matchExpressions:
+				- key: ${3:app}
+					operator: In
+					values:
+					- ${4:appname}
+			topologyKey: ${5:kubernetes.io/hostname}
+endsnippet 
+
+snippet hpa "Horizontal Pod Autoscaler" !b
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ${1:hpa-name}
+  namespace: ${2:default}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ${3:deployment-name}
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 10
+  - type: Resource
+    resource:
+    name: memory
+      targetAverageValue: 1000Mi
 endsnippet

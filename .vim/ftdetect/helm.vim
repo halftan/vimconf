@@ -1,1 +1,1 @@
-au BufRead,BufNewFile /*/wek8s-bundle/*.yaml set ft=helm
+au BufRead,BufNewFile /*/wek8s-bundle/*.yaml,helmfile.yaml set ft=helm

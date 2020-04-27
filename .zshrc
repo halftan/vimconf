@@ -72,6 +72,8 @@ function pyenv_prompt_info() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 
 export GOBIN=$HOME/goworkspace/bin
 export GOPATH=$HOME/goworkspace
@@ -128,4 +130,8 @@ export TERM=xterm-256color
 export -U PATH
 export -U MANPATH
 
+export KUBECONFIG=$HOME/.kube/oneconfig.yaml
+
 autoload -U +X bashcompinit && bashcompinit
+
+complete -o nospace -F /Users/andy.zhang/bin/aliyun aliyun
