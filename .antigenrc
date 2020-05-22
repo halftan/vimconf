@@ -22,10 +22,9 @@ kubectl
 helm
 terraform
 rbenv
-vagrant
-vagrant-prompt
 urltools
 vault
+fzf
 
 zsh-users/zsh-syntax-highlighting
 denysdovhan/gitio-zsh

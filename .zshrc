@@ -69,7 +69,8 @@ function pyenv_prompt_info() {
     echo "$(pyenv version-name)"
 }
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore-vcs --vimgrep -g !.git'
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1
