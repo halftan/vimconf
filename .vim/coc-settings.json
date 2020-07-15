@@ -18,5 +18,8 @@
     "snippets.snipmate.enable": false,
     "snippets.ultisnips.directories": [
         "UltiSnips"
-    ]
+    ],
+    "snippets.extends": {
+        "helm": ["yaml"]
+    }
 }
