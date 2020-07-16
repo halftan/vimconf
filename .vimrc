@@ -175,12 +175,11 @@ if has('nvim')
     "             \ 'branch': 'next',
     "             \ 'do': 'bash install.sh',
     "             \ }
-    Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 else
     " Plug 'Valloric/YouCompleteMe'
     " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 endif
-
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Python code formatting
 Plug 'psf/black', { 'for': 'python', 'tag': '19.10b0' }
