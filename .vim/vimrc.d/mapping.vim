@@ -31,6 +31,7 @@ nmap <Leader>sv :so $MYVIMRC<cr>
 nmap <Leader>sm :so ~/.vim/vimrc.d/mapping.vim<cr>
 
 nnoremap <silent> <Leader>/ :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent> <Leader>sc :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 " Change PWD to current where file locates.
 nmap <leader>cd :cd %:p:h<cr>
