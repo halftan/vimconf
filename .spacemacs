@@ -510,6 +510,25 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq-default
    evil-escape-key-sequence "jk")
+  (setq go-tab-width 4)
+  (setq org-superstar-headline-bullets-list '("🀙" "🀚" "🀛" "🀜" "🀝" "🀞" "🀟" "🀠" "🀡"))
+  (setq org-todo-keywords
+        '((sequence "TODO(t!)" "NEXT(n!)" "DOINGNOW(d!)" "BLOCKED(b!)" "FOLLOWUP(f!)" "|" "CANCELED(c!)" "DONE(F!)" "DELEGATED(D!)")))
+  (setq org-todo-keyword-faces
+        '(("TODO"      . org-warning)
+          ("DOINGNOW"  . "#E35DBF")
+          ("CANCELED"  . (:foreground "white" :background "#4d4d4d" :weight bold))
+          ("DELEGATED" . "pink")
+          ("NEXT"      . "#008080")))
+  ;; (setq org-superstar-special-todo-items t)
+  ;; (setq org-superstar-todo-bullet-alist
+  ;;       '(("TODO"     . "☐")
+  ;;         ("NEXT"     . "☞")
+  ;;         ("DOINGNOW" . "✈︎")
+  ;;         ("BLOCKED"  . "☕︎")
+  ;;         ("DONE"     . "☑︎︎")
+  ;;         ("CANCELED" . "☒")
+  ;;         ("FOLLOWUP" . "✍︎")))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
