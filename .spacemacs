@@ -53,9 +53,10 @@ This function should only modify configuration layer settings."
      (org :variables
           org-want-todo-bindings t)
      spacemacs-org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom
+            shell-default-term-shell "zsh")
      osx
      spell-checking
      syntax-checking
