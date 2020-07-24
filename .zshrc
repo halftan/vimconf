@@ -3,9 +3,16 @@
 
 export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/go/libexec/bin:$HOME/bin:/usr/local/sbin
 
-# Load antigen on macOS
-if [[ -f  /usr/local/share/antigen/antigen.zsh ]] then
-    source /usr/local/share/antigen/antigen.zsh
+# Load antigen
+ANTIGEN_PATH=''
+if [[ -f  /usr/local/share/antigen/antigen.zsh ]]; then
+    ANTIGEN_PATH="/usr/local/share/antigen/antigen.zsh"
+elif [[ -f /usr/share/antigen/share/antigen.zsh ]]; then
+    ANTIGEN_PATH="/usr/share/antigen/share/antigen.zsh"
+fi
+
+if [[ -n "$ANTIGEN_PATH" ]]; then
+    source "$ANTIGEN_PATH"
     antigen init ~/.antigenrc
 fi
 
@@ -76,10 +83,12 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 
-export GOBIN=$HOME/goworkspace/bin
-export GOPATH=$HOME/goworkspace
-export GOROOT=`go env GOROOT`
-PATH=$GOBIN:$PATH
+if [[ $commands[go] ]]; then
+    export GOBIN=$HOME/goworkspace/bin
+    export GOPATH=$HOME/goworkspace
+    export GOROOT=`go env GOROOT`
+    PATH=$GOBIN:$PATH
+fi
 
 if [ $commands[sw_vers] ]; then
     # Mac OS X
@@ -127,7 +136,9 @@ fi
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
-export TERM=xterm-256color
+if [[ -e "$HOME/.terminfo" ]]; then
+    export TERM=xterm-24bits
+fi
 export -U PATH
 export -U MANPATH
 
