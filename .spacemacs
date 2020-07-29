@@ -44,7 +44,11 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      helm
      (auto-completion :variables
-                      auto-completion-enable-snippets-in-popup nil)
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-enable-snippets-in-popup nil
+                      auto-completion-use-company-box t
+                      auto-completion-enable-sort-by-usage t)
      better-defaults
      emacs-lisp
      git
@@ -214,7 +218,8 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(gruvbox
-                         spacemacs-dark)
+                         kaolin-aurora
+                         kaolin-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -390,10 +395,7 @@ It should only modify the values of Spacemacs settings."
      :visual nil
      :disabled-for-modes dired-mode
                          doc-view-mode
-                         markdown-mode
-                         org-mode
                          pdf-view-mode
-                         text-mode
      :size-limit-kb 1000)
 
    ;; Code folding method. Possible values are `evil' and `origami'.
