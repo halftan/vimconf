@@ -60,7 +60,8 @@ This function should only modify configuration layer settings."
      git
      github
      multiple-cursors
-     evil-snipe
+     (evil-snipe :variables
+                 evil-snipe-enable-alternate-f-and-t-behaviors nil)
      (org :variables
           org-want-todo-bindings t
           org-enable-bootstrap-support t)
