@@ -77,6 +77,8 @@ This function should only modify configuration layer settings."
      syntax-checking
      ;; version-control
      themes-megapack
+     (colors :variables
+             colors-enable-nyan-cat-progress-bar (display-graphic-p))
      treemacs
      games)
 
