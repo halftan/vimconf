@@ -9,6 +9,8 @@ if [[ -f  /usr/local/share/antigen/antigen.zsh ]]; then
     ANTIGEN_PATH="/usr/local/share/antigen/antigen.zsh"
 elif [[ -f /usr/share/antigen/share/antigen.zsh ]]; then
     ANTIGEN_PATH="/usr/share/antigen/share/antigen.zsh"
+elif [[ -f $HOME/.antigen.zsh ]]; then
+    ANTIGEN_PATH="$HOME/.antigen.zsh"
 fi
 
 if [[ -n "$ANTIGEN_PATH" ]]; then
