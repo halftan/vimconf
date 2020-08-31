@@ -132,8 +132,8 @@ else
     fi
 fi
 
-if [ $commands[kubectl] ]; then
-    alias kc="kubectl"
+if [[ -e "$HOME/.emacs.d" ]]; then
+    PATH="$HOME/.emacs.d/bin":$PATH
 fi
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
@@ -144,8 +144,8 @@ fi
 export -U PATH
 export -U MANPATH
 
-export KUBECONFIG=$HOME/.kube/oneconfig.yaml
+# export KUBECONFIG=$HOME/.kube/oneconfig.yaml
 
 autoload -U +X bashcompinit && bashcompinit
 
-complete -o nospace -F /Users/andy.zhang/bin/aliyun aliyun
+# complete -o nospace -F /Users/andy.zhang/bin/aliyun aliyun

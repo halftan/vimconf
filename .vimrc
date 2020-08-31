@@ -777,9 +777,9 @@ let g:JavaComplete_GradleExecutable = './gradlew'
 
 " Neovim python
 " let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
+" let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog = 'python3'
 let g:loaded_python_provider = 0
-" let g:python3_host_prog = 'python3'
 
 " Singl compile
 call SingleCompile#SetCompilerTemplate('swift', 'swift', 'swift compiler', 'swiftc', '', '$(FILE_EXEC)$')
@@ -871,3 +871,5 @@ endfunction
 call SetupCommandAbbrs('C', 'CocConfig')
 call SetupCommandAbbrs('S', 'CocList snippets')
 
+" TeX
+let g:tex_flavor = 'latex'

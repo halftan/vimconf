@@ -77,4 +77,9 @@ senv() {
     set +a
 }
 
-alias em="emacsclient -t -a ''"
+alias ssh="xterm-256color ssh"
+alias em="emacs"
+alias emt="emacs -nw"
+alias ec="emacsclient -t -a ''"
+alias ect="emacsclient -t -a ''"
+alias ecc="emacsclient -n -c -a ''"

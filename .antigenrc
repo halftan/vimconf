@@ -13,17 +13,15 @@ tig
 gitignore
 git
 npm
+nvm
 pip
-yarn
 pyenv
 docker
-docker-compose
 kubectl
 helm
 terraform
 rbenv
 urltools
-vault
 fzf
 
 zsh-users/zsh-syntax-highlighting

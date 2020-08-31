@@ -10,11 +10,11 @@
 	ui = true
 [user]
 	name = Andy Zhang
-	email = andy.zhang@wework.com
+	email = fengmzhang@paypal.com
 [push]
 	default = upstream
 [core]
-	editor = nvim
+	editor = emacsclient -a '' -c
 	excludesfile = 
 	ignorecase = false
 [merge]
