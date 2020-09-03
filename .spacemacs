@@ -601,6 +601,9 @@ before packages are loaded."
   (with-eval-after-load 'helm
     (define-key helm-map (kbd "C-w") 'evil-delete-backward-word)
     )
+
+  ;; Patches
+  (defvaralias 'helm-c-yas-space-match-any-greedy 'helm-yas-space-match-any-greedy "Temporary alias for Emacs27")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
