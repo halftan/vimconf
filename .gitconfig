@@ -14,7 +14,7 @@
 [push]
 	default = upstream
 [core]
-	editor = emacsclient -a '' -c
+	editor = emacs -a '' -nw
 	excludesfile = 
 	ignorecase = false
 [merge]
@@ -24,14 +24,14 @@
 [mergetool "nvim"]
   cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
 [difftool]
-  prompt = false
+  prompt = true
 [diff]
-  tool = vimdiff
+  # tool = vimdiff
 [http]
 	# proxy = http://127.0.0.1:18080
 [pager]
 	branch = false
 [commit]
-	gpgsign = true
+	# gpgsign = true
 [pull]
 	rebase = true
