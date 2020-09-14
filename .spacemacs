@@ -59,8 +59,8 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      (auto-completion :variables
-                      auto-completion-return-key-behavior nil
-                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
                       auto-completion-enable-snippets-in-popup nil
                       auto-completion-use-company-box t
                       auto-completion-enable-help-tooltip t
@@ -546,7 +546,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (add-hook 'prog-mode-hook
-            'spacemacs/toggle-hungry-delete-on
+            ;; 'spacemacs/toggle-hungry-delete-on
             'evil-pinyin-mode)
   (add-hook 'text-mode-hook
             'evil-pinyin-mode)
