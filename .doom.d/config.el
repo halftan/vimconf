@@ -19,13 +19,14 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Fantasque Sans Mono" :size 14)
+(setq doom-font (font-spec :family "FantasqueSansMono Nerd Font" :size 14)
       doom-variable-pitch-font (font-spec :family "PingFang SC" :size 14 :weight 'light))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme (if (display-graphic-p) 'kaolin-light 'kaolin-galaxy))
+;; (setq doom-theme (if (display-graphic-p) 'kaolin-light 'kaolin-galaxy))
+(setq doom-theme 'kaolin-galaxy)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -38,7 +39,17 @@
 ;; Disable menu-bar-mode in terminal
 (menu-bar-mode (if (display-graphic-p) 1 -1))
 
-(setq scroll-margin 5)
+;; Disable auto backup for tramp files
+(add-to-list 'backup-directory-alist
+             (cons tramp-file-name-regexp nil))
+
+(setq scroll-margin 5
+      tab-always-indent t
+      ;; start gzip when in tramp-mode from 4MB
+      tramp-inline-compress-start-size 40960
+      tramp-inline-compress-commands '(("bzip2" "bzip2 -d")
+                                       ("xz" "xz -d")))
+
 (add-to-list 'default-frame-alist '(height . 75))
 (add-to-list 'default-frame-alist '(width . 130))
 
@@ -69,45 +80,58 @@
 
 (after! evil
   (setq evil-split-window-below t
-        evil-vsplit-window-right t)
-  (map! :leader
-        :n "sc" #'evil-ex-nohighlight
-        :g "SPC" nil)
-  (map! :leader
-        :v "=" #'er/expand-region
-        :v "-" #'er/contract-region)
-  (map! :m "<up>" #'evil-window-up
-        :m "<down>" #'evil-window-down
-        :m "<left>" #'evil-window-left
-        :m "<right>" #'evil-window-right
-        :m "<H-left>" #'+evil/window-move-left
-        :m "<H-right>" #'+evil/window-move-right
-        :m "<H-up>" #'+evil/window-move-up
-        :m "<H-down>" #'+evil/window-move-down
-        :m "<M-left>" #'+evil/window-move-left
-        :m "<M-right>" #'+evil/window-move-right
-        :m "<M-up>" #'+evil/window-move-up
-        :m "<M-down>" #'+evil/window-move-down
-        :m "ESC <left>" #'+evil/window-move-left
-        :m "ESC <right>" #'+evil/window-move-right
-        :m "ESC <up>" #'+evil/window-move-up
-        :m "ESC <down>" #'+evil/window-move-down
-        :m "<mouse-4>" #'evil-scroll-line-up
-        :m "<mouse-5>" #'evil-scroll-line-down
-        :m "gs=" #'evilem-motion-next-line-first-non-blank
-        :i "<backtab>" #'evil-shift-left-line)
-
-  (map! :prefix "g"
-        :m "s=" #'evilem-motion-next-line-first-non-blank))
+        evil-vsplit-window-right t))
 
 (map! :leader
-      :prefix "SPC"
+      :n "sc" #'evil-ex-nohighlight
+      :desc "No search highlight" "/" #'evil-ex-nohighlight
+      :g "SPC" nil
+      :n "w/" #'evil-window-vsplit
+      :n "w-" #'evil-window-decrease-height)
+
+(map! :m "<up>" #'evil-window-up
+      :m "<down>" #'evil-window-down
+      :m "<left>" #'evil-window-left
+      :m "<right>" #'evil-window-right
+      :m "<H-left>" #'+evil/window-move-left
+      :m "<H-right>" #'+evil/window-move-right
+      :m "<H-up>" #'+evil/window-move-up
+      :m "<H-down>" #'+evil/window-move-down
+      :m "<M-left>" #'+evil/window-move-left
+      :m "<M-right>" #'+evil/window-move-right
+      :m "<M-up>" #'+evil/window-move-up
+      :m "<M-down>" #'+evil/window-move-down
+      :m "ESC <left>" #'+evil/window-move-left
+      :m "ESC <right>" #'+evil/window-move-right
+      :m "ESC <up>" #'+evil/window-move-up
+      :m "ESC <down>" #'+evil/window-move-down
+      :m "<mouse-4>" #'evil-scroll-line-up
+      :m "<mouse-5>" #'evil-scroll-line-down
+      :i "<backtab>" #'evil-shift-left-line)
+
+(map! :m "gs=" #'evilem-motion-next-line-first-non-blank)
+
+(map! :leader
+      :prefix ("SPC" . "Custom jump")
       :m "j" #'avy-goto-line-below
       :m "k" #'avy-goto-line-above
       :m "w" #'avy-goto-char-2)
 (map! :m "<C-i>" 'better-jumper-jump-forward)
+(map! (:when (featurep! :ui window-select +numbers)
+       :leader
+       :n "1" #'winum-select-window-1
+       :n "2" #'winum-select-window-2
+       :n "3" #'winum-select-window-3
+       :n "4" #'winum-select-window-4
+       :n "5" #'winum-select-window-5
+       :n "6" #'winum-select-window-6
+       :n "7" #'winum-select-window-7
+       :n "8" #'winum-select-window-8
+       :n "9" #'winum-select-window-9
+       :n "0" #'treemacs-select-window))
 
 (global-subword-mode 1)
+(global-display-fill-column-indicator-mode 1)
 
 (after! ivy
   ;; TODO move these to autoload
@@ -165,6 +189,15 @@
       "j" #'magit-section-forward
       "k" #'magit-section-backward)
 
+(after! company
+  ;; (map! :map company-active-map
+  ;;       "TAB" #'company-complete-selection
+  ;;       "<tab>" #'company-complete-selection
+  ;;       "RET" nil
+  ;;       "<return>" nil)
+  (setq company-box-doc-enable t
+        company-box-doc-delay 1))
+
 (defun doom-modeline-conditional-buffer-encoding ()
   "We expect the encoding to be LF UTF-8, so only show the modeline when this is not the case"
   (setq-local doom-modeline-buffer-encoding
@@ -185,4 +218,32 @@
 ;; (add-to-list 'auto-mode-alist '("/authorized_keys2?\\'" . ssh-authorized-keys-mode))
 ;; (add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
 
-(setq tab-always-indent t)
+;; (add-hook 'python-mode-hook #'(lambda () (require 'smartparens-python)))
+
+(setq +lsp-company-backends '(:separate
+                               company-capf
+                               company-tabnine))
+(setq company-backends '(company-capf (company-dabbrev-code company-keywords company-yasnippet)))
+
+(winum-mode 1)
+(setq vc-ignore-dir-regexp
+      (format "%s\\|%s"
+              vc-ignore-dir-regexp
+              tramp-file-name-regexp))
+(setq tramp-verbose 5)
+
+(defmacro set-line-number-type (TYPE)
+  "Sets current window's line number type to TYPE only if display-line-number-mode is active"
+  `(if display-line-numbers (setq-local display-line-numbers ,TYPE)))
+
+(defun adaptive-relative-line-number ()
+  (let ((buffer-in-this-window (current-buffer)))
+    (if display-line-numbers
+        (set-line-number-type 'relative))
+    (if (and doom--last-window (window-valid-p doom--last-window))
+        (with-selected-window doom--last-window
+          (unless (eq buffer-in-this-window (current-buffer))
+            (set-line-number-type t))))))
+
+(add-hook 'doom-switch-window-hook #'adaptive-relative-line-number)
+(add-hook 'find-file-hook #'(lambda () (set-line-number-type 'relative)))

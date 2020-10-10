@@ -45,6 +45,8 @@ set ttimeout timeoutlen=400 ttimeoutlen=100
 set ignorecase
 set smartcase
 
+let g:polyglot_disabled = ['coffee-script', 'javascript', 'markdown']
+
 set switchbuf+=usetab,newtab
 
 if v:version > 703 || v:version == 703 && has("patch541")
@@ -182,7 +184,7 @@ endif
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Python code formatting
-Plug 'psf/black', { 'for': 'python', 'tag': '19.10b0' }
+Plug 'psf/black', { 'for': 'python' }
 " Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
 " NeoBundle 'osyo-manga/vim-marching'
 " Plug 'marijnh/tern_for_vim', { 'for': 'javascript' }
@@ -196,7 +198,8 @@ Plug 'xolox/vim-lua-ftplugin', { 'for': ['lua', 'nginx'] }
 " Editing
 Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
+Plug 'tmsvg/pear-tree'
 " Plug 'tpope/vim-endwise'
 Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'jiangmiao/auto-pairs'
@@ -427,10 +430,6 @@ augroup END
 " FileType specs End ----------
 
 augroup filetype_specs
-    " au FileType c,cpp,python NeoBundleSource "YouCompleteMe"
-    " au FileType php NeoBundleSource "m2mdas/phpcomplete-extended"
-    " au FileType lua NeoBundleSource "vim-lua-ftplugin"
-    " au FileType javascript NeoBundleSource "marijnh/tern_for_vim"
     au FileType html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
     au FileType scheme,lisp RainbowParenthesesToggle
     " Auto format python code on save
@@ -706,7 +705,6 @@ let g:EclimFileTypeValidate = 0
 let g:html_exclude_tags = ['html', 'body', 'style', 'script', 'source']
 " let g:html_indent_inctags = ['th', 'td']
 " let g:html_indent_tags = 'th\|td'
-let g:polyglot_disabled = ['coffee-script', 'javascript', 'markdown']
 let g:jsx_ext_required = 1
 let g:jsx_pragma_required = 1
 

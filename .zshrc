@@ -25,6 +25,9 @@ elif [ $commands[vim] ]; then
 fi
 
 export LANG="en_US.UTF-8"
+export LESS=-Ri
+export NODE_EXTRA_CA_CERTS="/usr/local/etc/openssl@1.1/cert.pem"
+export SSL_CERT_FILE="/usr/local/etc/openssl@1.1/cert.pem"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -136,6 +139,11 @@ if [[ -e "$HOME/.emacs.d" ]]; then
     PATH="$HOME/.emacs.d/bin":$PATH
 fi
 
+# oc
+if [[ -e "$HOME/.crc/bin/oc" ]]; then
+    PATH="/Users/fengmzhang/.crc/bin/oc:$PATH"
+fi
+
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
 if [[ -e "$HOME/.terminfo" ]]; then
@@ -149,3 +157,19 @@ export -U MANPATH
 autoload -U +X bashcompinit && bashcompinit
 
 # complete -o nospace -F /Users/andy.zhang/bin/aliyun aliyun
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/fengmzhang/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/fengmzhang/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/fengmzhang/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/fengmzhang/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

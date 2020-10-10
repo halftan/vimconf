@@ -12,6 +12,10 @@
             "initializationOptions": {
                 "usePlaceholders": true
             }
+        },
+        "python": {
+            "filetypes": ["py"],
+            "command": "pyls"
         }
     },
     "python.jediEnabled": false,

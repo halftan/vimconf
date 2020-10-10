@@ -77,6 +77,9 @@ senv() {
     set +a
 }
 
+# ca cert
+# alias curl="curl --cacert /usr/local/etc/openssl@1.1/cert.pem"
+
 alias ssh="TERM=xterm-256color ssh"
 alias em="emacs"
 alias emt="emacs -nw"

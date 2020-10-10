@@ -39,7 +39,7 @@ This function should only modify configuration layer settings."
            web-fmt-tool 'prettier)
      (python :variables
              python-backend 'lsp
-             python-lsp-server 'mspyls
+             python-lsp-server 'pyright
              python-formatter 'black
              python-format-on-save t)
      (go :variables
@@ -53,18 +53,20 @@ This function should only modify configuration layer settings."
      (shell-scripts :variables shell-scripts-backend 'lsp)
      helm
      markdown
+     ansible
+     systemd
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      (auto-completion :variables
-                      auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-return-key-behavior 'nil
+                      auto-completion-tab-key-behavior 'complete
                       auto-completion-enable-snippets-in-popup nil
                       auto-completion-use-company-box t
-                      auto-completion-enable-help-tooltip t
-                      auto-completion-enable-sort-by-usage t)
+                      auto-completion-enable-help-tooltip 'manual
+                      auto-completion-enable-sort-by-usage nil)
      lsp
      better-defaults
      git
@@ -147,7 +149,7 @@ It should only modify the values of Spacemacs settings."
    ;; To load it when starting Emacs add the parameter `--dump-file'
    ;; when invoking Emacs 27.1 executable on the command line, for instance:
    ;;   ./emacs --dump-file=$HOME/.emacs.d/.cache/dumps/spacemacs-27.1.pdmp
-   ;; (default spacemacs-27.1.pdmp)
+   ;; (default (format "spacemacs-%s.pdmp" emacs-version))
    dotspacemacs-emacs-dumper-dump-file (format "spacemacs-%s.pdmp" emacs-version)
 
    ;; If non-nil ELPA repositories are contacted via HTTPS whenever it's
@@ -177,7 +179,9 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil then Spacelpa repository is the primary source to install
    ;; a locked version of packages. If nil then Spacemacs will install the
-   ;; latest version of packages from MELPA. (default nil)
+   ;; latest version of packages from MELPA. Spacelpa is currently in
+   ;; experimental state please use only for testing purposes.
+   ;; (default nil)
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
@@ -260,8 +264,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
 
    ;; Default font or prioritized list of fonts.
-   dotspacemacs-default-font '("Fantasque Sans Mono"
-                               :size 14.0
+   dotspacemacs-default-font '("Iosevka SS02"
+                               :size 16.0
                                :weight normal
                                :width normal)
 
@@ -295,7 +299,7 @@ It should only modify the values of Spacemacs settings."
    ;; and TAB or `C-m' and `RET'.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab t
+   dotspacemacs-distinguish-gui-tab nil
 
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
@@ -499,6 +503,13 @@ It should only modify the values of Spacemacs settings."
    ;; (default t)
    dotspacemacs-use-clean-aindent-mode t
 
+   ;; If non-nil shift your number row to match the entered keyboard layout
+   ;; (only in insert state). Currently supported keyboard layouts are:
+   ;; `qwerty-us', `qwertz-de' and `querty-ca-fr'.
+   ;; New layouts can be added in `spacemacs-editing' layer.
+   ;; (default nil)
+   dotspacemacs-swap-number-row nil
+
    ;; Either nil or a number of seconds. If non-nil zone out after the specified
    ;; number of seconds. (default nil)
    dotspacemacs-zone-out-when-idle nil
@@ -547,9 +558,12 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (add-hook 'prog-mode-hook
             ;; 'spacemacs/toggle-hungry-delete-on
-            'evil-pinyin-mode)
+            'evil-pinyin-mode
+            'spacemacs/toggle-smartparens-on)
   (add-hook 'text-mode-hook
             'evil-pinyin-mode)
+  (add-hook 'before-make-frame-hook
+            (lambda () (menu-bar-mode -1)))
   (setq-default
    evil-escape-key-sequence "jk"
    evil-pinyin-scheme 'simplified-xiaohe-all)
@@ -593,7 +607,7 @@ before packages are loaded."
 
   ;; misc
   (global-evil-matchit-mode 1)
-  (menu-bar-mode -1)
+  (global-subword-mode 1)
   ;; (global-evil-pinyin-mode 1)
   (with-eval-after-load 'company
     (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word)
@@ -601,6 +615,10 @@ before packages are loaded."
   (with-eval-after-load 'helm
     (define-key helm-map (kbd "C-w") 'evil-delete-backward-word)
     )
+  (spacemacs/set-leader-keys ":" 'spacemacs/helm-M-x-fuzzy-matching)
+  (spacemacs/set-leader-keys "<" 'lazy-helm/helm-mini)
+  (spacemacs/set-leader-keys "." 'lazy-helm/spacemacs/helm-find-files)
+  (define-key evil-insert-state-map (kbd "C-SPC") 'spacemacs//company-complete-common-or-cycle-backward)
 
   ;; Patches
   (defvaralias 'helm-c-yas-space-match-any-greedy 'helm-yas-space-match-any-greedy "Temporary alias for Emacs27")
@@ -676,6 +694,7 @@ This function is called at the very end of Spacemacs initialization."
      ("XXX+" . "#dc752f")
      ("\\?\\?\\?+" . "#dc752f")))
  '(lsp-ui-doc-border "#665c54")
+ '(lsp-yaml-single-quote t)
  '(main-line-color1 "#1E1E1E")
  '(main-line-color2 "#111111")
  '(main-line-separator-style 'chamfer)

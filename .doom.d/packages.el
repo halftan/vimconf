@@ -52,3 +52,5 @@
 (package! kaolin-themes)
 (package! posframe)
 (package! hungry-delete)
+(package! ssh-config-mode)
+(package! company-tabnine)
